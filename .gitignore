@@ -1,0 +1,9 @@
+node_modules
+.next
+certificates
+.DS_Store
+*.log
+.env
+.env*.local
+.netlify
+tsconfig.tsbuildinfo
