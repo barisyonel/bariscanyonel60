@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { BrandLogo } from "@/components/BrandLogo";
+import { site } from "@/lib/site";
 
 const nav = [
   { href: "/hizmetler", label: "Hizmetler" },
@@ -14,10 +15,67 @@ const nav = [
   { href: "/sss", label: "SSS" },
 ];
 
+type Social = { url: string; label: string; icon: ReactNode };
+
+function socialFromUrl(url: string): Social {
+  if (url.includes("linkedin")) {
+    return {
+      url,
+      label: "LinkedIn",
+      icon: (
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
+          <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.46c.98 0 1.77-.78 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z" />
+        </svg>
+      ),
+    };
+  }
+  if (url.includes("instagram")) {
+    return {
+      url,
+      label: "Instagram",
+      icon: (
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
+          <path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.73 2.7 21.31.27 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z" />
+        </svg>
+      ),
+    };
+  }
+  return {
+    url,
+    label: "Medium",
+    icon: (
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
+        <path d="M7.5 5.25a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5zm8.25 0c-1.86 0-3.38 3.02-3.38 6.75s1.52 6.75 3.38 6.75 3.37-3.02 3.37-6.75-1.51-6.75-3.37-6.75zm5.25 0c-.93 0-1.69 3.02-1.69 6.75s.76 6.75 1.69 6.75S22.5 15.73 22.5 12s-.76-6.75-1.5-6.75z" />
+      </svg>
+    ),
+  };
+}
+
+const socials = site.sameAs.map(socialFromUrl);
+
 function isActive(path: string | null, href: string) {
   if (!path) return false;
   if (href === "/") return path === "/";
   return path === href || path.startsWith(`${href}/`);
+}
+
+function SocialLinks({ className = "" }: { className?: string }) {
+  return (
+    <div className={`flex items-center gap-0.5 ${className}`} aria-label="Sosyal medya">
+      {socials.map((s) => (
+        <a
+          key={s.url}
+          href={s.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={s.label}
+          className="inline-flex h-9 w-9 items-center justify-center text-muted transition-colors hover:text-accent"
+        >
+          {s.icon}
+        </a>
+      ))}
+    </div>
+  );
 }
 
 export function Header() {
@@ -50,75 +108,57 @@ export function Header() {
     <>
       <header className="sticky top-0 z-50">
         <div
-          className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent transition-opacity duration-500 ${
-            scrolled ? "opacity-100" : "opacity-0"
-          }`}
-        />
-        <div
           className={`border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
             scrolled
-              ? "border-line/80 bg-base/75 backdrop-blur-xl supports-[backdrop-filter]:bg-base/60"
+              ? "border-line/60 bg-base/80 backdrop-blur-xl supports-[backdrop-filter]:bg-base/65"
               : "border-transparent bg-transparent"
           }`}
         >
-          <div className="container-x flex h-[4.5rem] items-center justify-between gap-4 lg:h-[5rem]">
+          <div className="container-x flex h-[4.5rem] items-center justify-between gap-6 lg:h-[5rem]">
             <BrandLogo onClick={() => setOpen(false)} />
 
-            {/* Desktop: floating glass island */}
-            <nav
-              className="relative hidden items-center rounded-full border border-line/70 bg-elevated/55 p-1.5 shadow-[0_0_0_1px_rgba(33,154,203,0.04)_inset] backdrop-blur-md md:flex"
-              aria-label="Ana menü"
-            >
+            <nav className="hidden items-center gap-1 md:flex" aria-label="Ana menü">
               {nav.map((n) => {
                 const active = isActive(path, n.href);
                 return (
                   <Link
                     key={n.href}
                     href={n.href}
-                    className={`relative z-10 rounded-full px-2.5 py-2 text-[0.8rem] tracking-wide transition-colors lg:px-3.5 lg:text-[0.86rem] ${
+                    className={`relative px-3 py-2 text-[0.84rem] tracking-[0.04em] transition-colors lg:px-3.5 ${
                       active ? "text-ink" : "text-muted hover:text-ink"
                     }`}
                   >
-                    {active && !reduce && (
-                      <motion.span
-                        layoutId="nav-pill"
-                        className="absolute inset-0 -z-10 rounded-full bg-subtle ring-1 ring-accent/35"
-                        transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                      />
-                    )}
-                    {active && reduce && (
-                      <span className="absolute inset-0 -z-10 rounded-full bg-subtle ring-1 ring-accent/35" />
-                    )}
-                    <span className="relative">{n.label}</span>
+                    {n.label}
+                    <span
+                      className={`absolute inset-x-3.5 -bottom-0.5 h-px origin-left bg-accent transition-transform duration-300 ${
+                        active ? "scale-x-100" : "scale-x-0"
+                      }`}
+                      aria-hidden
+                    />
                   </Link>
                 );
               })}
             </nav>
 
-            <div className="hidden items-center gap-3 md:flex">
+            <div className="hidden items-center gap-3 md:flex lg:gap-4">
+              <SocialLinks />
               <a
                 href="tel:+905301129440"
-                className="group hidden items-center gap-2 text-[0.82rem] text-muted transition-colors hover:text-accent lg:inline-flex"
+                className="hidden text-[0.82rem] tracking-wide text-muted transition-colors hover:text-accent xl:inline"
               >
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inset-0 animate-ping rounded-full bg-accent/40" />
-                  <span className="relative h-2 w-2 rounded-full bg-accent" />
-                </span>
                 0530 112 94 40
               </a>
               <Link
                 href="/iletisim"
-                className="group relative inline-flex overflow-hidden rounded-full bg-accent px-5 py-2.5 text-[0.86rem] font-medium text-base transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center rounded-btn bg-accent px-5 py-2.5 text-[0.84rem] font-medium text-base transition-colors hover:bg-[#3eb0db]"
               >
-                <span className="relative z-10">Keşif Görüşmesi</span>
-                <span className="pointer-events-none absolute inset-0 translate-x-[-120%] bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-[120%]" />
+                Keşif Görüşmesi
               </Link>
             </div>
 
-            {/* Mobile toggle */}
             <button
               type="button"
-              className="relative z-[60] flex h-11 w-11 items-center justify-center rounded-full border border-line bg-elevated/80 backdrop-blur-md md:hidden"
+              className="relative z-[60] flex h-11 w-11 items-center justify-center md:hidden"
               aria-label={open ? "Menüyü kapat" : "Menüyü aç"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
@@ -146,7 +186,6 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile full-screen menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -158,32 +197,32 @@ export function Header() {
           >
             <button
               type="button"
-              className="absolute inset-0 bg-base/80 backdrop-blur-md"
+              className="absolute inset-0 bg-base/85 backdrop-blur-md"
               aria-label="Menüyü kapat"
               onClick={() => setOpen(false)}
             />
             <motion.nav
               aria-label="Mobil menü"
-              className="absolute inset-x-0 bottom-0 top-[4.5rem] overflow-y-auto border-t border-line bg-gradient-to-b from-elevated to-base px-6 pb-10 pt-6"
-              initial={reduce ? false : { y: 24, opacity: 0 }}
+              className="absolute inset-x-0 bottom-0 top-[4.5rem] overflow-y-auto border-t border-line bg-base px-6 pb-10 pt-8"
+              initial={reduce ? false : { y: 16, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={reduce ? undefined : { y: 16, opacity: 0 }}
+              exit={reduce ? undefined : { y: 12, opacity: 0 }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             >
-              <ul className="space-y-1">
+              <ul className="space-y-0">
                 {nav.map((n, i) => {
                   const active = isActive(path, n.href);
                   return (
                     <motion.li
                       key={n.href}
-                      initial={reduce ? false : { opacity: 0, x: -12 }}
-                      animate={{ opacity: 1, x: 0 }}
+                      initial={reduce ? false : { opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: reduce ? 0 : 0.04 * i, duration: 0.3 }}
                     >
                       <Link
                         href={n.href}
                         onClick={() => setOpen(false)}
-                        className={`block border-b border-line/70 py-4 ${
+                        className={`block border-b border-line/50 py-5 ${
                           active ? "text-accent" : "text-ink"
                         }`}
                       >
@@ -196,21 +235,21 @@ export function Header() {
                 })}
               </ul>
 
-              <div className="mt-8 space-y-3">
+              <div className="mt-10 space-y-3">
                 <Link
                   href="/iletisim"
                   onClick={() => setOpen(false)}
-                  className="flex w-full items-center justify-center rounded-full bg-accent px-6 py-3.5 text-center font-medium text-base"
+                  className="flex w-full items-center justify-center rounded-btn bg-accent px-6 py-3.5 text-center font-medium text-base"
                 >
                   Ücretsiz Keşif Görüşmesi
                 </Link>
                 <a
                   href="tel:+905301129440"
-                  className="flex w-full items-center justify-center gap-2 rounded-full border border-line px-6 py-3.5 text-muted transition-colors hover:border-accent hover:text-accent"
+                  className="flex w-full items-center justify-center border border-line px-6 py-3.5 text-muted transition-colors hover:border-accent hover:text-accent"
                 >
-                  <span className="h-2 w-2 rounded-full bg-accent" />
                   0530 112 94 40
                 </a>
+                <SocialLinks className="justify-center pt-4" />
               </div>
             </motion.nav>
           </motion.div>

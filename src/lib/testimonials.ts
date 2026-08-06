@@ -5,6 +5,8 @@ export type Testimonial = {
   company: string;
   /** İlgili proje slug'ı */
   projectSlug: string;
+  /** 1–5 yıldız; varsayılan 5 */
+  rating?: number;
 };
 
 export const testimonials: Testimonial[] = [

@@ -8,7 +8,7 @@ import { site, defaultWa } from "@/lib/site";
 import { projects } from "@/lib/projects";
 
 export const metadata = meta({
-  title: "Hakkımızda — Tokat Web Tasarım Stüdyosu | BCY Dijital",
+  title: "Hakkımızda — Tokat Web Tasarım Stüdyosu",
   description:
     "BCY Dijital, Tokat merkezli web tasarım stüdyosudur. Barış Can Yönel ile kurumsal web sitesi, e-ticaret, SEO ve GEO. 5 iş günü teslim, şeffaf teklif, yerel referanslar.",
   path: "/hakkimda",
@@ -76,7 +76,7 @@ export default function HakkimdaPage() {
         <Reveal>
           <p className="eyebrow">Hakkımızda · Tokat</p>
           <h1 className="mt-3 max-w-3xl text-4xl font-semibold md:text-5xl">
-            Tokat&apos;ta web tasarım yapan butik dijital stüdyo
+            Hakkımızda: Tokat&apos;ta web tasarım yapan stüdyo
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-[#c2cedd]">
             {site.name}, {site.person} tarafından yönetilen Tokat merkezli bir web tasarım
@@ -86,7 +86,7 @@ export default function HakkimdaPage() {
           <p className="mt-4 max-w-2xl text-[0.98rem] text-muted">
             “Tokat web tasarım” veya “Tokat web sitesi” arayan işletmeler için uzaktan kopya tema
             değil; yüz yüze veya görüntülü keşif, yazılı teklif ve ölçülebilir teslim sunuyoruz.
-            Ayrıca Çanakkale ve İzmir&apos;de de aktif çalışıyoruz.
+            Ayrıca Çanakkale, İzmir ve İstanbul&apos;da da aktif çalışıyoruz.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <MagneticButton href="/iletisim">Ücretsiz Keşif Görüşmesi</MagneticButton>

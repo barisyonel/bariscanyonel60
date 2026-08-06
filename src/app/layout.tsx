@@ -3,20 +3,19 @@ import { Cinzel, Montserrat } from "next/font/google";
 import "@/styles/globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { WhatsAppFAB } from "@/components/ui/WhatsAppFAB";
-import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { JsonLd } from "@/components/JsonLd";
+import { DeferredChrome } from "@/components/layout/DeferredChrome";
 import { localBusiness, person } from "@/lib/schema";
 import { site } from "@/lib/site";
 import { Analytics } from "@/components/layout/Analytics";
-import { CookieBanner } from "@/components/layout/CookieBanner";
-import { SiteIntro } from "@/components/ui/SiteIntro";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "600", "700"],
+  weight: ["600", "700"],
   display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 const montserrat = Montserrat({
@@ -24,22 +23,35 @@ const montserrat = Montserrat({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600"],
   display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
   title: {
-    default: "Tokat Web Tasarım | BCY Dijital — Web Sitesi, SEO ve GEO",
+    default: "Tokat Web Tasarım ile Daha Fazla Müşteri Kazanın | BCY Dijital",
     template: "%s | BCY Dijital",
   },
   description:
-    "Tokat web tasarım ve kurumsal web sitesi stüdyosu. BCY Dijital: 5 iş günü teslim, SEO, e-ticaret ve GEO. Tokat, Çanakkale ve İzmir.",
+    "Tokat web tasarım ve kurumsal web sitesi stüdyosu. BCY Dijital: 5 iş günü teslim, SEO, e-ticaret, GEO ve Meta reklam. Tokat, Çanakkale, İzmir ve İstanbul.",
   icons: {
     icon: "/favicon.png",
     apple: "/apple-touch-icon.png",
   },
   verification: {
     google: "KxXeRgFkidt01EtYymscAT5XKW9mY2S0QU8EIPPfnw4",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -54,13 +66,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           İçeriğe atla
         </a>
         <JsonLd data={[localBusiness(), person()]} />
-        <SiteIntro />
-        <ScrollProgress />
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
-        <WhatsAppFAB />
-        <CookieBanner />
+        <DeferredChrome />
         <Analytics />
       </body>
     </html>

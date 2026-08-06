@@ -1,11 +1,11 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
-import { site, defaultWa } from "@/lib/site";
 import { BrandLogo } from "@/components/BrandLogo";
 import { services } from "@/lib/services";
+import { defaultWa, site } from "@/lib/site";
 
-const quickLinks = [
+const QUICK_LINKS = [
   { href: "/", label: "Ana Sayfa" },
-  { href: "/hizmetler", label: "Hizmetler" },
   { href: "/projeler", label: "Projeler" },
   { href: "/blog", label: "Blog" },
   { href: "/hakkimda", label: "Hakkımızda" },
@@ -13,153 +13,221 @@ const quickLinks = [
   { href: "/iletisim", label: "İletişim" },
 ] as const;
 
-const techStrip = [
+const REGION_LINKS = [
+  { href: "/tokat-web-tasarim", label: "Tokat Web Tasarım" },
+  { href: "/canakkale-web-tasarim", label: "Çanakkale Web Tasarım" },
+  { href: "/izmir-web-tasarim", label: "İzmir Web Tasarım" },
+  { href: "/istanbul-web-tasarim", label: "İstanbul Web Tasarım" },
+] as const;
+
+const TECH_STRIP = [
   "Next.js",
   "React",
   "TypeScript",
   "Tailwind",
   "Vercel",
-  "Cloudflare",
   "Schema.org",
 ] as const;
 
-export function Footer() {
+function socialLabel(url: string): string {
+  if (url.includes("linkedin")) return "LinkedIn";
+  if (url.includes("instagram")) return "Instagram";
+  if (url.includes("medium")) return "Medium";
+  return "Sosyal";
+}
+
+function FooterHeading({ children }: { children: ReactNode }) {
   return (
-    <footer className="hairline">
-      <div className="container-x section-pad grid gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-4">
-          <BrandLogo size="footer" />
-          <p className="mt-4 max-w-sm text-[0.95rem] text-muted">{site.description}</p>
-          <div className="mt-6 flex flex-wrap gap-3" aria-label="Sosyal medya">
-            {site.sameAs.map((url) => {
-              const label = url.includes("linkedin")
-                ? "LinkedIn"
-                : url.includes("instagram")
-                  ? "Instagram"
-                  : url.includes("medium")
-                    ? "Medium"
-                    : "Sosyal";
-              return (
-                <a
-                  key={url}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-underline rounded-btn border border-line px-3 py-1.5 text-xs text-muted hover:border-accent/40 hover:text-accent"
-                >
-                  {label}
-                </a>
-              );
-            })}
-          </div>
-        </div>
+    <p className="eyebrow mb-0! text-[0.72rem] tracking-[0.2em]">{children}</p>
+  );
+}
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-3">
-          <div className="space-y-2.5 text-[0.95rem]">
-            <p className="eyebrow">Hızlı Menü</p>
-            {quickLinks.map((l) => (
-              <Link key={l.href} className="link-underline block text-muted hover:text-accent" href={l.href}>
-                {l.label}
-              </Link>
-            ))}
-          </div>
-          <div className="space-y-2.5 text-[0.95rem]">
-            <p className="eyebrow">Hizmetler</p>
-            {services.map((s) => (
-              <Link
-                key={s.slug}
-                className="link-underline block text-muted hover:text-accent"
-                href={`/hizmetler/${s.slug}`}
-              >
-                {s.title}
-              </Link>
-            ))}
-            <Link className="link-underline block text-muted hover:text-accent" href="/projeler">
-              Projeler
-            </Link>
-            <Link className="link-underline block text-muted hover:text-accent" href="/blog">
-              Blog
-            </Link>
-          </div>
-          <div className="space-y-2.5 text-[0.95rem]">
-            <p className="eyebrow">Bölgeler</p>
-            <Link className="link-underline block text-muted hover:text-accent" href="/tokat-web-tasarim">
-              Tokat Web Tasarım
-            </Link>
-            <Link className="link-underline block text-muted hover:text-accent" href="/canakkale-web-tasarim">
-              Çanakkale Web Tasarım
-            </Link>
-            <Link className="link-underline block text-muted hover:text-accent" href="/izmir-web-tasarim">
-              İzmir Web Tasarım
-            </Link>
-            <Link className="link-underline block text-muted hover:text-accent" href="/kvkk">
-              KVKK
-            </Link>
-          </div>
-        </div>
+/**
+ * Premium footer — CTA, iletişim, hızlı linkler, hizmetler, sosyal.
+ */
+export function Footer() {
+  const year = new Date().getFullYear();
 
-        <div className="space-y-5 text-[0.95rem] lg:col-span-3">
-          <div className="space-y-2.5">
-            <p className="eyebrow">İletişim</p>
-            <a className="link-underline block text-muted hover:text-accent" href={`tel:+${site.phoneRaw}`}>
-              {site.phone}
-            </a>
+  return (
+    <footer className="relative overflow-hidden border-t border-line bg-elevated/30">
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(33,154,203,0.08),transparent_50%)]"
+        aria-hidden
+      />
+
+      {/* CTA band */}
+      <div className="relative border-b border-line">
+        <div className="container-x flex flex-col gap-6 py-12 md:flex-row md:items-center md:justify-between md:py-14">
+          <div className="max-w-xl">
+            <p className="eyebrow">Sonraki adım</p>
+            <p className="mt-3 display text-2xl font-semibold leading-snug tracking-tight text-ink md:text-3xl">
+              Projenizi birlikte netleştirelim
+            </p>
+            <p className="mt-3 text-[0.95rem] text-muted">
+              Ücretsiz keşif görüşmesi — yazılı teklif, sürpriz yok.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link
+              href="/iletisim"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-btn bg-accent px-7 py-3 text-[0.95rem] font-medium text-base shadow-(--shadow-glow) transition-colors duration-300 hover:bg-accent-deep"
+            >
+              Ücretsiz Keşif Görüşmesi
+              <span aria-hidden>→</span>
+            </Link>
             <a
-              className="link-underline block text-muted hover:text-accent"
               href={defaultWa}
               target="_blank"
               rel="noopener noreferrer"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-btn border border-line px-7 py-3 text-[0.95rem] font-medium text-ink transition-[border-color,color] duration-300 hover:border-accent/50 hover:text-accent"
             >
-              WhatsApp&apos;tan yazın
-            </a>
-            <a className="link-underline block text-muted hover:text-accent" href={`mailto:${site.email}`}>
-              {site.email}
-            </a>
-            <p className="text-muted">Tokat, Türkiye</p>
-          </div>
-
-          <div>
-            <p className="eyebrow">Çalışma Saatleri</p>
-            <p className="mt-2 text-muted">Pzt–Cmt · 09:00–19:00</p>
-            <p className="text-sm text-muted">Pazar: randevu ile</p>
-          </div>
-
-          <div>
-            <p className="eyebrow mb-2">Harita</p>
-            <a
-              href="https://maps.google.com/?q=Tokat,Türkiye"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block overflow-hidden rounded-card border border-line bg-elevated transition-[border-color,box-shadow] hover:border-accent/40 hover:shadow-[0_16px_40px_-24px_rgba(33,154,203,0.35)]"
-              aria-label="Tokat konumunu Google Haritalar'da aç"
-            >
-              <div className="relative aspect-[16/10] bg-[linear-gradient(145deg,#0f1d34,#050c18)]">
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center">
-                  <span className="h-3 w-3 rounded-full bg-accent shadow-[0_0_16px_rgba(33,154,203,0.9)]" />
-                  <span className="text-sm font-medium text-ink">Tokat, Türkiye</span>
-                  <span className="text-xs text-muted">Haritada aç →</span>
-                </div>
-                <div
-                  className="pointer-events-none absolute inset-0 opacity-40"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(rgba(33,154,203,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(33,154,203,0.15) 1px, transparent 1px)",
-                    backgroundSize: "20px 20px",
-                  }}
-                />
-              </div>
+              WhatsApp
             </a>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-line">
+      {/* Main columns */}
+      <div className="container-x relative grid gap-12 py-14 md:py-16 lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-4">
+          <BrandLogo size="footer" />
+          <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-muted">
+            {site.city} merkezli {site.name}: kurumsal web, SEO, GEO ve Meta reklam — ölçülebilir
+            teslim.
+          </p>
+
+          <div className="mt-8">
+            <FooterHeading>Sosyal Medya</FooterHeading>
+            <ul className="mt-4 flex flex-wrap gap-2" aria-label="Sosyal medya">
+              {site.sameAs.map((url) => (
+                <li key={url}>
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-10 items-center rounded-btn border border-line bg-base/40 px-3.5 py-2 text-xs font-medium uppercase tracking-[0.12em] text-muted transition-[border-color,color,background-color] duration-300 hover:border-accent/40 hover:bg-accent-soft/30 hover:text-accent"
+                  >
+                    {socialLabel(url)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="grid gap-10 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-2 lg:gap-8">
+          <nav aria-labelledby="footer-quick-heading">
+            <FooterHeading>
+              <span id="footer-quick-heading">Hızlı Linkler</span>
+            </FooterHeading>
+            <ul className="mt-4 space-y-2.5">
+              {QUICK_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-[0.95rem] text-muted transition-colors duration-300 hover:text-accent"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-labelledby="footer-services-heading">
+            <FooterHeading>
+              <span id="footer-services-heading">Hizmetler</span>
+            </FooterHeading>
+            <ul className="mt-4 space-y-2.5">
+              {services.map((s) => (
+                <li key={s.slug}>
+                  <Link
+                    href={`/hizmetler/${s.slug}`}
+                    className="text-[0.95rem] text-muted transition-colors duration-300 hover:text-accent"
+                  >
+                    {s.title}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/hizmetler"
+                  className="text-[0.95rem] font-medium text-accent transition-colors duration-300 hover:text-ink"
+                >
+                  Tüm hizmetler →
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div className="space-y-8 lg:col-span-3">
+          <div>
+            <FooterHeading>İletişim</FooterHeading>
+            <ul className="mt-4 space-y-3 text-[0.95rem]">
+              <li>
+                <a
+                  href={`tel:+${site.phoneRaw}`}
+                  className="font-medium text-ink transition-colors hover:text-accent"
+                >
+                  {site.phone}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${site.email}`}
+                  className="text-muted transition-colors hover:text-accent"
+                >
+                  {site.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={defaultWa}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted transition-colors hover:text-accent"
+                >
+                  WhatsApp&apos;tan yazın
+                </a>
+              </li>
+              <li className="text-muted">
+                {site.city}, Türkiye
+                <span className="mt-1 block text-sm text-muted/80">
+                  Pzt–Cmt · 09:00–19:00
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <FooterHeading>Bölgeler</FooterHeading>
+            <ul className="mt-4 space-y-2">
+              {REGION_LINKS.map((r) => (
+                <li key={r.href}>
+                  <Link
+                    href={r.href}
+                    className="text-[0.9rem] text-muted transition-colors hover:text-accent"
+                  >
+                    {r.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Tech + legal */}
+      <div className="relative border-t border-line">
         <div className="container-x flex flex-wrap items-center gap-2 py-4" aria-label="Teknolojiler">
-          <span className="mr-1 text-xs uppercase tracking-wider text-muted">Teknolojiler</span>
-          {techStrip.map((t) => (
+          <span className="mr-1 text-[0.65rem] uppercase tracking-[0.16em] text-muted/70">
+            Stack
+          </span>
+          {TECH_STRIP.map((t) => (
             <span
               key={t}
-              className="rounded-full border border-line px-2.5 py-0.5 text-[0.7rem] text-muted"
+              className="rounded-btn border border-line/80 px-2.5 py-0.5 text-[0.68rem] text-muted"
             >
               {t}
             </span>
@@ -167,12 +235,19 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="hairline">
-        <div className="container-x flex flex-col gap-2 py-5 text-[0.85rem] text-muted md:flex-row md:justify-between">
+      <div className="relative border-t border-line bg-base/40">
+        <div className="container-x flex flex-col gap-3 py-5 text-[0.85rem] text-muted md:flex-row md:items-center md:justify-between">
           <p>
-            © {new Date().getFullYear()} {site.name} — {site.person}
+            © {year} {site.name} — {site.person}
           </p>
-          <p>Tokat, Çanakkale & İzmir&apos;de web tasarım, SEO ve GEO</p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <p className="text-[0.8rem]">
+              {site.regions.join(" · ")} · Web tasarım, SEO, GEO
+            </p>
+            <Link href="/kvkk" className="hover:text-accent">
+              KVKK
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

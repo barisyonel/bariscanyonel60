@@ -29,6 +29,7 @@ export function localBusiness() {
       { "@type": "City", name: "Tokat" },
       { "@type": "City", name: "Çanakkale" },
       { "@type": "City", name: "İzmir" },
+      { "@type": "City", name: "İstanbul" },
       { "@type": "Country", name: "Türkiye" },
     ],
     knowsAbout: [
@@ -37,6 +38,9 @@ export function localBusiness() {
       "E-ticaret",
       "Yerel SEO",
       "GEO",
+      "Meta Ads",
+      "Facebook reklam",
+      "Instagram reklam",
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -46,6 +50,7 @@ export function localBusiness() {
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "E-ticaret" } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO" } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "GEO" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Meta reklam yönetimi" } },
       ],
     },
     openingHoursSpecification: {
@@ -67,12 +72,12 @@ export function person() {
     name: site.person,
     jobTitle: "Web Tasarımcı ve Geliştirici",
     description:
-      "Tokat merkezli BCY Dijital'in kurucusu. Kurumsal web tasarım, e-ticaret, SEO ve GEO ile yerel işletmelere dijital kanal kurar.",
+      "Tokat merkezli BCY Dijital'in kurucusu. Kurumsal web tasarım, e-ticaret, SEO, GEO ve Meta reklam ile yerel işletmelere dijital kanal kurar.",
     worksFor: { "@id": `${site.domain}/#business` },
     url: `${site.domain}/hakkimda`,
     image: `${site.domain}/logo.png`,
     sameAs: site.sameAs,
-    knowsAbout: ["Web tasarım", "Next.js", "SEO", "GEO", "Tokat"],
+    knowsAbout: ["Web tasarım", "Next.js", "SEO", "GEO", "Meta Ads", "Tokat"],
     address: { "@type": "PostalAddress", addressLocality: "Tokat", addressCountry: "TR" },
   };
 }
@@ -84,7 +89,7 @@ export function aboutPageSchema() {
     "@id": `${site.domain}/hakkimda#about`,
     name: "Hakkımızda — BCY Dijital Tokat Web Tasarım",
     description:
-      "BCY Dijital, Tokat merkezli web tasarım stüdyosudur. Kurumsal site, e-ticaret, SEO ve GEO hizmeti sunar.",
+      "BCY Dijital, Tokat merkezli web tasarım stüdyosudur. Kurumsal site, e-ticaret, SEO, GEO ve Meta reklam hizmeti sunar.",
     url: `${site.domain}/hakkimda`,
     mainEntity: { "@id": `${site.domain}/#business` },
     about: { "@id": `${site.domain}/#person` },
@@ -99,7 +104,7 @@ export function serviceSchema(title: string, description: string, slug: string) 
     name: title,
     description,
     provider: { "@id": `${site.domain}/#business` },
-    areaServed: ["Tokat", "Çanakkale", "İzmir", "Türkiye"],
+    areaServed: ["Tokat", "Çanakkale", "İzmir", "İstanbul", "Türkiye"],
     url: `${site.domain}/hizmetler/${slug}`,
   };
 }
@@ -261,5 +266,23 @@ export function imageObjectSchema(opts: {
     width: opts.width || 1200,
     height: opts.height || 630,
     creditText: site.name,
+  };
+}
+
+/** /projeler sayfası — Google için proje listesi */
+export function projectsItemListSchema(
+  items: { name: string; slug: string; summary: string }[]
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${site.name} referans projeler`,
+    itemListElement: items.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: p.name,
+      url: `${site.domain}/projeler/${p.slug}`,
+      description: p.summary,
+    })),
   };
 }

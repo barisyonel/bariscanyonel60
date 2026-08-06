@@ -11,13 +11,16 @@ export function meta(opts: {
   publishedTime?: string;
   modifiedTime?: string;
   keywords?: string[];
+  /** true ise layout title template uygulanmaz */
+  absoluteTitle?: boolean;
 }): Metadata {
   const url = `${site.domain}${opts.path}`;
-  const imagePath = opts.image || `/og?title=${encodeURIComponent(opts.title)}`;
+  // Parametreli / dinamik OG URL kullanma — SEO denetimlerinde dahili query-link uyarısı üretir
+  const imagePath = opts.image || "/logo-og.jpg";
   const imageUrl = imagePath.startsWith("http") ? imagePath : `${site.domain}${imagePath}`;
 
   return {
-    title: opts.title,
+    title: opts.absoluteTitle ? { absolute: opts.title } : opts.title,
     description: opts.description,
     keywords: opts.keywords,
     alternates: { canonical: url },

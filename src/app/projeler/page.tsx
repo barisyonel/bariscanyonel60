@@ -1,28 +1,37 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumb } from "@/lib/schema";
+import { breadcrumb, projectsItemListSchema } from "@/lib/schema";
 import { meta } from "@/lib/seo";
+import { projects } from "@/lib/projects";
 
 export const metadata = meta({
-  title: "Projeler — Referans Çalışmalarımız",
+  title: "Projeler ve Referans Vaka Çalışmaları",
   description:
-    "BCY Dijital'in Tokat ve çevresinde tamamladığı web tasarım, e-ticaret ve SEO projeleri: asansör, gayrimenkul, otomotiv, sigorta, mühendislik ve gıda sektörleri.",
+    "BCY Dijital referansları: Prime Dizayn (İstanbul), asansör, hukuk, sanayi, gayrimenkul, otel ve daha fazlası — canlı URL’li web tasarım vaka çalışmaları.",
   path: "/projeler",
 });
 
 export default function ProjelerPage() {
   return (
     <div className="container-x section-pad">
-      <JsonLd data={breadcrumb([{ name: "Ana Sayfa", path: "/" }, { name: "Projeler", path: "/projeler" }])} />
+      <JsonLd
+        data={[
+          breadcrumb([
+            { name: "Ana Sayfa", path: "/" },
+            { name: "Projeler", path: "/projeler" },
+          ]),
+          projectsItemListSchema(projects),
+        ]}
+      />
       <Reveal>
         <p className="eyebrow">Projeler</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-semibold md:text-5xl">
-          Her proje bir vaka çalışması: problem, çözüm, sonuç.
+          Projeler ve referans vaka çalışmaları
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-muted">
-          Ekran görüntüsü galerisi değil; her işte neyi neden yaptığımızı ve ne sonuç aldığımızı
-          açıkça anlatıyoruz. Sektöre göre filtreleyebilirsiniz.
+          Her işte problemi, çözümü ve sonucu açıkça anlatıyoruz. Ekran görüntüsü galerisi değil;
+          sektöre göre filtreleyebileceğiniz gerçek vaka çalışmaları.
         </p>
       </Reveal>
       <div className="mt-12">

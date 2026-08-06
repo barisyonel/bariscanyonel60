@@ -7,9 +7,9 @@ import { getPostsSorted } from "@/lib/posts";
 import { BlogCard } from "@/components/blog/BlogCard";
 
 export const metadata = meta({
-  title: "Blog — Tokat, Çanakkale, İzmir Web Tasarım, SEO ve GEO Rehberleri",
+  title: "Blog: Web Tasarım, SEO ve GEO Rehberleri",
   description:
-    "Tokat, Çanakkale ve İzmir’de web tasarım / web sitesi yaptırmak isteyenler için fiyat, süre, ajans seçimi, SEO ve GEO rehberleri (2026). BCY Dijital blog.",
+    "Tokat, Çanakkale, İzmir ve İstanbul’da web tasarım / web sitesi yaptırmak isteyenler için fiyat, süre, ajans seçimi, SEO ve GEO rehberleri (2026). BCY Dijital blog.",
   path: "/blog",
   image: "/logo-og.jpg",
   keywords: [
@@ -17,6 +17,7 @@ export const metadata = meta({
     "Tokat web sitesi",
     "Çanakkale web tasarım",
     "İzmir web tasarım",
+    "İstanbul web tasarım",
     "SEO",
     "GEO",
     "BCY Dijital blog",
@@ -34,13 +35,13 @@ export default function BlogPage() {
         ])}
       />
       <Reveal>
-        <p className="eyebrow">Blog · Tokat · Çanakkale · İzmir</p>
+        <p className="eyebrow">Blog · Tokat · Çanakkale · İzmir · İstanbul</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-semibold md:text-5xl">
-          Web tasarım, SEO ve GEO hakkında net cevaplar
+          Blog: Tokat, Çanakkale, İzmir ve İstanbul web tasarım rehberleri
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-muted">
-          “Tokat web tasarım”, “Çanakkale web sitesi”, “İzmir kurumsal site” ve benzeri
-          aramalarda işletmelerin gerçekten sorduğu sorular: fiyat, süre, ajans seçimi,
+          “Tokat web tasarım”, “Çanakkale web sitesi”, “İzmir kurumsal site”, “İstanbul web tasarım”
+          ve benzeri aramalarda işletmelerin gerçekten sorduğu sorular: fiyat, süre, ajans seçimi,
           yerel SEO ve yapay zekâ görünürlüğü.
         </p>
         <p className="mt-3 max-w-2xl text-sm text-muted">
@@ -55,6 +56,10 @@ export default function BlogPage() {
           {" · "}
           <Link href="/izmir-web-tasarim" className="link-underline text-accent">
             İzmir
+          </Link>
+          {" · "}
+          <Link href="/istanbul-web-tasarim" className="link-underline text-accent">
+            İstanbul
           </Link>
         </p>
       </Reveal>

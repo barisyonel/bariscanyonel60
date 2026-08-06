@@ -23,6 +23,27 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "prime-dizayn",
+    name: "Prime Dizayn",
+    sector: "Mimari · Fit-Out · Asma Tavan",
+    city: "İstanbul",
+    summary:
+      "İstanbul Sancaktepe merkezli anahtar teslim mimari, asma tavan ve fit-out firması için koyu-premium kurumsal site.",
+    problem:
+      "Prime Dizayn’ın saha ve teslim gücü yüksekti ama dijitalde İstanbul asma tavan ve fit-out arayan müşterilere premium, güven veren bir vitrin eksikti; hizmetler ve referanslar dağınık anlatılıyordu.",
+    solution:
+      "Koyu premium dilde hero, hizmetler, seçilmiş projeler, referanslar ve net teklif CTA’sını birleştiren; mobil öncelikli, SEO odaklı bir kurumsal site kurduk — canlı: primedizayn.com.tr.",
+    result:
+      "Firma anahtar teslim fit-out ve İstanbul asma tavan tekliflerini tek yerden anlatıyor; keşif ve teklif talepleri form ile WhatsApp üzerinden merkeze ulaşıyor.",
+    tags: ["Kurumsal", "SEO", "İstanbul"],
+    tone: "#e8c547",
+    url: "https://www.primedizayn.com.tr/",
+    image: "/projects/prime-dizayn.jpg",
+    seoScore: 98,
+    performance: 97,
+    tech: ["Next.js", "SEO", "WhatsApp"],
+  },
+  {
     slug: "guzubey-asansor",
     name: "Guzubey Asansör",
     sector: "Asansör",
@@ -39,6 +60,48 @@ export const projects: Project[] = [
     tone: "#e8b84a",
     url: "https://www.guzubey.com/",
     image: "/projects/guzubey-asansor.jpg",
+    seoScore: 98,
+    performance: 96,
+    tech: ["Next.js", "SEO", "WhatsApp"],
+  },
+  {
+    slug: "samlioglu-hukuk",
+    name: "Şamlıoğlu Hukuk & Danışmanlık",
+    sector: "Avukatlık · Hukuk",
+    city: "Tokat",
+    summary:
+      "Tokat avukatlık ofisi için koyu-premium kurumsal site; faaliyet alanları, süreç, makaleler ve danışmanlık CTA’sıyla güven veren dijital vitrin.",
+    problem:
+      "Ofisin uzmanlık alanları ve süreç disiplini güçlüydü ama Tokat’ta avukat arayan müvekkillere güven veren, modern bir web varlığı eksikti; iletişim dağınık kanallardaydı.",
+    solution:
+      "Altın-koyu kurumsal dilde faaliyet alanları, çalışma süreci, SSS, galeri ve net danışmanlık CTA’sını birleştiren; mobil öncelikli, SEO odaklı bir hukuk sitesi kurduk.",
+    result:
+      "Müvekkil adayları ofisi ve uzmanlık alanlarını tek yerden inceliyor; danışmanlık talepleri form ve WhatsApp üzerinden merkeze ulaşıyor.",
+    tags: ["Kurumsal", "Yerel SEO", "Hukuk"],
+    tone: "#c8a45d",
+    url: "https://www.yasinsamlioglu.av.tr/",
+    image: "/projects/samlioglu-hukuk.jpg",
+    seoScore: 98,
+    performance: 97,
+    tech: ["Next.js", "SEO", "WhatsApp"],
+  },
+  {
+    slug: "tokat-sanayi-sitesi",
+    name: "Tokat Sanayi Sitesi",
+    sector: "Sanayi Rehberi · Firma Dizini",
+    city: "Tokat",
+    summary:
+      "Tokat Sanayi Sitesi esnafı için usta, servis, yedek parça ve büfe firmalarını tek yerden bulduran dijital rehber.",
+    problem:
+      "Yüzlerce dükkân yan yanaydı ama müşteri doğru ustayı veya firmayı telefon ve ezbere buluyordu; sanayi sitesinin dijitalde tek, güvenilir bir vitrini yoktu.",
+    solution:
+      "Kategori ve arama odaklı firma dizini, WhatsApp iletişimi, işletme kaydı ve yerel SEO ile Merkez ve ilçelerden gelen aramaları karşılayan bir sanayi rehberi kurduk.",
+    result:
+      "Ziyaretçiler motor, kaporta, lastik veya büfe ihtiyacını saniyeler içinde daraltıyor; esnaf telefon ve WhatsApp ile doğrudan ulaşılabilir hale geliyor.",
+    tags: ["Rehber", "Yerel SEO", "Firma Dizini"],
+    tone: "#e85a2a",
+    url: "https://www.tokatsanayisitesi.com/",
+    image: "/projects/tokat-sanayi-sitesi.jpg",
     seoScore: 98,
     performance: 96,
     tech: ["Next.js", "SEO", "WhatsApp"],

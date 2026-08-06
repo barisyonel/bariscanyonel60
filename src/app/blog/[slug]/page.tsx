@@ -56,6 +56,13 @@ function ctaByRegion(region: string) {
       cityLabel: "İzmir Web Tasarım",
     };
   }
+  if (region === "İstanbul") {
+    return {
+      title: "İstanbul işletmeniz için konuşalım mı?",
+      cityHref: "/istanbul-web-tasarim",
+      cityLabel: "İstanbul Web Tasarım",
+    };
+  }
   return {
     title: "Tokat’taki işletmeniz için konuşalım mı?",
     cityHref: "/tokat-web-tasarim",

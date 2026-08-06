@@ -3,17 +3,17 @@
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { easeOut } from "@/lib/motion";
+import { easeOut, easeSoft } from "@/lib/motion";
 
 const SESSION_KEY = "bcy-intro-done";
+const INTRO_MS = 2400;
 
 /**
- * Morphing signal + kinetic type intro (loading / animated logo dilinde).
- * Klasik logo fade değil: path draw → morph pulse → tipografi maskesi → wipe.
+ * Premium marka girişi.
+ * SSR / LCP’yi bloklamaz; yalnızca ilk oturumda, hydrate sonrası oynar.
  */
 export function SiteIntro() {
   const reduce = useReducedMotion();
-  const [ready, setReady] = useState(false);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -23,22 +23,24 @@ export function SiteIntro() {
     } catch {
       /* ignore */
     }
-    setShow(!seen);
-    setReady(true);
-  }, []);
+    if (seen || reduce) return;
+
+    // Kısa gecikme: LCP metni önce boyansın, sonra perde gelsin
+    const id = window.setTimeout(() => setShow(true), 80);
+    return () => window.clearTimeout(id);
+  }, [reduce]);
 
   useEffect(() => {
     if (!show) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const ms = reduce ? 600 : 3200;
-    const id = window.setTimeout(() => finish(), ms);
+    const id = window.setTimeout(() => finish(), INTRO_MS);
     return () => {
       window.clearTimeout(id);
       document.body.style.overflow = prev;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [show, reduce]);
+  }, [show]);
 
   function finish() {
     try {
@@ -50,11 +52,7 @@ export function SiteIntro() {
     document.body.style.overflow = "";
   }
 
-  if (!ready) {
-    return <div className="fixed inset-0 z-[100] bg-[#040a14]" aria-hidden />;
-  }
-
-  const letters = "BCY".split("");
+  const letters = ["B", "C", "Y"] as const;
 
   return (
     <AnimatePresence>
@@ -62,155 +60,127 @@ export function SiteIntro() {
         <motion.div
           role="presentation"
           aria-hidden
-          className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#040a14]"
-          initial={{ clipPath: "inset(0% 0% 0% 0%)" }}
-          exit={
-            reduce
-              ? { opacity: 0, transition: { duration: 0.2 } }
-              : {
-                  clipPath: ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"],
-                  transition: { duration: 0.75, times: [0, 0.35, 1], ease: easeOut },
-                }
-          }
+          className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden"
+          initial={{ opacity: 1 }}
+          exit={{
+            clipPath: "inset(0 0 100% 0)",
+            transition: { duration: 0.85, ease: easeOut },
+          }}
           onClick={finish}
         >
-          {/* Liquid morph blobs */}
-          {!reduce && (
-            <>
-              <motion.div
-                className="absolute left-[15%] top-[20%] h-64 w-64 rounded-full bg-accent/25 blur-[80px]"
-                animate={{
-                  x: [0, 60, -30, 0],
-                  y: [0, 40, -20, 0],
-                  borderRadius: ["40% 60% 55% 45%", "55% 45% 40% 60%", "40% 60% 55% 45%"],
-                }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          {/* Atmosphere */}
+          <div className="absolute inset-0 bg-[#030912]" />
+          <motion.div
+            className="pointer-events-none absolute left-1/2 top-[42%] h-[42vmin] w-[42vmin] -translate-x-1/2 -translate-y-1/2 rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(33,154,203,0.22) 0%, rgba(33,154,203,0.06) 42%, transparent 70%)",
+            }}
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1.15 }}
+            transition={{ duration: 1.6, ease: easeSoft }}
+          />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.35]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(33,154,203,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(33,154,203,0.04) 1px, transparent 1px)",
+              backgroundSize: "64px 64px",
+              maskImage: "radial-gradient(ellipse at center, black 20%, transparent 72%)",
+            }}
+          />
+
+          {/* Corner marks */}
+          <div className="pointer-events-none absolute inset-8 sm:inset-12">
+            <span className="absolute left-0 top-0 h-8 w-8 border-l border-t border-accent/35" />
+            <span className="absolute right-0 top-0 h-8 w-8 border-r border-t border-accent/35" />
+            <span className="absolute bottom-0 left-0 h-8 w-8 border-b border-l border-accent/35" />
+            <span className="absolute bottom-0 right-0 h-8 w-8 border-b border-r border-accent/35" />
+          </div>
+
+          <div className="relative z-10 flex flex-col items-center px-6 text-center">
+            <motion.p
+              className="mb-8 text-[0.68rem] font-medium uppercase tracking-[0.42em] text-accent/90"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: easeOut }}
+            >
+              BCY Dijital
+            </motion.p>
+
+            <motion.div
+              className="relative mb-8"
+              initial={{ opacity: 0, scale: 0.88, filter: "blur(8px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              transition={{ duration: 0.7, delay: 0.12, ease: easeOut }}
+            >
+              <div className="absolute inset-0 scale-150 rounded-full bg-accent/20 blur-2xl" />
+              <Image
+                src="/logo-mark.png"
+                alt=""
+                width={72}
+                height={72}
+                priority={false}
+                className="relative h-[4.25rem] w-[4.25rem] object-contain"
               />
-              <motion.div
-                className="absolute bottom-[15%] right-[12%] h-72 w-72 rounded-full bg-[#1a7a9e]/30 blur-[90px]"
-                animate={{
-                  x: [0, -50, 20, 0],
-                  y: [0, -30, 25, 0],
-                  borderRadius: ["60% 40% 45% 55%", "40% 60% 60% 40%", "60% 40% 45% 55%"],
-                }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-              />
-            </>
-          )}
+            </motion.div>
 
-          <div className="relative z-10 flex flex-col items-center px-6">
-            {/* Self-drawing signal ring morph */}
-            <div className="relative mb-10 h-40 w-40">
-              <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden>
-                <motion.circle
-                  cx="50"
-                  cy="50"
-                  r="36"
-                  fill="none"
-                  stroke="rgba(33,154,203,0.35)"
-                  strokeWidth="0.6"
-                  initial={{ pathLength: 0, rotate: -90 }}
-                  animate={{ pathLength: 1, rotate: 270 }}
-                  transition={{ duration: reduce ? 0.2 : 1.4, ease: easeOut }}
-                  style={{ transformOrigin: "50% 50%" }}
-                />
-                <motion.path
-                  d="M28 52 C36 34, 64 34, 72 52 C64 70, 36 70, 28 52 Z"
-                  fill="none"
-                  stroke="#219acb"
-                  strokeWidth="1.2"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{
-                    pathLength: 1,
-                    opacity: 1,
-                    scale: reduce ? 1 : [1, 1.06, 0.97, 1],
-                    rotate: reduce ? 0 : [0, 3, -2, 0],
-                  }}
-                  transition={{
-                    pathLength: { duration: 1.1, delay: 0.3, ease: easeOut },
-                    opacity: { duration: 0.4, delay: 0.3 },
-                    scale: { duration: 2.4, delay: 1.2, repeat: Infinity, ease: "easeInOut" },
-                    rotate: { duration: 2.4, delay: 1.2, repeat: Infinity, ease: "easeInOut" },
-                  }}
-                  style={{ transformOrigin: "50% 50%" }}
-                />
-                <motion.circle
-                  cx="50"
-                  cy="50"
-                  r="3.5"
-                  fill="#219acb"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [0, 1.3, 1] }}
-                  transition={{ delay: 0.9, duration: 0.55, ease: easeOut }}
-                />
-              </svg>
-
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                initial={{ opacity: 0, scale: 0.8, filter: "blur(8px)" }}
-                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                transition={{ delay: reduce ? 0 : 1.15, duration: 0.55, ease: easeOut }}
-              >
-                <div className="relative h-12 w-24">
-                  <Image
-                    src="/logo.png"
-                    alt=""
-                    fill
-                    priority
-                    className="object-contain"
-                    sizes="96px"
-                  />
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Kinetic lettering */}
-            <div className="display flex gap-1 overflow-hidden text-4xl font-semibold tracking-[0.2em] sm:text-5xl">
-              {letters.map((ch, i) => (
-                <motion.span
-                  key={ch}
-                  className="inline-block text-ink"
-                  initial={reduce ? false : { y: "120%", rotateX: -80 }}
-                  animate={{ y: "0%", rotateX: 0 }}
-                  transition={{ delay: reduce ? 0 : 1.35 + i * 0.1, duration: 0.55, ease: easeOut }}
-                >
-                  {ch}
-                </motion.span>
+            <div
+              className="flex items-baseline justify-center gap-[0.12em] font-display text-[clamp(3rem,10vw,5.5rem)] font-semibold leading-none tracking-[0.18em] text-ink"
+              aria-hidden
+            >
+              {letters.map((l, i) => (
+                <span key={l} className="inline-block overflow-hidden">
+                  <motion.span
+                    className="inline-block"
+                    initial={{ y: "110%" }}
+                    animate={{ y: "0%" }}
+                    transition={{ duration: 0.7, delay: 0.28 + i * 0.09, ease: easeOut }}
+                  >
+                    {l}
+                  </motion.span>
+                </span>
               ))}
             </div>
 
-            <motion.p
-              className="mt-4 overflow-hidden text-[0.72rem] tracking-[0.32em] text-accent uppercase"
-              initial={reduce ? false : { clipPath: "inset(0 100% 0 0)" }}
-              animate={{ clipPath: "inset(0 0% 0 0)" }}
-              transition={{ delay: reduce ? 0 : 1.8, duration: 0.7, ease: easeOut }}
-            >
-              Web · SEO · GEO
-            </motion.p>
-
-            {/* Glitch flicker accent line */}
             <motion.div
-              className="mt-8 h-px w-48 bg-gradient-to-r from-transparent via-accent to-transparent"
+              className="mt-5 h-px w-16 origin-center bg-gradient-to-r from-transparent via-accent to-transparent"
               initial={{ scaleX: 0, opacity: 0 }}
-              animate={
-                reduce
-                  ? { scaleX: 1, opacity: 1 }
-                  : {
-                      scaleX: 1,
-                      opacity: [0, 1, 0.4, 1],
-                    }
-              }
-              transition={{ delay: reduce ? 0 : 2.1, duration: 0.7, ease: easeOut }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.65, ease: easeOut }}
             />
 
             <motion.p
-              className="mt-6 text-[0.65rem] text-muted/60"
+              className="mt-5 max-w-xs text-[0.78rem] leading-relaxed tracking-[0.08em] text-muted"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.78, ease: easeOut }}
+            >
+              Tokat · Çanakkale · İzmir · İstanbul
+            </motion.p>
+
+            {/* Progress rail */}
+            <motion.div
+              className="mt-10 h-[1.5px] w-40 overflow-hidden rounded-full bg-line/80"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: reduce ? 0 : 2.3 }}
+              transition={{ delay: 0.4 }}
             >
-              Tıkla · atla
+              <motion.div
+                className="h-full origin-left bg-accent"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: INTRO_MS / 1000 - 0.35, ease: "linear", delay: 0.15 }}
+              />
+            </motion.div>
+
+            <motion.p
+              className="mt-4 text-[0.62rem] uppercase tracking-[0.28em] text-muted/70"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.05 }}
+            >
+              Atlamak için tıklayın
             </motion.p>
           </div>
         </motion.div>

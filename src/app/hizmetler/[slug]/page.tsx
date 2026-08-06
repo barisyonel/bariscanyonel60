@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const s = getService(slug);
   if (!s) return {};
   return meta({
-    title: `${s.title} — Tokat, Çanakkale & İzmir`,
+    title: `${s.title} — Tokat, Çanakkale, İzmir & İstanbul`,
     description: s.answer.slice(0, 152),
     path: `/hizmetler/${s.slug}`,
   });
@@ -26,10 +26,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 // Hizmet → ilgili vaka çalışmaları (iç bağlantı stratejisi)
 const related: Record<string, string[]> = {
-  "web-tasarim": ["guzubey-asansor", "aevum-troia", "izmak-makina-kalip", "mufat-insaat", "imbat-osgb"],
+  "web-tasarim": ["prime-dizayn", "guzubey-asansor", "samlioglu-hukuk", "tokat-sanayi-sitesi", "aevum-troia"],
   "e-ticaret": ["mygoldenfood", "yonel-oto-yedek-parca"],
   seo: ["aevum-troia", "izmak-makina-kalip", "balsan-papel", "guzubey-asansor"],
   geo: ["aevum-troia", "guzubey-asansor"],
+  "meta-reklam": ["guzubey-asansor", "tokat-sanayi-sitesi", "mygoldenfood", "yonel-oto-yedek-parca"],
 };
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {

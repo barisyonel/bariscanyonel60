@@ -8,9 +8,10 @@ export const site = {
   city: "Tokat",
   secondaryCity: "Çanakkale",
   tertiaryCity: "İzmir",
-  regions: ["Tokat", "Çanakkale", "İzmir"] as const,
+  quaternaryCity: "İstanbul",
+  regions: ["Tokat", "Çanakkale", "İzmir", "İstanbul"] as const,
   description:
-    "Tokat web tasarım stüdyosu BCY Dijital: kurumsal web sitesi, e-ticaret, yerel SEO ve GEO. 5 iş günü teslim, şeffaf teklif — Tokat, Çanakkale ve İzmir.",
+    "Tokat web tasarım stüdyosu BCY Dijital: kurumsal web sitesi, e-ticaret, yerel SEO, GEO ve Meta reklam. 5 iş günü teslim, şeffaf teklif — Tokat, Çanakkale, İzmir ve İstanbul.",
   sameAs: [
     "https://www.linkedin.com/in/bariscanyonel",
     "https://www.instagram.com/bcydijital",

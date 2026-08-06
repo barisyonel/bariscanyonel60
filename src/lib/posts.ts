@@ -17,7 +17,7 @@ export type Post = {
   updated: string;
   /** Liste/filtre ve yerel SEO etiketi */
   tags?: string[];
-  region: "Tokat" | "Çanakkale" | "İzmir" | "Genel";
+  region: "Tokat" | "Çanakkale" | "İzmir" | "İstanbul" | "Genel";
   coverImage: string;
   coverAlt: string;
   /** GEO: ilk paragrafta doğrudan, alıntılanabilir cevap */
@@ -192,7 +192,7 @@ export const posts: Post[] = [
       "Web tasarım = satış kanalı kurulumu, baskı işi değil",
       "Yerel stüdyo: sektör dili + Google Haritalar rekabeti",
       "Teklifte sahiplik, süre, SEO ve destek yazılı olmalı",
-      "BCY: Tokat merkezli; Çanakkale ve İzmir'de de aktif",
+      "BCY: Tokat merkezli; Çanakkale, İzmir ve İstanbul'da da aktif",
     ],
     sections: [
       {
@@ -206,7 +206,7 @@ export const posts: Post[] = [
         h: "Yerel stüdyo ile büyük şehir ajansı farkı",
         paragraphs: [
           "İstanbul veya Ankara merkezli bir ajans teknik olarak çok iyi iş çıkarabilir; fakat Tokat pazarını, rakiplerinizi ve yüz yüze keşif ihtiyacını genelde ikinci plana atar. Yerel bir Tokat web tasarım stüdyosu; asansör, emlak, otomotiv, mühendislik gibi şehirdeki sektör dilini bilir ve Google Haritalar + yerel arama rekabetini doğru okur.",
-          "BCY Dijital, Tokat merkezli çalışır; Çanakkale ve İzmir'de de aktif hizmet verir. Görüşmeler yüz yüze veya görüntülü yapılır; teslim hedefi kurumsal sitelerde 5 iş günüdür.",
+          "BCY Dijital, Tokat merkezli çalışır; Çanakkale, İzmir ve İstanbul'da da aktif hizmet verir. Görüşmeler yüz yüze veya görüntülü yapılır; teslim hedefi kurumsal sitelerde 5 iş günüdür.",
         ],
         image: IMG.guzubey,
         imageAlt: "Guzubey Asansör — Tokat kurumsal web tasarım referansı",
@@ -553,7 +553,7 @@ export const posts: Post[] = [
       {
         h: "Tokat işletmeleri için pratik adım",
         paragraphs: [
-          "Önce sitenizin teknik temeli (hız, mobil, schema), sonra SSS ve blogda gerçek müşteri sorularına doğrudan cevaplar. BCY Dijital hem klasik SEO hem GEO katmanını Tokat, Çanakkale ve İzmir projelerinde uygular.",
+          "Önce sitenizin teknik temeli (hız, mobil, schema), sonra SSS ve blogda gerçek müşteri sorularına doğrudan cevaplar. BCY Dijital hem klasik SEO hem GEO katmanını Tokat, Çanakkale, İzmir ve İstanbul projelerinde uygular.",
           "Ücretsiz keşifte mevcut sitenizin asistan cevaplarında ne kadar \"alıntılanabilir\" olduğunu birlikte tarayabiliriz.",
         ],
       },

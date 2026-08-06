@@ -241,3 +241,60 @@ details[open] summary ~ * {
     border-color: rgba(33, 154, 203, 0.45);
   }
 }
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@keyframes heroFloatPhone {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes heroEnterUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes heroEnterMock {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-enter-item {
+  animation: heroEnterUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(0.12s + var(--i, 0) * 0.08s);
+}
+.hero-enter-mock {
+  animation: heroEnterMock 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[heroFloat_8s_ease-in-out_infinite\],
+  .animate-\[heroFloatPhone_6s_ease-in-out_infinite\],
+  .hero-enter-item,
+  .hero-enter-mock {
+    animation: none !important;
+  }
+}

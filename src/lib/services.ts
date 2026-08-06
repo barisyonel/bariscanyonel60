@@ -14,7 +14,7 @@ export const services: Service[] = [
     title: "Kurumsal Web Tasarım",
     short: "İşletmenizi doğru anlatan, hızlı ve mobil öncelikli kurumsal siteler.",
     answer:
-      "BCY Dijital, Tokat, Çanakkale ve İzmir'deki işletmeler için kurumsal web sitesi tasarlar. Siteler Next.js altyapısıyla geliştirilir, mobil öncelikli tasarlanır ve 5 iş günü içinde teslim edilir.",
+      "BCY Dijital, Tokat, Çanakkale, İzmir ve İstanbul'daki işletmeler için kurumsal web sitesi tasarlar. Siteler Next.js altyapısıyla geliştirilir, mobil öncelikli tasarlanır ve 5 iş günü içinde teslim edilir.",
     bullets: [
       "Şablona değil, işletmenize özel tasarım",
       "Mobil öncelikli, 390px'ten itibaren kusursuz",
@@ -146,6 +146,48 @@ export const services: Service[] = [
       {
         q: "GEO sonuçları ölçülebilir mi?",
         a: "Evet. Belirli soruları düzenli aralıklarla AI asistanlara sorup markanızın cevaplarda geçme oranını takip ediyoruz; ayrıca AI kaynaklı site trafiği analitikte ayrıştırılabiliyor.",
+      },
+    ],
+  },
+  {
+    slug: "meta-reklam",
+    title: "Meta Reklam Yönetimi",
+    short:
+      "Facebook ve Instagram’da hedefe giden reklam: pixel, kampanya kurulumu ve dönüşüm odaklı yönetim.",
+    answer:
+      "BCY Dijital, Tokat, Çanakkale, İzmir ve İstanbul'daki işletmeler için Meta (Facebook ve Instagram) reklam kurulumu ve yönetimi sunar. Meta Pixel / Conversions API entegrasyonu, hedef kitle ve kampanya optimizasyonuyla ölçülebilir lead ve satış hedeflenir.",
+    bullets: [
+      "Meta Pixel ve Conversions API kurulumu",
+      "Lead, mesaj ve satış odaklı kampanya yapıları",
+      "Hedef kitle, kreatif ve bütçe optimizasyonu",
+      "Haftalık / aylık performans raporu",
+    ],
+    body: [
+      {
+        h: "Reklam, site olmadan boşa akar",
+        p: "Güzel kreatif yetmez; landing sayfası yavaşsa veya form kırksa bütçe yanar. Meta reklamı, hızlı site ve net teklif akışıyla birlikte kurgularız — trafik boşa gitmez.",
+      },
+      {
+        h: "Ölçüm olmadan optimizasyon olmaz",
+        p: "Pixel ve CAPI doğru kurulmadan Meta’nın öğrenmesi yarım kalır. Dönüşüm olaylarını (form, WhatsApp, arama, satın alma) net tanımlayıp reklam hesabını buna göre besleriz.",
+      },
+      {
+        h: "Bütçeyi hedefe bağlarız",
+        p: "Herkese her şeyi göstermeyiz. Sektör, konum ve niyet sinyallerine göre kitleleri daraltır; hangi reklamın lead veya satış getirdiğini şeffaf raporlarız.",
+      },
+    ],
+    faq: [
+      {
+        q: "Meta reklam için minimum bütçe nedir?",
+        a: "Test için günlük küçük bütçelerle başlanabilir; sektör ve hedefe göre net aralığı keşif görüşmesinde konuşuruz. Önemli olan bütçenin büyüklüğünden çok doğru ölçüm ve landing’dir.",
+      },
+      {
+        q: "Sadece reklam kurulumu mu, yoksa sürekli yönetim de var mı?",
+        a: "İkisini de sunuyoruz: tek seferlik pixel + kampanya kurulumu veya aylık yönetim (kreatif, teklif, kitle ve raporlama). İhtiyaca göre paketleri netleştiririz.",
+      },
+      {
+        q: "WhatsApp ve form lead’leri Meta’da görünür mü?",
+        a: "Evet. Pixel / CAPI ve doğru olay tanımlarıyla mesaj, form ve arama dönüşümlerini Meta Ads Manager’da takip edilebilir hale getiririz.",
       },
     ],
   },

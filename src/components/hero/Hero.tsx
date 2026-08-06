@@ -1,431 +1,248 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { MagneticButton } from "@/components/ui/MagneticButton";
-import { easeOut } from "@/lib/motion";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useReducedMotion } from "framer-motion";
+import { site } from "@/lib/site";
 
-/** İmlece tepki veren atölye nokta grid'i */
+const HeroGlobe = dynamic(
+  () => import("@/components/hero/HeroGlobe").then((m) => m.HeroGlobe),
+  { ssr: false, loading: () => null }
+);
+
+const TRUST_BADGES = [
+  { label: "25+ tamamlanan proje" },
+  { label: "5+ yıllık deneyim" },
+  { label: "SEO Ready" },
+  { label: "AI Ready" },
+  { label: "Google Friendly" },
+] as const;
+
 function GridCanvas() {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (window.matchMedia("(max-width: 1023px)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    let raf = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let w = 0;
-    let h = 0;
-    const mouse = { x: -9999, y: -9999 };
-    const GAP = 34;
+    let cancelled = false;
+    let cleanup: (() => void) | undefined;
 
-    function resize() {
-      if (!canvas) return;
-      w = canvas.offsetWidth;
-      h = canvas.offsetHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
+    const start = () => {
+      if (cancelled || !canvas) return;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
 
-    function draw() {
-      ctx!.clearRect(0, 0, w, h);
-      for (let x = GAP / 2; x < w; x += GAP) {
-        for (let y = GAP / 2; y < h; y += GAP) {
-          const d = Math.hypot(mouse.x - x, mouse.y - y);
-          const glow = Math.max(0, 1 - d / 160);
-          const a = 0.1 + glow * 0.75;
-          const r = 1 + glow * 1.8;
-          ctx!.beginPath();
-          ctx!.arc(x, y, r, 0, Math.PI * 2);
-          ctx!.fillStyle =
-            glow > 0.03 ? `rgba(33,154,203,${a})` : `rgba(139,156,179,${a * 0.5})`;
-          ctx!.fill();
-        }
+      let raf = 0;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      let w = 0;
+      let h = 0;
+      const mouse = { x: -9999, y: -9999 };
+      const GAP = 48;
+
+      function resize() {
+        if (!canvas) return;
+        w = canvas.offsetWidth;
+        h = canvas.offsetHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
-      if (!reduce) raf = requestAnimationFrame(draw);
-    }
 
-    function onMove(e: PointerEvent) {
-      const rect = canvas!.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      if (reduce) draw();
-    }
+      function draw() {
+        ctx!.clearRect(0, 0, w, h);
+        for (let x = GAP / 2; x < w; x += GAP) {
+          for (let y = GAP / 2; y < h; y += GAP) {
+            const d = Math.hypot(mouse.x - x, mouse.y - y);
+            const glow = Math.max(0, 1 - d / 160);
+            const a = 0.04 + glow * 0.45;
+            ctx!.beginPath();
+            ctx!.arc(x, y, 0.9 + glow, 0, Math.PI * 2);
+            ctx!.fillStyle =
+              glow > 0.05 ? `rgba(33,154,203,${a})` : `rgba(139,156,179,${a * 0.35})`;
+            ctx!.fill();
+          }
+        }
+        raf = requestAnimationFrame(draw);
+      }
 
-    function onLeave() {
-      mouse.x = -9999;
-      mouse.y = -9999;
-      if (reduce) draw();
-    }
+      function onMove(e: PointerEvent) {
+        const rect = canvas!.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      }
 
-    resize();
-    draw();
-    window.addEventListener("resize", resize);
-    canvas.addEventListener("pointermove", onMove);
-    canvas.addEventListener("pointerleave", onLeave);
+      function onLeave() {
+        mouse.x = -9999;
+        mouse.y = -9999;
+      }
+
+      resize();
+      draw();
+      window.addEventListener("resize", resize);
+      canvas.addEventListener("pointermove", onMove);
+      canvas.addEventListener("pointerleave", onLeave);
+
+      cleanup = () => {
+        cancelAnimationFrame(raf);
+        window.removeEventListener("resize", resize);
+        canvas.removeEventListener("pointermove", onMove);
+        canvas.removeEventListener("pointerleave", onLeave);
+      };
+    };
+
+    const ric = window.requestIdleCallback?.(start, { timeout: 2000 });
+    const t = ric == null ? window.setTimeout(start, 600) : undefined;
 
     return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-      canvas.removeEventListener("pointermove", onMove);
-      canvas.removeEventListener("pointerleave", onLeave);
+      cancelled = true;
+      if (ric != null) window.cancelIdleCallback?.(ric);
+      if (t != null) window.clearTimeout(t);
+      cleanup?.();
     };
   }, []);
 
-  return <canvas ref={ref} aria-hidden className="absolute inset-0 h-full w-full" />;
-}
-
-const badges = [
-  "SEO Ready",
-  "AI Ready",
-  "Mobil Uyumlu",
-  "Ultra Hızlı",
-  "Next.js",
-  "Google Friendly",
-] as const;
-
-const floatCards = [
-  { label: "SEO", x: "0%", y: "6%", delay: 0 },
-  { label: "Google", x: "78%", y: "10%", delay: 0.12 },
-  { label: "ChatGPT", x: "82%", y: "48%", delay: 0.28 },
-  { label: "Next.js", x: "-4%", y: "52%", delay: 0.18 },
-  { label: "React", x: "6%", y: "84%", delay: 0.32 },
-  { label: "Performance", x: "58%", y: "88%", delay: 0.08 },
-] as const;
-
-function BrowserChrome({ reduce }: { reduce: boolean | null }) {
   return (
-    <div className="relative overflow-hidden rounded-[14px] border border-line/90 bg-[#07111f] text-[#eef3f9] shadow-[0_40px_80px_-32px_rgba(0,0,0,0.85),0_0_0_1px_rgba(33,154,203,0.08)]">
-      {/* Window bar */}
-      <div className="flex items-center gap-3 border-b border-line/70 bg-[#0a1628] px-3.5 py-2.5">
-        <div className="flex gap-1.5" aria-hidden>
-          <span className="h-2.5 w-2.5 rounded-full bg-[#2a4568]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#2a4568]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-accent/70" />
-        </div>
-        <div className="flex flex-1 items-center gap-2 rounded-md border border-line/60 bg-base/80 px-2.5 py-1">
-          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent/80 shadow-[0_0_6px_rgba(33,154,203,0.7)]" />
-          <span className="truncate font-body text-[0.65rem] tracking-wide text-[#c2cedd]">
-            bariscanyonel.com
-          </span>
-        </div>
-      </div>
-
-      {/* App shell */}
-      <div className="grid grid-cols-[72px_1fr] sm:grid-cols-[88px_1fr]">
-        {/* Sidebar */}
-        <aside className="border-r border-line/60 bg-[#08131f] p-2.5 sm:p-3">
-          <div className="mb-4 flex h-7 w-7 items-center justify-center rounded-md bg-accent/15 text-[0.65rem] font-semibold text-accent sm:h-8 sm:w-8 sm:text-xs">
-            BCY
-          </div>
-          <div className="space-y-2">
-            {[1, 0.55, 0.4, 0.35].map((o, i) => (
-              <div
-                key={i}
-                className="h-1.5 rounded-full bg-line"
-                style={{ opacity: o, width: i === 0 ? "100%" : `${70 - i * 8}%` }}
-              />
-            ))}
-          </div>
-          <div className="mt-5 space-y-1.5">
-            {[0, 1, 2].map((i) => (
-              <div
-                key={i}
-                className={`h-6 rounded-md border ${
-                  i === 0 ? "border-accent/35 bg-accent-soft" : "border-transparent bg-subtle/40"
-                }`}
-              />
-            ))}
-          </div>
-        </aside>
-
-        {/* Main */}
-        <div className="relative min-h-[220px] p-3 sm:min-h-[260px] sm:p-4">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(33,154,203,0.12),transparent_55%)]" />
-
-          <div className="relative flex items-start justify-between gap-3">
-            <div>
-              <p className="text-[0.6rem] uppercase tracking-[0.16em] text-accent sm:text-[0.65rem]">
-                Dashboard
-              </p>
-              <p className="mt-1 text-sm font-semibold text-white sm:text-[1rem]">Site Performansı</p>
-            </div>
-            <span className="rounded-full border border-accent/30 bg-accent-soft px-2 py-0.5 text-[0.6rem] text-accent sm:text-[0.65rem]">
-              Canlı
-            </span>
-          </div>
-
-          {/* Metric row */}
-          <div className="relative mt-3 grid grid-cols-3 gap-2 sm:mt-4 sm:gap-2.5">
-            {[
-              { k: "Yönetici Paneli", v: "Aktif", accent: true },
-              { k: "SEO", v: "100", accent: false },
-              { k: "Mobil", v: "100", accent: false },
-            ].map((m) => (
-              <div
-                key={m.k}
-                className="rounded-lg border border-line/70 bg-elevated/80 px-2 py-2 sm:px-2.5 sm:py-2.5"
-              >
-                <p className="truncate text-[0.55rem] text-[#a8b8cc] sm:text-[0.6rem]">{m.k}</p>
-                <p
-                  className={`mt-0.5 display font-semibold ${
-                    m.accent
-                      ? "text-xs text-accent sm:text-sm"
-                      : "text-sm text-white sm:text-[1rem]"
-                  }`}
-                >
-                  {m.v}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Chart + list */}
-          <div className="relative mt-3 grid gap-2 sm:mt-4 sm:grid-cols-[1.2fr_0.8fr] sm:gap-2.5">
-            <div className="rounded-lg border border-line/70 bg-elevated/60 p-2.5 sm:p-3">
-              <div className="mb-2 flex items-center justify-between">
-                <span className="text-[0.6rem] text-[#c2cedd]">Organik trafik</span>
-                <span className="text-[0.6rem] font-medium text-accent">+38%</span>
-              </div>
-              <svg viewBox="0 0 160 48" className="h-12 w-full sm:h-14" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="hero-chart-fill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#219acb" stopOpacity="0.35" />
-                    <stop offset="100%" stopColor="#219acb" stopOpacity="0" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0 40 C20 36 28 28 42 26 C58 24 66 32 80 22 C96 10 108 14 124 12 C140 10 148 18 160 8 L160 48 L0 48 Z"
-                  fill="url(#hero-chart-fill)"
-                />
-                <path
-                  d="M0 40 C20 36 28 28 42 26 C58 24 66 32 80 22 C96 10 108 14 124 12 C140 10 148 18 160 8"
-                  fill="none"
-                  stroke="#219acb"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                />
-                {!reduce && (
-                  <motion.circle
-                    r="2.5"
-                    fill="#219acb"
-                    initial={{ cx: 0, cy: 40 }}
-                    animate={{ cx: [0, 42, 80, 124, 160], cy: [40, 26, 22, 12, 8] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  />
-                )}
-              </svg>
-            </div>
-
-            <div className="hidden space-y-1.5 rounded-lg border border-line/70 bg-elevated/60 p-2.5 sm:block sm:p-3">
-              <p className="mb-1.5 text-[0.6rem] text-[#a8b8cc]">Stack</p>
-              {["Next.js 15", "React 19", "MySQL", "Vercel"].map((t) => (
-                <div key={t} className="flex items-center gap-2">
-                  <span className="h-1 w-1 rounded-full bg-accent" />
-                  <span className="text-[0.65rem] text-white">{t}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Bottom CTA strip */}
-          <div className="relative mt-3 flex items-center justify-between gap-2 rounded-lg border border-accent/25 bg-accent-soft/40 px-2.5 py-2 sm:mt-4 sm:px-3">
-            <div>
-              <p className="text-[0.65rem] font-medium text-white sm:text-xs">GEO görünürlük</p>
-              <p className="text-[0.55rem] text-[#c2cedd] sm:text-[0.6rem]">
-                ChatGPT · Gemini · Perplexity
-              </p>
-            </div>
-            <span className="shrink-0 rounded-md bg-accent px-2 py-1 text-[0.6rem] font-medium text-[#050c18] sm:text-[0.65rem]">
-              Aktif
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <canvas
+      ref={ref}
+      aria-hidden
+      className="absolute inset-0 hidden h-full w-full opacity-25 lg:block"
+    />
   );
 }
 
-function PhonePreview() {
+function HeroCta({
+  href,
+  children,
+  variant = "primary",
+}: {
+  href: string;
+  children: ReactNode;
+  variant?: "primary" | "ghost";
+}) {
+  const isPrimary = variant === "primary";
+  const cls = isPrimary
+    ? "bg-accent text-base shadow-[var(--shadow-glow)] hover:bg-accent-deep"
+    : "border border-white/15 text-ink hover:border-accent/50 hover:text-accent";
+
   return (
-    <div className="w-[4.75rem] overflow-hidden rounded-[1.15rem] border border-line bg-[#07111f] p-1 text-[#eef3f9] shadow-[0_24px_48px_-20px_rgba(0,0,0,0.8)] sm:w-[5.75rem] sm:rounded-[1.35rem] sm:p-1.5">
-      <div className="mx-auto mb-1 h-1 w-7 rounded-full bg-[#1a2d48] sm:mb-1.5 sm:h-1.5 sm:w-9" />
-      <div className="relative aspect-[9/17] overflow-hidden rounded-[0.85rem] bg-[#0a1628]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(33,154,203,0.2),transparent_50%)]" />
-        <div className="relative flex h-full flex-col p-2 sm:p-2.5">
-          <div className="flex items-center justify-between">
-            <span className="text-[0.45rem] font-semibold text-accent sm:text-[0.5rem]">BCY</span>
-            <span className="h-1 w-4 rounded-full bg-line" />
-          </div>
-          <p className="mt-2 text-[0.5rem] font-semibold leading-tight text-white sm:mt-2.5 sm:text-[0.55rem]">
-            Kurumsal
-            <br />
-            Web Site
-          </p>
-          <div className="mt-2 space-y-1">
-            <div className="h-1 w-full rounded-full bg-line/80" />
-            <div className="h-1 w-4/5 rounded-full bg-line/50" />
-          </div>
-          <div className="mt-auto space-y-1.5">
-            <div className="rounded-md border border-line/60 bg-elevated/80 p-1.5">
-              <div className="flex justify-between text-[0.4rem] text-[#c2cedd] sm:text-[0.45rem]">
-                <span>SEO</span>
-                <span className="font-semibold text-accent">100</span>
-              </div>
-            </div>
-            <div className="rounded-md bg-accent py-1.5 text-center text-[0.45rem] font-medium text-[#050c18] sm:text-[0.5rem]">
-              Teklif Al
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="mx-auto mt-1 h-0.5 w-5 rounded-full bg-[#1a2d48] sm:mt-1.5 sm:h-1 sm:w-7" />
-    </div>
+    <Link
+      href={href}
+      className={`group inline-flex min-h-12 items-center justify-center gap-2 rounded-btn px-8 py-3.5 font-medium display text-[0.95rem] tracking-[0.04em] transition-[color,background-color,border-color,transform] duration-300 ${cls}`}
+    >
+      {children}
+      {isPrimary ? (
+        <span
+          aria-hidden
+          className="translate-x-0 transition-transform duration-300 group-hover:translate-x-1"
+        >
+          →
+        </span>
+      ) : null}
+    </Link>
   );
 }
 
+/**
+ * CRO-first hero: ne yapıyoruz / ne kazandırıyoruz / neden güven / şimdi ne.
+ * Görsel dil: metin sol + dünya sağ — dark premium korundu.
+ */
 export function Hero() {
   const reduce = useReducedMotion();
+  const [loadFx, setLoadFx] = useState(false);
+
+  useEffect(() => {
+    if (reduce) return;
+    const start = () => setLoadFx(true);
+    const ric = window.requestIdleCallback?.(start, { timeout: 1800 });
+    const t = ric == null ? window.setTimeout(start, 500) : undefined;
+    return () => {
+      if (ric != null) window.cancelIdleCallback?.(ric);
+      if (t != null) window.clearTimeout(t);
+    };
+  }, [reduce]);
 
   return (
     <section className="relative overflow-hidden" id="anasayfa" aria-labelledby="home-h1">
-      <GridCanvas />
+      {loadFx ? <HeroGlobe /> : null}
+      {loadFx ? <GridCanvas /> : null}
+
       <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <div className="absolute -left-1/4 top-0 h-[60%] w-[70%] rounded-full bg-[radial-gradient(circle,rgba(33,154,203,0.1),transparent_65%)] blur-3xl" />
-        <div className="absolute -right-1/4 bottom-0 h-[50%] w-[60%] rounded-full bg-[radial-gradient(circle,rgba(26,122,158,0.08),transparent_60%)] blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_20%,rgba(33,154,203,0.12),transparent_55%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-base via-base/80 to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-base via-base/85 to-transparent lg:w-[48%]" />
       </div>
 
-      <div className="container-x relative grid min-h-[calc(100svh-4rem)] items-center gap-14 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:py-20">
-        <motion.div
-          className="pointer-events-none"
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: easeOut }}
-        >
-          <p className="eyebrow mb-6">Tokat · Çanakkale · İzmir — Butik dijital atölye</p>
+      <div className="container-x relative z-[2] flex min-h-[calc(100svh-4.5rem)] flex-col justify-center py-20 sm:py-24 lg:max-w-[52%] lg:py-28">
+        <div className={reduce ? "" : "hero-enter"}>
+          <div
+            className="hero-enter-item mb-8 flex items-center gap-4"
+            style={{ ["--i" as string]: 0 }}
+          >
+            <span className="h-px w-10 shrink-0 bg-accent" aria-hidden />
+            <p className="eyebrow !mb-0 tracking-[0.28em]">
+              {site.name} · {site.city}
+            </p>
+          </div>
 
           <h1
             id="home-h1"
-            className="max-w-[14ch] text-[clamp(2.35rem,5.6vw,4.15rem)] font-semibold leading-[1.05] tracking-tight"
+            className="max-w-[14ch] text-[clamp(2.5rem,6.2vw,4.4rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-ink sm:max-w-[16ch]"
           >
-            {(
-              [
-                { t: "Tokat'ın", accent: false },
-                { t: "Modern", accent: false },
-                { t: "Web", accent: true },
-                { t: "Tasarım", accent: true },
-                { t: "ve", accent: false },
-                { t: "Yazılım", accent: false },
-                { t: "Stüdyosu", accent: false },
-              ] as const
-            ).map((w, i) => (
-              <span key={`${w.t}-${i}`} className="mr-[0.28em] inline-block overflow-hidden align-bottom">
-                <motion.span
-                  className={`inline-block ${w.accent ? "text-accent" : ""}`}
-                  initial={reduce ? false : { y: "110%", opacity: 0 }}
-                  animate={{ y: "0%", opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.12 + i * 0.045, ease: easeOut }}
-                >
-                  {w.t}
-                </motion.span>
-              </span>
-            ))}
+            <span className="block">Tokat Web Tasarım</span>
+            <span className="mt-2 block text-accent">ile daha fazla</span>
+            <span className="mt-1 block">müşteri kazanın</span>
           </h1>
 
-          <motion.p
-            className="mt-7 max-w-xl text-lg leading-relaxed text-muted md:text-[1.15rem]"
-            initial={reduce ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.35, ease: easeOut }}
+          <p
+            className="mt-8 max-w-[32rem] text-[1.05rem] leading-[1.7] text-muted sm:text-[1.125rem] sm:leading-[1.75] hero-enter-item"
+            style={{ ["--i" as string]: 1 }}
           >
-            Kurumsal web siteleri, SEO, GEO (AI SEO), performans optimizasyonu ve modern yazılım
-            çözümleri ile işletmenizi dijitalde büyütüyoruz.
-          </motion.p>
+            Kurumsal web sitesi, SEO ve Meta reklam ile işletmenizi Google’da görünür, güvenilir
+            ve ölçülebilir hale getiriyoruz — şeffaf teklif, net teslim planı.
+          </p>
 
-          <motion.ul
-            className="mt-8 flex flex-wrap gap-2"
-            aria-label="Öne çıkan özellikler"
-            initial={reduce ? false : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.45, ease: easeOut }}
+          <div
+            className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 hero-enter-item"
+            style={{ ["--i" as string]: 2 }}
           >
-            {badges.map((b) => (
+            <HeroCta href="/iletisim">Ücretsiz Keşif Görüşmesi</HeroCta>
+            <HeroCta href="/projeler" variant="ghost">
+              Projeleri İncele
+            </HeroCta>
+          </div>
+
+          <ul
+            className="mt-12 flex flex-wrap gap-2 sm:gap-3 hero-enter-item"
+            style={{ ["--i" as string]: 3 }}
+            aria-label="Güven göstergeleri"
+          >
+            {TRUST_BADGES.map((badge) => (
               <li
-                key={b}
-                className="inline-flex items-center gap-1.5 rounded-full border border-line bg-elevated/70 px-3 py-1.5 text-xs text-[#c2cedd] backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-ink"
+                key={badge.label}
+                className="inline-flex items-center gap-2 rounded-btn border border-line/80 bg-elevated/50 px-3 py-2 text-[0.7rem] font-medium uppercase tracking-[0.14em] text-muted backdrop-blur-sm sm:px-3.5"
               >
-                <span className="text-accent" aria-hidden>
+                <span
+                  className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-[0.55rem] font-bold text-accent"
+                  aria-hidden
+                >
                   ✓
                 </span>
-                {b}
+                {badge.label}
               </li>
             ))}
-          </motion.ul>
+          </ul>
 
-          <motion.div
-            className="pointer-events-auto mt-10 flex flex-wrap gap-4"
-            initial={reduce ? false : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.55, ease: easeOut }}
+          <p
+            className="mt-8 text-[0.72rem] uppercase tracking-[0.2em] text-muted/65 hero-enter-item"
+            style={{ ["--i" as string]: 4 }}
           >
-            <MagneticButton href="/iletisim">Ücretsiz Teklif Al</MagneticButton>
-            <MagneticButton href="/projeler" variant="ghost">
-              Projeleri İncele
-            </MagneticButton>
-          </motion.div>
-        </motion.div>
-
-        {/* Right — premium product preview */}
-        <motion.div
-          className="pointer-events-none relative mx-auto w-full max-w-lg lg:max-w-none"
-          aria-hidden
-          initial={reduce ? false : { opacity: 0, y: 28, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.75, delay: 0.18, ease: easeOut }}
-        >
-          <div className="relative">
-            {floatCards.map((c) => (
-              <motion.span
-                key={c.label}
-                className="absolute z-20 hidden rounded-full border border-line/70 bg-elevated/95 px-2.5 py-1 text-[0.68rem] font-medium tracking-wide text-ink shadow-[0_10px_28px_-14px_rgba(33,154,203,0.5)] backdrop-blur-md sm:inline-flex"
-                style={{ left: c.x, top: c.y }}
-                animate={reduce ? undefined : { y: [0, -5, 0] }}
-                transition={{
-                  duration: 5 + c.delay * 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: c.delay,
-                }}
-              >
-                <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(33,154,203,0.9)]" />
-                {c.label}
-              </motion.span>
-            ))}
-
-            <motion.div
-              className="relative z-[1] pr-6 sm:pr-10"
-              animate={reduce ? undefined : { y: [0, -6, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <BrowserChrome reduce={reduce} />
-            </motion.div>
-
-            <motion.div
-              className="absolute -bottom-2 right-0 z-10 sm:bottom-2 sm:right-1"
-              animate={reduce ? undefined : { y: [0, 8, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            >
-              <PhonePreview />
-            </motion.div>
-
-            <div className="absolute -bottom-4 left-1/2 h-20 w-[70%] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(33,154,203,0.2),transparent_70%)] blur-2xl" />
-          </div>
-        </motion.div>
+            {site.regions.join(" · ")} · Türkiye geneli
+          </p>
+        </div>
       </div>
     </section>
   );

@@ -1,12 +1,11 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { Hero } from "@/components/hero/Hero";
 import { Reveal } from "@/components/ui/Reveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ServiceCard } from "@/components/sections/ServiceCard";
-import { StatsSection } from "@/components/sections/StatsSection";
-import { TechStackSection } from "@/components/sections/TechStackSection";
-import { WhyUsSection } from "@/components/sections/WhyUsSection";
+import { serviceIconId } from "@/lib/serviceIcons";
 import { SectionCTA } from "@/components/sections/SectionCTA";
 import { JsonLd } from "@/components/JsonLd";
 import {
@@ -23,22 +22,53 @@ import { faq } from "@/lib/faq";
 import { cities } from "@/lib/cities";
 import { testimonials } from "@/lib/testimonials";
 import { defaultWa, site } from "@/lib/site";
-import {
-  AmbientField,
-  KineticTitle,
-  ProcessScrolly,
-  ScrollDrawLine,
-  SpotlightCard,
-} from "@/components/motion/Story";
 
-const homeTitle = "Tokat Web Tasarım | Kurumsal Site, SEO, GEO";
+const StatsSection = dynamic(() =>
+  import("@/components/sections/StatsSection").then((m) => m.StatsSection)
+);
+const TestimonialsSection = dynamic(() =>
+  import("@/components/sections/TestimonialsSection").then((m) => m.TestimonialsSection)
+);
+const TechStackSection = dynamic(() =>
+  import("@/components/sections/TechStackSection").then((m) => m.TechStackSection)
+);
+const WhyUsSection = dynamic(() =>
+  import("@/components/sections/WhyUsSection").then((m) => m.WhyUsSection)
+);
+const AmbientField = dynamic(() =>
+  import("@/components/motion/Story").then((m) => m.AmbientField)
+);
+const KineticTitle = dynamic(() =>
+  import("@/components/motion/Story").then((m) => m.KineticTitle)
+);
+const ProcessScrolly = dynamic(() =>
+  import("@/components/motion/Story").then((m) => m.ProcessScrolly)
+);
+const ScrollDrawLine = dynamic(() =>
+  import("@/components/motion/Story").then((m) => m.ScrollDrawLine)
+);
+const SpotlightCard = dynamic(() =>
+  import("@/components/motion/Story").then((m) => m.SpotlightCard)
+);
+
+const homeTitle = "Tokat Web Tasarım ile Daha Fazla Müşteri Kazanın | BCY Dijital";
 const homeDescription =
-  "Tokat web tasarım stüdyosu BCY Dijital: kurumsal web sitesi, e-ticaret, yerel SEO ve GEO. 5 iş günü teslim, ücretsiz keşif.";
+  "Tokat web tasarım ile daha fazla müşteri kazanın. BCY Dijital: kurumsal site, SEO, GEO ve Meta reklam — şeffaf teklif, ölçülebilir sonuç. Tokat, Çanakkale, İzmir ve İstanbul.";
 
 export const metadata = meta({
   title: homeTitle,
   description: homeDescription,
   path: "/",
+  absoluteTitle: true,
+  keywords: [
+    "Tokat web tasarım",
+    "Tokat web sitesi",
+    "kurumsal web tasarım",
+    "SEO",
+    "GEO",
+    "Meta reklam",
+    "BCY Dijital",
+  ],
 });
 
 const steps = [
@@ -56,8 +86,8 @@ const steps = [
   },
 ];
 
-const regionList = [cities.tokat, cities.canakkale, cities.izmir];
-const homeFaq = faq.slice(0, 3);
+const regionList = [cities.tokat, cities.canakkale, cities.izmir, cities.istanbul];
+const homeFaq = faq.slice(0, 6);
 
 const homeServices = [
   ...services
@@ -67,6 +97,7 @@ const homeServices = [
       title: s.title,
       short: s.short,
       href: `/hizmetler/${s.slug}`,
+      benefits: s.bullets.slice(0, 3),
     })),
   {
     slug: "mobil-uyumluluk",
@@ -74,6 +105,11 @@ const homeServices = [
     short:
       "Telefon ve tablette kusursuz açılan, hızlı ve dokunmatik uyumlu siteler. Google'ın mobil öncelikli indeksine hazır.",
     href: "/hizmetler/web-tasarim",
+    benefits: [
+      "390px'ten itibaren kusursuz düzen",
+      "Dokunmatik CTA ve form akışları",
+      "Mobil öncelikli Google indeksine hazır",
+    ],
   },
 ];
 
@@ -99,6 +135,47 @@ export default function Home() {
 
       <StatsSection />
 
+      {/* Projeler — erken sosyal kanıt */}
+      <section
+        id="referanslar"
+        className="hairline section-pad bg-elevated/40"
+        aria-labelledby="referanslar-heading"
+      >
+        <div className="container-x">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="eyebrow">Referanslar</p>
+              <KineticTitle
+                id="referanslar-heading"
+                text="Tokat'tan Türkiye'ye web tasarım işleri"
+                className="mt-3 text-3xl font-semibold md:text-4xl"
+              />
+              <Reveal delay={0.1}>
+                <p className="mt-3 max-w-xl text-muted">
+                  Canlı URL&apos;li projeler; asansörden gayrimenkule, otelden keresteye.
+                </p>
+              </Reveal>
+            </div>
+            <Link href="/projeler" className="link-underline text-sm text-accent">
+              Tüm projeler →
+            </Link>
+          </div>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {projects.slice(0, 3).map((p, i) => (
+              <Reveal key={p.slug} delay={i * 0.08} variant="scale">
+                <ProjectCard p={p} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionCTA
+        id="cta-projeler"
+        title="Sizin projeniz bir sonraki referans olsun"
+        description="Ücretsiz keşif görüşmesiyle kapsamı netleştirelim; 5 iş günü hedefiyle yol haritası çıkarın."
+      />
+
       {/* Hizmetler */}
       <section id="hizmetler" className="hairline section-pad relative" aria-labelledby="hizmetler-heading">
         <div className="container-x">
@@ -114,10 +191,16 @@ export default function Home() {
               hedefe bağlanır — detaylar ilgili sayfada.
             </p>
           </Reveal>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line md:grid-cols-2">
+          <div className="mt-12 grid gap-4 sm:gap-5 md:grid-cols-2 lg:gap-6">
             {homeServices.map((s, i) => (
               <Reveal key={s.slug} delay={i * 0.07} variant="scale">
-                <ServiceCard href={s.href} title={s.title} short={s.short} />
+                <ServiceCard
+                  href={s.href}
+                  title={s.title}
+                  short={s.short}
+                  benefits={s.benefits}
+                  iconId={serviceIconId(s.slug)}
+                />
               </Reveal>
             ))}
           </div>
@@ -141,14 +224,14 @@ export default function Home() {
           <p className="eyebrow">Hizmet bölgelerimiz</p>
           <KineticTitle
             id="bolgeler-heading"
-            text="Tokat merkezli; Çanakkale ve İzmir'de aktif"
+            text="Tokat merkezli; Çanakkale, İzmir ve İstanbul'da aktif"
             className="mt-3 max-w-2xl text-3xl font-semibold md:text-4xl"
           />
           <p className="mt-4 max-w-2xl text-muted">
             Yerel aramalarda görünürlük için her şehre özel sayfalarımız var. Yüz yüze veya
             görüntülü keşif; Türkiye geneline uzaktan hizmet.
           </p>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 md:grid-cols-3">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {regionList.map((city) => (
               <Link
                 key={city.path}
@@ -221,84 +304,8 @@ export default function Home() {
 
       <ScrollDrawLine className="container-x opacity-70" />
 
-      {/* Projeler */}
-      <section
-        id="referanslar"
-        className="hairline section-pad bg-elevated/40"
-        aria-labelledby="referanslar-heading"
-      >
-        <div className="container-x">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="eyebrow">Referanslar</p>
-              <KineticTitle
-                id="referanslar-heading"
-                text="Tokat'tan Türkiye'ye web tasarım işleri"
-                className="mt-3 text-3xl font-semibold md:text-4xl"
-              />
-              <Reveal delay={0.1}>
-                <p className="mt-3 max-w-xl text-muted">
-                  Canlı URL&apos;li projeler; asansörden gayrimenkule, otelden keresteye.
-                </p>
-              </Reveal>
-            </div>
-            <Link href="/projeler" className="link-underline text-sm text-accent">
-              Tüm projeler →
-            </Link>
-          </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.slice(0, 3).map((p, i) => (
-              <Reveal key={p.slug} delay={i * 0.08} variant="scale">
-                <ProjectCard p={p} />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <SectionCTA
-        id="cta-projeler"
-        title="Sizin projeniz bir sonraki referans olsun"
-        description="Ücretsiz keşif görüşmesiyle kapsamı netleştirelim; 5 iş günü hedefiyle yol haritası çıkarın."
-      />
-
       {/* Yorumlar */}
-      <section id="yorumlar" className="hairline section-pad" aria-labelledby="yorumlar-heading">
-        <div className="container-x">
-          <p className="eyebrow">Müşteri yorumları</p>
-          <KineticTitle
-            id="yorumlar-heading"
-            text="Birlikte çalıştığımız işletmeler ne diyor?"
-            className="mt-3 max-w-2xl text-3xl font-semibold md:text-4xl"
-          />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
-            {testimonials.map((t) => (
-              <SpotlightCard
-                key={t.projectSlug}
-                className="flex h-full flex-col rounded-card border border-line bg-elevated p-6 md:p-7"
-              >
-                <figure className="flex h-full flex-col">
-                  <blockquote className="flex-1 text-[0.98rem] leading-relaxed text-[#c2cedd]">
-                    “{t.quote}”
-                  </blockquote>
-                  <figcaption className="mt-6 border-t border-line pt-4">
-                    <p className="font-semibold text-ink">{t.company}</p>
-                    <p className="mt-0.5 text-sm text-muted">
-                      {t.name} · {t.role}
-                    </p>
-                    <Link
-                      href={`/projeler/${t.projectSlug}`}
-                      className="link-underline mt-2 inline-block text-sm text-accent"
-                    >
-                      Projeyi gör →
-                    </Link>
-                  </figcaption>
-                </figure>
-              </SpotlightCard>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection items={testimonials} />
 
       {/* Süreç */}
       <section

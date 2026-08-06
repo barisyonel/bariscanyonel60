@@ -6,9 +6,9 @@ import { meta } from "@/lib/seo";
 import { site, defaultWa } from "@/lib/site";
 
 export const metadata = meta({
-  title: "İletişim — Ücretsiz Keşif Görüşmesi",
+  title: "İletişim ve Ücretsiz Keşif Görüşmesi",
   description:
-    "BCY Dijital ile iletişime geçin: 15 dakikalık ücretsiz keşif görüşmesi, WhatsApp hattı ve iletişim formu. Tokat, Çanakkale ve İzmir'de yüz yüze veya çevrim içi görüşme.",
+    "BCY Dijital ile iletişime geçin: 15 dakikalık ücretsiz keşif görüşmesi, WhatsApp hattı ve iletişim formu. Tokat, Çanakkale, İzmir ve İstanbul'da yüz yüze veya çevrim içi görüşme.",
   path: "/iletisim",
 });
 
@@ -19,7 +19,7 @@ export default function IletisimPage() {
       <Reveal>
         <p className="eyebrow">İletişim</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-semibold md:text-5xl">
-          Ücretsiz keşif görüşmesiyle başlayalım.
+          İletişim: ücretsiz keşif görüşmesiyle başlayalım
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-muted">
           Formu doldurun ya da doğrudan WhatsApp'tan yazın. Görüşmede ihtiyacınızı dinler,
