@@ -155,10 +155,14 @@ export function Hero() {
   const [loadFx, setLoadFx] = useState(false);
 
   useEffect(() => {
-    if (reduce) return;
     const start = () => setLoadFx(true);
-    const ric = window.requestIdleCallback?.(start, { timeout: 1800 });
-    const t = ric == null ? window.setTimeout(start, 500) : undefined;
+    // reduced-motion: yine de arka plan küresi (dönmeden) yüklensin
+    if (reduce) {
+      start();
+      return;
+    }
+    const ric = window.requestIdleCallback?.(start, { timeout: 1200 });
+    const t = ric == null ? window.setTimeout(start, 350) : undefined;
     return () => {
       if (ric != null) window.cancelIdleCallback?.(ric);
       if (t != null) window.clearTimeout(t);
@@ -172,8 +176,9 @@ export function Hero() {
 
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_20%,rgba(33,154,203,0.12),transparent_55%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-base via-base/80 to-transparent" />
-        <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-base via-base/85 to-transparent lg:w-[48%]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-base via-base/70 to-transparent md:h-48 md:via-base/80" />
+        {/* Mobilde küre görünsün diye daha şeffaf; masaüstünde metin tarafı koyu */}
+        <div className="absolute inset-0 bg-gradient-to-b from-base/75 via-base/35 to-base/70 md:inset-y-0 md:left-0 md:w-[55%] md:bg-gradient-to-r md:from-base md:via-base/85 md:to-transparent lg:w-[48%]" />
       </div>
 
       <div className="container-x relative z-[2] flex min-h-[calc(100svh-4.5rem)] flex-col justify-center py-20 sm:py-24 lg:max-w-[52%] lg:py-28">
