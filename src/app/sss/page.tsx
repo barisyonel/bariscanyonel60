@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/ui/Reveal";
+import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumb, faqSchema } from "@/lib/schema";
@@ -19,7 +20,10 @@ export default function SSSPage() {
       <JsonLd
         data={[
           faqSchema(faq),
-          breadcrumb([{ name: "Ana Sayfa", path: "/" }, { name: "SSS", path: "/sss" }]),
+          breadcrumb([
+            { name: "Ana Sayfa", path: "/" },
+            { name: "SSS", path: "/sss" },
+          ]),
         ]}
       />
       <Reveal>
@@ -31,22 +35,21 @@ export default function SSSPage() {
           Fiyat, süre, sahiplik, destek… Görüşmeden önce bilmek istediklerinizin tamamı burada.
         </p>
       </Reveal>
-      <div className="mt-12 max-w-2xl space-y-3">
-        {faq.map((f, i) => (
-          <Reveal key={f.q} delay={i * 0.04}>
-            <details className="rounded-card border border-line bg-elevated p-5" open={i === 0}>
-              <summary className="cursor-pointer list-none text-lg font-medium marker:content-none">{f.q}</summary>
-              <p className="mt-3 text-muted">{f.a}</p>
-            </details>
-          </Reveal>
-        ))}
+
+      <div className="mt-12 max-w-3xl">
+        <FaqAccordion items={faq} defaultOpenFirst />
       </div>
+
       <Reveal>
-        <div className="mt-14 max-w-2xl rounded-card border border-accent/30 bg-accent-soft p-8">
+        <div className="mt-14 max-w-3xl rounded-card border border-accent/30 bg-accent-soft p-8">
           <h2 className="text-2xl font-semibold">Sorunuz burada yok mu?</h2>
-          <p className="mt-2 text-muted">WhatsApp'tan yazın; genellikle aynı gün içinde cevaplıyoruz.</p>
+          <p className="mt-2 text-muted">
+            WhatsApp&apos;tan yazın; genellikle aynı gün içinde cevaplıyoruz.
+          </p>
           <div className="mt-5">
-            <MagneticButton href={defaultWa} external>WhatsApp'tan sorun</MagneticButton>
+            <MagneticButton href={defaultWa} external>
+              WhatsApp&apos;tan sorun
+            </MagneticButton>
           </div>
         </div>
       </Reveal>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Hero } from "@/components/hero/Hero";
 import { Reveal } from "@/components/ui/Reveal";
+import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ServiceCard } from "@/components/sections/ServiceCard";
@@ -34,6 +35,9 @@ const TechStackSection = dynamic(() =>
 );
 const WhyUsSection = dynamic(() =>
   import("@/components/sections/WhyUsSection").then((m) => m.WhyUsSection)
+);
+const PricingSection = dynamic(() =>
+  import("@/components/sections/PricingSection").then((m) => m.PricingSection)
 );
 const AmbientField = dynamic(() =>
   import("@/components/motion/Story").then((m) => m.AmbientField)
@@ -251,6 +255,8 @@ export default function Home() {
 
       <WhyUsSection />
 
+      <PricingSection />
+
       {/* GEO */}
       <section id="geo" className="hairline section-pad relative" aria-labelledby="geo-heading">
         <AmbientField className="opacity-70" />
@@ -342,18 +348,8 @@ export default function Home() {
               text="Tokat web sitesi hakkında sık sorulanlar"
               className="mt-3 text-3xl font-semibold md:text-4xl"
             />
-            <div className="mt-8 space-y-3">
-              {homeFaq.map((f) => (
-                <details
-                  key={f.q}
-                  className="liquid-border group rounded-card border border-line bg-base p-5"
-                >
-                  <summary className="cursor-pointer list-none font-medium marker:content-none">
-                    {f.q}
-                  </summary>
-                  <p className="mt-3 text-[0.95rem] text-muted">{f.a}</p>
-                </details>
-              ))}
+            <div className="mt-8">
+              <FaqAccordion items={homeFaq} />
             </div>
             <Link href="/sss" className="link-underline mt-6 inline-block text-sm text-accent">
               Tüm sorular →
