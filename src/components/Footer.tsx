@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
+import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
 import { services } from "@/lib/services";
 import { defaultWa, site } from "@/lib/site";
 
@@ -75,14 +76,12 @@ export function Footer() {
               Ücretsiz Keşif Görüşmesi
               <span aria-hidden>→</span>
             </Link>
-            <a
+            <WhatsAppLink
               href={defaultWa}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-btn border border-line px-7 py-3 text-[0.95rem] font-medium text-ink transition-[border-color,color] duration-300 hover:border-accent/50 hover:text-accent"
             >
               WhatsApp
-            </a>
+            </WhatsAppLink>
           </div>
         </div>
       </div>
@@ -182,14 +181,12 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a
+                <WhatsAppLink
                   href={defaultWa}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="text-muted transition-colors hover:text-accent"
                 >
                   WhatsApp&apos;tan yazın
-                </a>
+                </WhatsAppLink>
               </li>
               <li className="text-muted">
                 {site.city}, Türkiye

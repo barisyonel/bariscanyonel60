@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { defaultWa } from "@/lib/site";
 import { easeOut } from "@/lib/motion";
+import { trackMetaContact } from "@/lib/gtag";
 
 export function WhatsAppFAB() {
   const reduce = useReducedMotion();
@@ -13,6 +14,7 @@ export function WhatsAppFAB() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp ile yazın"
+      onClick={trackMetaContact}
       initial={reduce ? false : { opacity: 0, scale: 0.7, y: 12 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ delay: 0.6, duration: 0.45, ease: easeOut }}

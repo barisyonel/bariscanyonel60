@@ -1,7 +1,7 @@
 "use client";
 import { useActionState, useEffect, useRef } from "react";
 import { sendContact, type FormState } from "@/lib/actions";
-import { trackGoogleAdsConversion } from "@/lib/gtag";
+import { trackGoogleAdsConversion, trackMetaLead } from "@/lib/gtag";
 
 const inputCls =
   "w-full rounded-btn border border-line bg-elevated px-4 py-3 text-ink placeholder:text-muted/70 focus:border-accent focus:outline-none";
@@ -14,6 +14,7 @@ export function ContactForm() {
     if (!state?.ok || trackedConversion.current) return;
     trackedConversion.current = true;
     trackGoogleAdsConversion();
+    trackMetaLead();
   }, [state?.ok]);
 
   return (

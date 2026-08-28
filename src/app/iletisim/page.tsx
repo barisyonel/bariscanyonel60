@@ -1,6 +1,7 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
+import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
 import { breadcrumb } from "@/lib/schema";
 import { meta } from "@/lib/seo";
 import { site, defaultWa } from "@/lib/site";
@@ -34,15 +35,13 @@ export default function IletisimPage() {
         </Reveal>
         <Reveal delay={0.08}>
           <div className="space-y-5">
-            <a
+            <WhatsAppLink
               href={defaultWa}
-              target="_blank"
-              rel="noopener noreferrer"
               className="motion-card block rounded-card border border-accent/40 bg-accent-soft p-6 hover:border-accent"
             >
               <p className="font-semibold text-accent">WhatsApp — en hızlı yol</p>
               <p className="mt-1.5 text-sm text-muted">Mesajınız hazır gelir, tek dokunuşla gönderin. Genellikle aynı gün dönüş.</p>
-            </a>
+            </WhatsAppLink>
             <div className="rounded-card border border-line bg-elevated p-6 text-[0.95rem]">
               <p className="eyebrow mb-3">Doğrudan ulaşın</p>
               <a className="block py-1 text-muted hover:text-accent" href={`tel:+${site.phoneRaw}`}>{site.phone}</a>

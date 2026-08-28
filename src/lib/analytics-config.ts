@@ -11,4 +11,6 @@ export const googleAdsConversionSendTo = `${googleAdsId}/${googleAdsConversionLa
 
 export const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
-export const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+/** Meta Pixel ID — herkese açık, HTML'de görünür */
+export const metaPixelId =
+  process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "1015103994684605";

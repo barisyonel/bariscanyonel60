@@ -1,7 +1,8 @@
 "use client";
 
 import Script from "next/script";
-import { useSyncExternalStore } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import {
   gaId,
   googleAdsId,
@@ -26,6 +27,17 @@ export function Analytics() {
     getConsentSnapshot,
     getServerConsentSnapshot
   );
+  const pathname = usePathname();
+  const isInitialPixelPageView = useRef(true);
+
+  useEffect(() => {
+    if (!hasConsent || !metaPixelId) return;
+    if (isInitialPixelPageView.current) {
+      isInitialPixelPageView.current = false;
+      return;
+    }
+    window.fbq?.("track", "PageView");
+  }, [pathname, hasConsent]);
 
   const primaryGtagId = gaId ?? googleAdsId;
   const shouldLoadGtag = hasConsent && !!primaryGtagId;

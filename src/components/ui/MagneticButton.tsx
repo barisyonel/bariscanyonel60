@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import type { ReactNode, MouseEvent } from "react";
+import { isWhatsAppHref, trackMetaContact } from "@/lib/gtag";
 
 export function MagneticButton({
   href,
@@ -55,7 +56,13 @@ export function MagneticButton({
 
   if (external)
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className="inline-block">
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block"
+        onClick={isWhatsAppHref(href) ? trackMetaContact : undefined}
+      >
         {inner}
       </a>
     );
