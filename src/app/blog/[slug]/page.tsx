@@ -191,6 +191,20 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                         ))}
                       </ul>
                     )}
+                    {s.link && (
+                      <p>
+                        İlgili okuma:{" "}
+                        <a
+                          href={s.link.href}
+                          target="_blank"
+                          rel="noopener"
+                          className="link-underline text-accent"
+                        >
+                          {s.link.label}
+                        </a>
+                        {s.link.note && <> — {s.link.note}</>}
+                      </p>
+                    )}
                     {s.image && (
                       <div className="relative mt-6 aspect-16/10 overflow-hidden rounded-card border border-line bg-elevated">
                         <Image
