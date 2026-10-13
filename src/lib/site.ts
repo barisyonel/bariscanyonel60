@@ -14,7 +14,7 @@ export const site = {
     "Tokat web tasarım stüdyosu BCY Dijital: kurumsal web sitesi, e-ticaret, yerel SEO, GEO ve Meta reklam. 5 iş günü teslim, şeffaf teklif — Tokat, Çanakkale, İzmir ve İstanbul.",
   sameAs: [
     "https://www.linkedin.com/in/bariscanyonel",
-    "https://www.instagram.com/bcydijital",
+    "https://www.instagram.com/webtasarimbaris",
     "https://medium.com/@bariscanyonel",
   ],
 } as const;
