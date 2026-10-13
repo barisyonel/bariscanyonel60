@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumb, faqSchema, serviceSchema } from "@/lib/schema";
 import { meta } from "@/lib/seo";
@@ -58,14 +58,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         {/* GEO: varlık-tanımlayıcı, tek başına alıntılanabilir açılış paragrafı */}
         <p className="mt-5 max-w-2xl text-lg text-muted">{s.answer}</p>
         <div className="mt-8 flex flex-wrap gap-4">
-          <MagneticButton href="/iletisim">Ücretsiz Keşif Görüşmesi</MagneticButton>
-          <MagneticButton
+          <ButtonLink href="/iletisim">Ücretsiz Keşif Görüşmesi</ButtonLink>
+          <ButtonLink
             href={waLink(`Merhaba, ${s.title} hizmetiniz hakkında bilgi almak istiyorum.`)}
             variant="ghost"
             external
           >
             WhatsApp&apos;tan sorun
-          </MagneticButton>
+          </ButtonLink>
         </div>
       </Reveal>
 

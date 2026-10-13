@@ -32,7 +32,7 @@ export function BlogTableOfContents({ items }: { items: TocItem[] }) {
   return (
     <nav
       aria-label="İçindekiler"
-      className="sticky top-24 hidden max-h-[70vh] overflow-y-auto rounded-card border border-line bg-elevated/60 p-5 backdrop-blur-sm xl:block"
+      className="sticky top-24 hidden max-h-[70vh] overflow-y-auto rounded-card border border-line bg-elevated/60 p-5 xl:block"
     >
       <p className="eyebrow mb-3">İçindekiler</p>
       <ol className="space-y-2">

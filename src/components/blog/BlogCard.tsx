@@ -26,7 +26,7 @@ export function BlogCard({ post }: { post: Post }) {
           className="motion-media object-cover object-top"
           sizes="(max-width: 640px) 100vw, 50vw"
         />
-        <span className="absolute left-3 top-3 rounded-full border border-line/80 bg-base/80 px-2.5 py-0.5 text-xs text-accent backdrop-blur-sm">
+        <span className="absolute left-3 top-3 rounded-full border border-line/80 bg-base/80 px-2.5 py-0.5 text-xs text-accent">
           {post.region}
         </span>
       </div>

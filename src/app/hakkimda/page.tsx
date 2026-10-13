@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumb, person, aboutPageSchema } from "@/lib/schema";
 import { meta } from "@/lib/seo";
@@ -78,7 +78,7 @@ export default function HakkimdaPage() {
           <h1 className="mt-3 max-w-3xl text-4xl font-semibold md:text-5xl">
             Hakkımızda: Tokat&apos;ta web tasarım yapan stüdyo
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-[#c2cedd]">
+          <p className="mt-6 max-w-2xl text-lg text-ink/80">
             {site.name}, {site.person} tarafından yönetilen Tokat merkezli bir web tasarım
             stüdyosudur. Kurumsal web sitesi, e-ticaret, SEO ve yapay zekâ aramalarında görünürlük
             (GEO) ile işletmelerin telefonunu çaldıran dijital kanallar kuruyoruz.
@@ -89,10 +89,10 @@ export default function HakkimdaPage() {
             Ayrıca Çanakkale, İzmir ve İstanbul&apos;da da aktif çalışıyoruz.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <MagneticButton href="/iletisim">Ücretsiz Keşif Görüşmesi</MagneticButton>
-            <MagneticButton href="/tokat-web-tasarim" variant="ghost">
+            <ButtonLink href="/iletisim">Ücretsiz Keşif Görüşmesi</ButtonLink>
+            <ButtonLink href="/tokat-web-tasarim" variant="ghost">
               Tokat Web Tasarım
-            </MagneticButton>
+            </ButtonLink>
           </div>
         </Reveal>
 
@@ -104,7 +104,7 @@ export default function HakkimdaPage() {
           ].map((item) => (
             <Reveal key={item.k}>
               <div className="rounded-card border border-line bg-elevated px-5 py-4">
-                <p className="text-xs uppercase tracking-wider text-muted">{item.k}</p>
+                <p className="text-sm text-muted">{item.k}</p>
                 <p className="mt-1 font-medium text-ink">{item.v}</p>
               </div>
             </Reveal>
@@ -117,7 +117,7 @@ export default function HakkimdaPage() {
           <Reveal>
             <p className="eyebrow">Kurucu</p>
             <h2 className="mt-3 text-3xl font-semibold md:text-4xl">{site.person}</h2>
-            <p className="mt-5 text-[1.02rem] leading-relaxed text-[#c2cedd]">
+            <p className="mt-5 text-[1.02rem] leading-relaxed text-ink/80">
               Perakende ve hizmet sektöründeki saha deneyimini yazılım ve web projelerine taşıyan bir
               geliştirici-tasarımcı olarak çalışıyorum. Amaç \"güzel ekran\" değil; Tokat&apos;taki
               işletmenin teklif süreçlerinde güven veren, Google&apos;da bulunan ve WhatsApp/form ile
@@ -149,7 +149,7 @@ export default function HakkimdaPage() {
           <Reveal delay={0.08}>
             <div className="h-full rounded-card border border-line bg-base p-7 md:p-8">
               <p className="eyebrow">Neden yerel stüdyo?</p>
-              <ul className="mt-5 space-y-4 text-[0.95rem] text-[#c2cedd]">
+              <ul className="mt-5 space-y-4 text-[0.95rem] text-ink/80">
                 <li>
                   <strong className="text-ink">Tokat pazarını biliriz.</strong> Büyük şehir ajanslarının
                   es geçtiği \"Tokat + sektör\" aramalarına odaklanırız.
@@ -179,7 +179,7 @@ export default function HakkimdaPage() {
           <Reveal>
             <div className="h-full rounded-card border border-line bg-elevated p-7 md:p-8">
               <p className="eyebrow">Misyonumuz</p>
-              <p className="mt-4 text-lg text-[#c2cedd]">
+              <p className="mt-4 text-lg text-ink/80">
                 Tokat ve Türkiye genelindeki işletmelerin dijital vitrinlerini hızlı, güvenli ve arama
                 motorlarında bulunabilir kılarak sürdürülebilir satış kanalları kurmak.
               </p>
@@ -188,7 +188,7 @@ export default function HakkimdaPage() {
           <Reveal delay={0.08}>
             <div className="h-full rounded-card border border-line bg-elevated p-7 md:p-8">
               <p className="eyebrow">Vizyonumuz</p>
-              <p className="mt-4 text-lg text-[#c2cedd]">
+              <p className="mt-4 text-lg text-ink/80">
                 Bölgesel işletmelerin ulusal ölçekte rekabet edebileceği; performans, SEO ve GEO
                 standartlarında örnek gösterilen web projeleri üretmek.
               </p>
@@ -218,7 +218,7 @@ export default function HakkimdaPage() {
                   <p className="mt-1 text-sm text-muted">
                     {p.sector} · {p.city}
                   </p>
-                  <p className="mt-2 text-[0.92rem] text-[#c2cedd]">{p.summary}</p>
+                  <p className="mt-2 text-[0.92rem] text-ink/80">{p.summary}</p>
                 </Link>
               </Reveal>
             ))}
@@ -260,7 +260,7 @@ export default function HakkimdaPage() {
             {steps.map((s, i) => (
               <Reveal key={s.n} delay={i * 0.06}>
                 <div className="h-full rounded-card border border-line bg-base p-6">
-                  <span className="display text-sm text-accent">{s.n}</span>
+                  <span className="text-sm font-medium text-muted">{s.n}</span>
                   <h3 className="mt-3 text-xl font-semibold">{s.title}</h3>
                   <p className="mt-2.5 text-[0.95rem] text-muted">{s.text}</p>
                 </div>
@@ -273,7 +273,7 @@ export default function HakkimdaPage() {
       <section className="hairline section-pad">
         <div className="container-x">
           <Reveal>
-            <div className="flex flex-col justify-center rounded-card border border-accent/30 bg-accent-soft p-8 md:max-w-2xl md:p-10">
+            <div className="flex flex-col justify-center rounded-card bg-elevated p-8 md:max-w-2xl md:p-10">
               <h2 className="text-2xl font-semibold md:text-3xl">
                 Tokat&apos;ta web sitenizi birlikte planlayalım.
               </h2>
@@ -282,10 +282,10 @@ export default function HakkimdaPage() {
                 haritasını yazalım. Satın alma zorunluluğu yoktur.
               </p>
               <div className="mt-7 flex flex-wrap gap-4">
-                <MagneticButton href="/iletisim">Ücretsiz Keşif Görüşmesi</MagneticButton>
-                <MagneticButton href={defaultWa} variant="ghost" external>
+                <ButtonLink href="/iletisim">Ücretsiz Keşif Görüşmesi</ButtonLink>
+                <ButtonLink href={defaultWa} variant="ghost" external>
                   WhatsApp
-                </MagneticButton>
+                </ButtonLink>
               </div>
             </div>
           </Reveal>

@@ -9,7 +9,7 @@ export default function NotFound() {
         Aradığınızı ana sayfadan ya da hizmetler bölümünden bulabilirsiniz.
       </p>
       <div className="mt-8 flex justify-center gap-4">
-        <Link href="/" className="rounded-btn bg-accent px-5 py-2.5 font-medium text-base">Ana sayfa</Link>
+        <Link href="/" className="rounded-btn bg-ink px-5 py-2.5 font-medium text-white">Ana sayfa</Link>
         <Link href="/hizmetler" className="rounded-btn border border-line px-5 py-2.5 text-ink hover:border-accent">Hizmetler</Link>
       </div>
     </div>

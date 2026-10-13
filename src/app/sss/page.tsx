@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumb, faqSchema } from "@/lib/schema";
 import { meta } from "@/lib/seo";
@@ -41,15 +41,15 @@ export default function SSSPage() {
       </div>
 
       <Reveal>
-        <div className="mt-14 max-w-3xl rounded-card border border-accent/30 bg-accent-soft p-8">
+        <div className="mt-14 max-w-3xl rounded-card bg-elevated p-8">
           <h2 className="text-2xl font-semibold">Sorunuz burada yok mu?</h2>
           <p className="mt-2 text-muted">
             WhatsApp&apos;tan yazın; genellikle aynı gün içinde cevaplıyoruz.
           </p>
           <div className="mt-5">
-            <MagneticButton href={defaultWa} external>
+            <ButtonLink href={defaultWa} external>
               WhatsApp&apos;tan sorun
-            </MagneticButton>
+            </ButtonLink>
           </div>
         </div>
       </Reveal>

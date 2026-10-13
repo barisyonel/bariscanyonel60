@@ -35,7 +35,7 @@ export default function HizmetlerPage() {
       </Reveal>
       <div className="mt-14 grid gap-5 md:grid-cols-2 lg:gap-6">
         {services.map((s, i) => (
-          <Reveal key={s.slug} delay={i * 0.06} variant="scale">
+          <Reveal key={s.slug} delay={i * 0.06}>
             <ServiceCard
               href={`/hizmetler/${s.slug}`}
               title={s.title}

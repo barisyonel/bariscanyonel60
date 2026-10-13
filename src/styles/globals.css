@@ -1,28 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* Kurumsal midnight + vizyoner kobalt */
-  --color-base: #050c18;
-  --color-elevated: #0a1528;
-  --color-subtle: #0f1d34;
-  --color-ink: #eef3f9;
-  --color-muted: #8b9cb3;
-  --color-line: #1a3050;
-  --color-accent: #219acb;
-  --color-accent-soft: #219acb24;
-  --color-accent-deep: #1a7a9e;
+  --color-base: #ffffff;
+  --color-elevated: #f6f7f9;
+  --color-subtle: #eceff3;
+  --color-ink: #0f1419;
+  --color-muted: #5a6472;
+  --color-line: #e3e7ec;
+  --color-accent: #1a7fae;
+  --color-accent-soft: #1a7fae12;
+  --color-accent-deep: #13658c;
 
-  --font-display: var(--font-cinzel), ui-serif, Georgia, serif;
-  --font-body: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 
-  --radius-card: 12px;
-  --radius-btn: 6px;
+  --radius-card: 14px;
+  --radius-btn: 999px;
 
-  /* Shadow sistemi */
-  --shadow-sm: 0 4px 16px -8px rgba(0, 0, 0, 0.45);
-  --shadow-md: 0 16px 40px -20px rgba(0, 0, 0, 0.55);
-  --shadow-lg: 0 24px 56px -24px rgba(0, 0, 0, 0.65);
-  --shadow-glow: 0 20px 48px -22px rgba(33, 154, 203, 0.35);
+  --shadow-sm: 0 1px 2px rgba(15, 20, 25, 0.06);
+  --shadow-md: 0 8px 24px -12px rgba(15, 20, 25, 0.12);
+  --shadow-lg: 0 16px 40px -20px rgba(15, 20, 25, 0.18);
 }
 
 html { scroll-behavior: smooth; }
@@ -40,261 +37,64 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, .display { font-family: var(--font-display); letter-spacing: 0.02em; }
+h1, h2, h3, .display { font-family: var(--font-display); letter-spacing: -0.02em; }
+h1, h2 { line-height: 1.12; }
 
-::selection { background: var(--color-accent); color: var(--color-base); }
-:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 2px; }
+::selection { background: var(--color-accent); color: #fff; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 4px; }
 
 .eyebrow {
-  font-family: var(--font-display);
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 500;
   color: var(--color-accent);
 }
 
 .container-x { width: 100%; max-width: 72rem; margin-inline: auto; padding-inline: 1.25rem; }
 @media (min-width: 768px) { .container-x { padding-inline: 2.5rem; } }
 
-.section-pad { padding-block: clamp(4rem, 10vh, 7.5rem); }
+.section-pad { padding-block: clamp(4rem, 10vh, 7rem); }
 .hairline { border-top: 1px solid var(--color-line); }
 
-.prose-bcy p { margin-bottom: 1.1em; color: #c2cedd; }
+.prose-bcy p { margin-bottom: 1.1em; color: #3a434f; }
 .prose-bcy h2 { font-size: 1.6rem; margin: 1.8em 0 0.6em; }
 .prose-bcy h3 { font-size: 1.2rem; margin: 1.4em 0 0.5em; }
 .prose-bcy strong { color: var(--color-ink); }
 .prose-bcy a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
-.prose-bcy ul { list-style: disc; padding-left: 1.3em; margin-bottom: 1.1em; color: #c2cedd; }
+.prose-bcy ul { list-style: disc; padding-left: 1.3em; margin-bottom: 1.1em; color: #3a434f; }
 .prose-bcy li { margin-bottom: 0.4em; }
 
-/* Kart / link yüzeyleri — site geneli hover hissi */
 .motion-card {
-  transition:
-    border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.3s ease;
-  will-change: transform;
+  transition: border-color 0.2s ease, box-shadow 0.25s ease;
 }
 @media (hover: hover) and (pointer: fine) {
-  .motion-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 44px -20px rgba(33, 154, 203, 0.28);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .motion-card { transition: border-color 0.2s ease, background-color 0.2s ease; will-change: auto; }
-  .motion-card:hover { transform: none; box-shadow: none; }
+  .motion-card:hover { box-shadow: var(--shadow-md); }
 }
 
-/* Görsel zoom — kart içi img wrapper */
 .motion-media {
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.5s ease;
 }
 @media (hover: hover) and (pointer: fine) {
-  .group:hover .motion-media { transform: scale(1.035); }
+  .group:hover .motion-media { transform: scale(1.02); }
 }
 @media (prefers-reduced-motion: reduce) {
   .motion-media, .group:hover .motion-media { transform: none; transition: none; }
 }
 
-/* Soft fade-in for details/FAQ */
-details[open] summary ~ * {
-  animation: details-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-@keyframes details-in {
-  from { opacity: 0; transform: translateY(-6px) scale(0.98); filter: blur(4px); }
-  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-}
-@media (prefers-reduced-motion: reduce) {
-  details[open] summary ~ * { animation: none; }
-}
-
-/* Liquid border — conic sheen on hover */
-.liquid-border {
-  position: relative;
-  transition: border-color 0.4s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
-}
-.liquid-border::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  box-shadow: inset 0 0 0 1px rgba(33, 154, 203, 0.55);
-}
-@media (hover: hover) and (pointer: fine) {
-  .liquid-border:hover {
-    transform: translateY(-3px);
-    border-color: rgba(33, 154, 203, 0.45);
-    box-shadow: 0 20px 50px -24px rgba(33, 154, 203, 0.35);
-  }
-  .liquid-border:hover::before {
-    opacity: 1;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .liquid-border:hover { transform: none; }
-}
-
-/* Glass surface */
-.glass-card {
-  background: linear-gradient(160deg, rgba(10, 21, 40, 0.92), rgba(5, 12, 24, 0.75));
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* Gradient border — premium card rim */
-.gradient-border {
-  position: relative;
-  border: 1px solid transparent;
-  background:
-    linear-gradient(var(--color-elevated), var(--color-elevated)) padding-box,
-    linear-gradient(135deg, rgba(33, 154, 203, 0.55), rgba(26, 48, 80, 0.4) 40%, rgba(33, 154, 203, 0.2)) border-box;
-  transition: box-shadow 0.45s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.gradient-border::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  box-shadow: inset 0 0 0 1px rgba(33, 154, 203, 0.35), var(--shadow-glow);
-}
-@media (hover: hover) and (pointer: fine) {
-  .gradient-border:hover {
-    box-shadow: var(--shadow-glow);
-  }
-  .gradient-border:hover::after { opacity: 1; }
-}
-
-/* Link underline draw */
 .link-underline {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-position: 0 100%;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .link-underline:hover { text-decoration-color: currentColor; }
+}
+.link-underline:focus-visible { text-decoration-color: currentColor; }
+
+.mark-underline {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-position: 0 92%;
   background-repeat: no-repeat;
-  background-size: 0 1px;
-  transition: background-size 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .link-underline:hover { background-size: 100% 1px; }
-}
-.link-underline:focus-visible { background-size: 100% 1px; }
-
-/* Soft gradient mesh animation */
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-.anim-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 12s ease infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .anim-gradient { animation: none; }
-}
-
-/* Skeleton loading */
-.skeleton {
-  background: linear-gradient(90deg, var(--color-subtle) 25%, var(--color-elevated) 50%, var(--color-subtle) 75%);
-  background-size: 200% 100%;
-  animation: skeleton-shimmer 1.4s ease-in-out infinite;
-  border-radius: var(--radius-btn);
-}
-@keyframes skeleton-shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .skeleton { animation: none; background: var(--color-subtle); }
-}
-
-/* Button ripple host */
-.btn-ripple {
-  position: relative;
-  overflow: hidden;
-}
-.btn-ripple::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at var(--rx, 50%) var(--ry, 50%), rgba(255, 255, 255, 0.28), transparent 55%);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  pointer-events: none;
-}
-@media (hover: hover) and (pointer: fine) {
-  .btn-ripple:hover::after { opacity: 1; }
-}
-
-/* Hover glow utility */
-.hover-glow {
-  transition: box-shadow 0.4s ease, border-color 0.35s ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .hover-glow:hover {
-    box-shadow: var(--shadow-glow);
-    border-color: rgba(33, 154, 203, 0.45);
-  }
-}
-
-@keyframes heroFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-@keyframes heroFloatPhone {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(8px);
-  }
-}
-
-@keyframes heroEnterUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes heroEnterMock {
-  from {
-    opacity: 0;
-    transform: translateY(28px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.hero-enter-item {
-  animation: heroEnterUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: calc(0.12s + var(--i, 0) * 0.08s);
-}
-.hero-enter-mock {
-  animation: heroEnterMock 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-\[heroFloat_8s_ease-in-out_infinite\],
-  .animate-\[heroFloatPhone_6s_ease-in-out_infinite\],
-  .hero-enter-item,
-  .hero-enter-mock {
-    animation: none !important;
-  }
+  background-size: 100% 0.09em;
+  padding-bottom: 0.04em;
 }

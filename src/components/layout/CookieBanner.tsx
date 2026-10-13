@@ -39,7 +39,7 @@ export function CookieBanner() {
       initial={reduce ? false : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.8, duration: 0.4, ease: easeOut }}
-      className="fixed bottom-4 left-4 right-4 z-[60] mx-auto max-w-lg rounded-[var(--radius-card)] border border-line bg-elevated p-5 shadow-lg md:right-auto md:left-6"
+      className="fixed bottom-4 left-4 right-4 z-[60] mx-auto max-w-lg rounded-card border border-line bg-base p-5 shadow-(--shadow-lg) md:right-auto md:left-6"
     >
       <p className="text-sm leading-relaxed text-muted">
         Deneyiminizi iyileştirmek için zorunlu çerezler kullanıyoruz. Analitik
@@ -53,7 +53,7 @@ export function CookieBanner() {
         <button
           type="button"
           onClick={accept}
-          className="rounded-btn bg-accent px-4 py-2 text-sm font-semibold text-base transition-transform hover:scale-[1.02] active:scale-[0.98]"
+          className="rounded-btn bg-ink px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent"
         >
           Kabul Et
         </button>

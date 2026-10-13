@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumb } from "@/lib/schema";
 import { meta } from "@/lib/seo";
@@ -90,7 +90,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <Reveal key={b.h} delay={i * 0.08}>
             <div className="h-full rounded-card border border-line bg-elevated p-7">
               <p className="eyebrow">{b.h}</p>
-              <p className="mt-4 text-[0.98rem] text-[#c2cedd]">{b.t}</p>
+              <p className="mt-4 text-[0.98rem] text-ink/80">{b.t}</p>
             </div>
           </Reveal>
         ))}
@@ -98,8 +98,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       {p.metric && (
         <Reveal>
-          <div className="mt-6 rounded-card border border-accent/30 bg-accent-soft p-6">
-            <p className="display text-2xl font-semibold text-accent">{p.metric}</p>
+          <div className="mt-6 rounded-card bg-elevated p-6">
+            <p className="text-2xl font-semibold text-ink">{p.metric}</p>
             <p className="mt-1 text-sm text-muted">Search Console / analitik verisiyle doğrulanmıştır.</p>
           </div>
         </Reveal>
@@ -107,9 +107,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       {testimonial && (
         <Reveal>
-          <figure className="mt-10 rounded-card border border-accent/25 bg-accent-soft p-7 md:p-8">
+          <figure className="mt-10 rounded-card bg-elevated p-7 md:p-8">
             <p className="eyebrow">Müşteri yorumu</p>
-            <blockquote className="mt-4 text-lg leading-relaxed text-[#c2cedd]">
+            <blockquote className="mt-4 text-lg leading-relaxed text-ink/80">
               “{testimonial.quote}”
             </blockquote>
             <figcaption className="mt-5 text-sm text-muted">
@@ -131,9 +131,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               sayfasında anlatıyoruz.
             </p>
           </div>
-          <MagneticButton href={waLink(`Merhaba, ${p.name} projenize benzer bir iş için görüşmek istiyorum.`)} external>
+          <ButtonLink href={waLink(`Merhaba, ${p.name} projenize benzer bir iş için görüşmek istiyorum.`)} external>
             WhatsApp&apos;tan yazın
-          </MagneticButton>
+          </ButtonLink>
         </div>
       </Reveal>
     </div>

@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { articleSchema, breadcrumb, faqSchema, imageObjectSchema } from "@/lib/schema";
 import { meta } from "@/lib/seo";
 import { posts, getPost, getPostsSorted } from "@/lib/posts";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { BlogTableOfContents } from "@/components/blog/BlogTableOfContents";
 import { postReadingTime } from "@/lib/reading-time";
 import { slugifyHeading } from "@/lib/slugify";
@@ -139,13 +139,13 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               />
             </div>
 
-            <p className="mt-8 rounded-card border-l-2 border-accent bg-elevated p-5 text-lg text-[#c2cedd]">
+            <p className="mt-8 rounded-card border-l-2 border-accent bg-elevated p-5 text-lg text-ink/80">
               {p.directAnswer}
             </p>
 
             {p.highlights.length > 0 && (
               <div className="mt-8 rounded-card border border-line bg-elevated p-5">
-                <h2 className="text-sm font-semibold uppercase tracking-wide text-accent">
+                <h2 className="text-sm font-semibold text-ink">
                   Öne çıkanlar
                 </h2>
                 <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-muted">
@@ -253,10 +253,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 sayfasına bakabilirsiniz.
               </p>
               <div className="mt-5 flex flex-wrap gap-4">
-                <MagneticButton href="/iletisim">Ücretsiz Keşif Görüşmesi</MagneticButton>
-                <MagneticButton href={defaultWa} variant="ghost" external>
+                <ButtonLink href="/iletisim">Ücretsiz Keşif Görüşmesi</ButtonLink>
+                <ButtonLink href={defaultWa} variant="ghost" external>
                   WhatsApp
-                </MagneticButton>
+                </ButtonLink>
               </div>
             </div>
 

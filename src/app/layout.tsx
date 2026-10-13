@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cinzel, Montserrat } from "next/font/google";
+import { Schibsted_Grotesk } from "next/font/google";
 import "@/styles/globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -9,19 +9,9 @@ import { localBusiness, person } from "@/lib/schema";
 import { site } from "@/lib/site";
 import { Analytics } from "@/components/layout/Analytics";
 
-const cinzel = Cinzel({
-  variable: "--font-cinzel",
+const sans = Schibsted_Grotesk({
+  variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
-  weight: ["600", "700"],
-  display: "swap",
-  preload: true,
-  adjustFontFallback: true,
-});
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
   display: "swap",
   preload: true,
   adjustFontFallback: true,
@@ -57,7 +47,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr" className={`${cinzel.variable} ${montserrat.variable}`}>
+    <html lang="tr" className={sans.variable}>
       <body>
         <a
           href="#main-content"

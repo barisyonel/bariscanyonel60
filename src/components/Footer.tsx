@@ -21,15 +21,6 @@ const REGION_LINKS = [
   { href: "/istanbul-web-tasarim", label: "İstanbul Web Tasarım" },
 ] as const;
 
-const TECH_STRIP = [
-  "Next.js",
-  "React",
-  "TypeScript",
-  "Tailwind",
-  "Vercel",
-  "Schema.org",
-] as const;
-
 function socialLabel(url: string): string {
   if (url.includes("linkedin")) return "LinkedIn";
   if (url.includes("instagram")) return "Instagram";
@@ -39,46 +30,35 @@ function socialLabel(url: string): string {
 
 function FooterHeading({ children }: { children: ReactNode }) {
   return (
-    <p className="eyebrow mb-0! text-[0.72rem] tracking-[0.2em]">{children}</p>
+    <p className="text-sm font-semibold text-ink">{children}</p>
   );
 }
 
-/**
- * Premium footer — CTA, iletişim, hızlı linkler, hizmetler, sosyal.
- */
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-line bg-elevated/30">
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(33,154,203,0.08),transparent_50%)]"
-        aria-hidden
-      />
-
-      {/* CTA band */}
-      <div className="relative border-b border-line">
+    <footer className="border-t border-line bg-elevated">
+      <div className="border-b border-line">
         <div className="container-x flex flex-col gap-6 py-12 md:flex-row md:items-center md:justify-between md:py-14">
           <div className="max-w-xl">
-            <p className="eyebrow">Sonraki adım</p>
-            <p className="mt-3 display text-2xl font-semibold leading-snug tracking-tight text-ink md:text-3xl">
+            <p className="text-2xl font-semibold leading-snug text-ink md:text-3xl">
               Projenizi birlikte netleştirelim
             </p>
             <p className="mt-3 text-[0.95rem] text-muted">
-              Ücretsiz keşif görüşmesi — yazılı teklif, sürpriz yok.
+              Ücretsiz keşif görüşmesi, yazılı teklif, sürpriz maliyet yok.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href="/iletisim"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-btn bg-accent px-7 py-3 text-[0.95rem] font-medium text-base shadow-(--shadow-glow) transition-colors duration-300 hover:bg-accent-deep"
+              className="inline-flex min-h-11 items-center justify-center rounded-btn bg-ink px-6 py-2.5 text-[0.95rem] font-medium text-white transition-colors hover:bg-accent"
             >
               Ücretsiz Keşif Görüşmesi
-              <span aria-hidden>→</span>
             </Link>
             <WhatsAppLink
               href={defaultWa}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-btn border border-line px-7 py-3 text-[0.95rem] font-medium text-ink transition-[border-color,color] duration-300 hover:border-accent/50 hover:text-accent"
+              className="inline-flex min-h-11 items-center justify-center rounded-btn border border-line bg-base px-6 py-2.5 text-[0.95rem] font-medium text-ink transition-colors hover:border-ink"
             >
               WhatsApp
             </WhatsAppLink>
@@ -86,13 +66,11 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Main columns */}
-      <div className="container-x relative grid gap-12 py-14 md:py-16 lg:grid-cols-12 lg:gap-10">
+      <div className="container-x grid gap-12 py-14 md:py-16 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-4">
           <BrandLogo size="footer" />
           <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-muted">
-            {site.city} merkezli {site.name}: kurumsal web, SEO, GEO ve Meta reklam — ölçülebilir
-            teslim.
+            {site.city} merkezli {site.name}: kurumsal web sitesi, SEO, GEO ve Meta reklam.
           </p>
 
           <div className="mt-8">
@@ -104,7 +82,7 @@ export function Footer() {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-10 items-center rounded-btn border border-line bg-base/40 px-3.5 py-2 text-xs font-medium uppercase tracking-[0.12em] text-muted transition-[border-color,color,background-color] duration-300 hover:border-accent/40 hover:bg-accent-soft/30 hover:text-accent"
+                    className="inline-flex min-h-10 items-center rounded-btn border border-line bg-base px-3.5 py-2 text-sm text-ink transition-colors hover:border-ink"
                   >
                     {socialLabel(url)}
                   </a>
@@ -124,7 +102,7 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-[0.95rem] text-muted transition-colors duration-300 hover:text-accent"
+                    className="text-[0.95rem] text-muted transition-colors duration-300 hover:text-ink"
                   >
                     {l.label}
                   </Link>
@@ -142,7 +120,7 @@ export function Footer() {
                 <li key={s.slug}>
                   <Link
                     href={`/hizmetler/${s.slug}`}
-                    className="text-[0.95rem] text-muted transition-colors duration-300 hover:text-accent"
+                    className="text-[0.95rem] text-muted transition-colors duration-300 hover:text-ink"
                   >
                     {s.title}
                   </Link>
@@ -167,7 +145,7 @@ export function Footer() {
               <li>
                 <a
                   href={`tel:+${site.phoneRaw}`}
-                  className="font-medium text-ink transition-colors hover:text-accent"
+                  className="font-medium text-ink transition-colors hover:text-ink"
                 >
                   {site.phone}
                 </a>
@@ -175,7 +153,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="text-muted transition-colors hover:text-accent"
+                  className="text-muted transition-colors hover:text-ink"
                 >
                   {site.email}
                 </a>
@@ -183,7 +161,7 @@ export function Footer() {
               <li>
                 <WhatsAppLink
                   href={defaultWa}
-                  className="text-muted transition-colors hover:text-accent"
+                  className="text-muted transition-colors hover:text-ink"
                 >
                   WhatsApp&apos;tan yazın
                 </WhatsAppLink>
@@ -204,7 +182,7 @@ export function Footer() {
                 <li key={r.href}>
                   <Link
                     href={r.href}
-                    className="text-[0.9rem] text-muted transition-colors hover:text-accent"
+                    className="text-[0.9rem] text-muted transition-colors hover:text-ink"
                   >
                     {r.label}
                   </Link>
@@ -215,33 +193,16 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Tech + legal */}
-      <div className="relative border-t border-line">
-        <div className="container-x flex flex-wrap items-center gap-2 py-4" aria-label="Teknolojiler">
-          <span className="mr-1 text-[0.65rem] uppercase tracking-[0.16em] text-muted/70">
-            Stack
-          </span>
-          {TECH_STRIP.map((t) => (
-            <span
-              key={t}
-              className="rounded-btn border border-line/80 px-2.5 py-0.5 text-[0.68rem] text-muted"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div className="relative border-t border-line bg-base/40">
+      <div className="border-t border-line">
         <div className="container-x flex flex-col gap-3 py-5 text-[0.85rem] text-muted md:flex-row md:items-center md:justify-between">
           <p>
-            © {year} {site.name} — {site.person}
+            © {year} {site.name} · {site.person}
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <p className="text-[0.8rem]">
               {site.regions.join(" · ")} · Web tasarım, SEO, GEO
             </p>
-            <Link href="/kvkk" className="hover:text-accent">
+            <Link href="/kvkk" className="hover:text-ink">
               KVKK
             </Link>
           </div>

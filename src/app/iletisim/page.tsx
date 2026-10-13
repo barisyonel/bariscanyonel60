@@ -37,7 +37,7 @@ export default function IletisimPage() {
           <div className="space-y-5">
             <WhatsAppLink
               href={defaultWa}
-              className="motion-card block rounded-card border border-accent/40 bg-accent-soft p-6 hover:border-accent"
+              className="motion-card block rounded-card border border-line bg-elevated p-6 hover:border-ink"
             >
               <p className="font-semibold text-accent">WhatsApp — en hızlı yol</p>
               <p className="mt-1.5 text-sm text-muted">Mesajınız hazır gelir, tek dokunuşla gönderin. Genellikle aynı gün dönüş.</p>

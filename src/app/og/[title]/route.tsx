@@ -23,19 +23,19 @@ export async function GET(_req: Request, { params }: Props) {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 64,
-          background: "#050c18",
-          color: "#eef3f9",
+          background: "#ffffff",
+          color: "#0f1419",
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 14, height: 14, borderRadius: 99, background: "#219acb" }} />
+          <div style={{ width: 14, height: 14, borderRadius: 99, background: "#1a7fae" }} />
           <div style={{ fontSize: 28, fontWeight: 700 }}>BCY Dijital</div>
         </div>
         <div style={{ fontSize: 58, fontWeight: 700, lineHeight: 1.15, maxWidth: 900 }}>{title}</div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "#8b9cb3" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "#5a6472" }}>
           <div>bariscanyonel.com</div>
-          <div style={{ color: "#219acb" }}>Tokat · Çanakkale · İzmir · İstanbul</div>
+          <div style={{ color: "#1a7fae" }}>Tokat · Çanakkale · İzmir · İstanbul</div>
         </div>
       </div>
     ),

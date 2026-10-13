@@ -108,13 +108,11 @@ export function Header() {
     <>
       <header className="sticky top-0 z-50">
         <div
-          className={`border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
-            scrolled
-              ? "border-line/60 bg-base/80 backdrop-blur-xl supports-[backdrop-filter]:bg-base/65"
-              : "border-transparent bg-transparent"
+          className={`border-b bg-base transition-colors duration-200 ${
+            scrolled ? "border-line" : "border-transparent"
           }`}
         >
-          <div className="container-x flex h-[4.5rem] items-center justify-between gap-6 lg:h-[5rem]">
+          <div className="container-x flex h-[4.25rem] items-center justify-between gap-6">
             <BrandLogo onClick={() => setOpen(false)} />
 
             <nav className="hidden items-center gap-1 md:flex" aria-label="Ana menü">
@@ -124,17 +122,12 @@ export function Header() {
                   <Link
                     key={n.href}
                     href={n.href}
-                    className={`relative px-3 py-2 text-[0.84rem] tracking-[0.04em] transition-colors lg:px-3.5 ${
-                      active ? "text-ink" : "text-muted hover:text-ink"
+                    aria-current={active ? "page" : undefined}
+                    className={`rounded-btn px-3.5 py-2 text-[0.92rem] transition-colors ${
+                      active ? "bg-elevated text-ink" : "text-muted hover:text-ink"
                     }`}
                   >
                     {n.label}
-                    <span
-                      className={`absolute inset-x-3.5 -bottom-0.5 h-px origin-left bg-accent transition-transform duration-300 ${
-                        active ? "scale-x-100" : "scale-x-0"
-                      }`}
-                      aria-hidden
-                    />
                   </Link>
                 );
               })}
@@ -144,13 +137,13 @@ export function Header() {
               <SocialLinks />
               <a
                 href="tel:+905301129440"
-                className="hidden text-[0.82rem] tracking-wide text-muted transition-colors hover:text-accent xl:inline"
+                className="hidden text-[0.9rem] text-muted transition-colors hover:text-ink xl:inline"
               >
                 0530 112 94 40
               </a>
               <Link
                 href="/iletisim"
-                className="inline-flex items-center rounded-btn bg-accent px-5 py-2.5 text-[0.84rem] font-medium text-base transition-colors hover:bg-[#3eb0db]"
+                className="inline-flex items-center rounded-btn bg-ink px-5 py-2.5 text-[0.9rem] font-medium text-white transition-colors hover:bg-accent"
               >
                 Keşif Görüşmesi
               </Link>
@@ -197,13 +190,13 @@ export function Header() {
           >
             <button
               type="button"
-              className="absolute inset-0 bg-base/85 backdrop-blur-md"
+              className="absolute inset-0 bg-ink/20"
               aria-label="Menüyü kapat"
               onClick={() => setOpen(false)}
             />
             <motion.nav
               aria-label="Mobil menü"
-              className="absolute inset-x-0 bottom-0 top-[4.5rem] overflow-y-auto border-t border-line bg-base px-6 pb-10 pt-8"
+              className="absolute inset-x-0 bottom-0 top-[4.25rem] overflow-y-auto border-t border-line bg-base px-6 pb-10 pt-8"
               initial={reduce ? false : { y: 16, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={reduce ? undefined : { y: 12, opacity: 0 }}
@@ -222,11 +215,11 @@ export function Header() {
                       <Link
                         href={n.href}
                         onClick={() => setOpen(false)}
-                        className={`block border-b border-line/50 py-5 ${
+                        className={`block border-b border-line py-4 ${
                           active ? "text-accent" : "text-ink"
                         }`}
                       >
-                        <span className="display text-2xl font-semibold tracking-wide sm:text-3xl">
+                        <span className="text-2xl font-semibold">
                           {n.label}
                         </span>
                       </Link>
@@ -239,13 +232,13 @@ export function Header() {
                 <Link
                   href="/iletisim"
                   onClick={() => setOpen(false)}
-                  className="flex w-full items-center justify-center rounded-btn bg-accent px-6 py-3.5 text-center font-medium text-base"
+                  className="flex w-full items-center justify-center rounded-btn bg-ink px-6 py-3.5 text-center font-medium text-white"
                 >
                   Ücretsiz Keşif Görüşmesi
                 </Link>
                 <a
                   href="tel:+905301129440"
-                  className="flex w-full items-center justify-center border border-line px-6 py-3.5 text-muted transition-colors hover:border-accent hover:text-accent"
+                  className="flex w-full items-center justify-center rounded-btn border border-line px-6 py-3.5 text-ink transition-colors hover:border-ink"
                 >
                   0530 112 94 40
                 </a>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumb, faqSchema } from "@/lib/schema";
 import { services } from "@/lib/services";
@@ -37,14 +37,14 @@ export function CityLanding({ city }: { city: City }) {
         <h1 className="mt-3 max-w-3xl text-4xl font-semibold md:text-5xl">{city.heroTitle}</h1>
         <p className="mt-5 max-w-2xl text-lg text-muted">{city.intro}</p>
         <div className="mt-8 flex flex-wrap gap-4">
-          <MagneticButton href="/iletisim">Ücretsiz Keşif Görüşmesi</MagneticButton>
-          <MagneticButton
+          <ButtonLink href="/iletisim">Ücretsiz Keşif Görüşmesi</ButtonLink>
+          <ButtonLink
             href={waLink(`Merhaba, ${city.name}'deki işletmem için web sitesi yaptırmak istiyorum.`)}
             variant="ghost"
             external
           >
             WhatsApp&apos;tan yazın
-          </MagneticButton>
+          </ButtonLink>
         </div>
       </Reveal>
 

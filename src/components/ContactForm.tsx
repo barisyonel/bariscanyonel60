@@ -48,12 +48,12 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-btn bg-accent px-6 py-3 font-medium text-base transition-colors hover:bg-[#3eb0db] disabled:opacity-60"
+        className="rounded-btn bg-ink px-6 py-3 font-medium text-white transition-colors hover:bg-accent disabled:opacity-60"
       >
         {pending ? "Gönderiliyor…" : "Gönder"}
       </button>
       {state && (
-        <p id="form-status" role="status" className={state.ok ? "text-accent" : "text-[#e87d7d]"}>
+        <p id="form-status" role="status" className={state.ok ? "text-accent" : "text-[#b42318]"}>
           {state.message}
         </p>
       )}

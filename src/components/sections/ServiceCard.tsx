@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import type { ServiceIconId } from "@/lib/serviceIcons";
 
@@ -84,9 +82,6 @@ function ServiceIcon({ id }: { id: ServiceIconId }) {
   }
 }
 
-/**
- * Premium hizmet kartı — icon, başlık, açıklama, avantajlar, CTA.
- */
 export function ServiceCard({
   href,
   title,
@@ -97,59 +92,39 @@ export function ServiceCard({
   const visibleBenefits = benefits.slice(0, BENEFIT_LIMIT);
 
   return (
-    <article className="group h-full">
-      <div className="flex h-full flex-col overflow-hidden rounded-card border border-line bg-elevated/50 p-6 transition-[border-color,box-shadow,background-color,transform] duration-500 hover:-translate-y-1 hover:border-accent/45 hover:bg-elevated hover:shadow-[var(--shadow-glow)] md:p-7">
-        <div className="flex items-start justify-between gap-4">
-          <span
-            className="flex h-11 w-11 items-center justify-center rounded-btn border border-line bg-base/60 text-accent transition-[border-color,box-shadow,transform] duration-500 group-hover:rotate-3 group-hover:border-accent/50 group-hover:shadow-[0_0_28px_-8px_rgba(33,154,203,0.55)]"
-            aria-hidden
-          >
-            <ServiceIcon id={iconId} />
-          </span>
-        </div>
-
-        <h3 className="mt-5 display text-xl font-semibold leading-snug tracking-tight text-ink transition-colors duration-300 group-hover:text-accent">
-          <Link href={href} className="focus-visible:outline-offset-2">
+    <article className="flex h-full flex-col border-t border-line pt-6">
+      <div className="flex items-center gap-3">
+        <span className="text-accent" aria-hidden>
+          <ServiceIcon id={iconId} />
+        </span>
+        <h3 className="text-xl font-semibold leading-snug text-ink">
+          <Link href={href} className="hover:text-accent">
             {title}
           </Link>
         </h3>
-
-        <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{short}</p>
-
-        {visibleBenefits.length > 0 ? (
-          <ul className="mt-5 space-y-2.5" aria-label={`${title} avantajları`}>
-            {visibleBenefits.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-2.5 text-[0.88rem] leading-snug text-muted"
-              >
-                <span
-                  className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-[0.55rem] font-bold text-accent"
-                  aria-hidden
-                >
-                  ✓
-                </span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        ) : null}
-
-        <div className="mt-auto pt-6">
-          <Link
-            href={href}
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-btn border border-line px-4 py-2.5 text-sm font-medium text-ink transition-[border-color,color,background-color] duration-300 hover:border-accent/50 hover:bg-accent-soft/40 hover:text-accent group-hover:border-accent/40"
-          >
-            Hizmeti İncele
-            <span
-              aria-hidden
-              className="translate-x-0 transition-transform duration-300 group-hover:translate-x-1"
-            >
-              →
-            </span>
-          </Link>
-        </div>
       </div>
+
+      <p className="mt-3 text-[0.97rem] leading-relaxed text-muted">{short}</p>
+
+      {visibleBenefits.length > 0 ? (
+        <ul className="mt-4 space-y-2" aria-label={`${title} avantajları`}>
+          {visibleBenefits.map((item) => (
+            <li key={item} className="flex items-start gap-2.5 text-[0.93rem] leading-snug text-ink/80">
+              <span className="mt-[0.1rem] text-accent" aria-hidden>
+                ✓
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      <Link
+        href={href}
+        className="link-underline mt-auto inline-block pt-5 text-sm font-medium text-ink"
+      >
+        Hizmeti incele →
+      </Link>
     </article>
   );
 }
