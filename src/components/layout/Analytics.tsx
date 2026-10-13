@@ -72,8 +72,7 @@ export function Analytics() {
         </>
       )}
       {metaPixelId && (
-        <>
-          <Script id="meta-pixel" strategy="afterInteractive">
+        <Script id="meta-pixel" strategy="afterInteractive">
             {`
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -86,19 +85,7 @@ export function Analytics() {
               fbq('init', '${metaPixelId}');
               fbq('track', 'PageView');
             `}
-          </Script>
-          <noscript>
-            {/* Meta Pixel noscript fallback — 1x1 tracking pixel */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              height="1"
-              width="1"
-              style={{ display: "none" }}
-              src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`}
-              alt=""
-            />
-          </noscript>
-        </>
+        </Script>
       )}
     </>
   );
