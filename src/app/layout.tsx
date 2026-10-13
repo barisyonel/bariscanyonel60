@@ -20,7 +20,7 @@ const sans = Schibsted_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
   title: {
-    default: "Tokat Web Tasarım ile Daha Fazla Müşteri Kazanın | BCY Dijital",
+    default: "Tokat Web Tasarım ve Kurumsal Web Sitesi | BCY Dijital",
     template: "%s | BCY Dijital",
   },
   description:

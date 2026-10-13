@@ -27,9 +27,9 @@ import { cities } from "@/lib/cities";
 import { testimonials } from "@/lib/testimonials";
 import { defaultWa, site } from "@/lib/site";
 
-const homeTitle = "Tokat Web Tasarım ile Daha Fazla Müşteri Kazanın | BCY Dijital";
+const homeTitle = "Tokat Web Tasarım ve Kurumsal Web Sitesi | BCY Dijital";
 const homeDescription =
-  "Tokat web tasarım ile daha fazla müşteri kazanın. BCY Dijital: kurumsal site, SEO, GEO ve Meta reklam — şeffaf teklif, ölçülebilir sonuç. Tokat, Çanakkale, İzmir ve İstanbul.";
+  "Tokat’ta kurumsal web sitesi, e-ticaret ve yerel SEO. Yazılı teklif, 5 iş günü teslim; alan adı ve kod size ait. Çanakkale, İzmir ve İstanbul’a da hizmet veriyoruz.";
 
 export const metadata = meta({
   title: homeTitle,
@@ -38,11 +38,12 @@ export const metadata = meta({
   absoluteTitle: true,
   keywords: [
     "Tokat web tasarım",
-    "Tokat web sitesi",
-    "kurumsal web tasarım",
-    "SEO",
-    "GEO",
-    "Meta reklam",
+    "Tokat web tasarım firması",
+    "Tokat web sitesi yaptırma",
+    "Tokat kurumsal web sitesi",
+    "Tokat e-ticaret sitesi",
+    "Tokat SEO",
+    "web tasarım fiyatları",
     "BCY Dijital",
   ],
 });
@@ -127,7 +128,7 @@ export default function Home() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <h2 id="referanslar-heading" className="text-3xl font-semibold md:text-4xl">
-                Tokat’tan Türkiye’ye web tasarım işleri
+                Son projelerimiz
               </h2>
               <p className="mt-3 max-w-xl text-muted">
                 Yayında olan projeler; asansörden gayrimenkule, otelden keresteye.
@@ -150,7 +151,7 @@ export default function Home() {
       <section id="hizmetler" className="hairline section-pad" aria-labelledby="hizmetler-heading">
         <div className="container-x">
           <h2 id="hizmetler-heading" className="max-w-2xl text-3xl font-semibold md:text-4xl">
-            Tokat’ta sunduğumuz web tasarım hizmetleri
+            Web tasarım, SEO ve reklam hizmetleri
           </h2>
           <p className="mt-4 max-w-2xl text-muted">
             Her hizmeti ölçülebilir bir hedefe bağlıyoruz: daha çok arama, daha çok teklif talebi.
@@ -272,7 +273,7 @@ export default function Home() {
         <div className="container-x grid gap-12 lg:grid-cols-2">
           <div>
             <h2 id="sss-heading" className="text-3xl font-semibold md:text-4xl">
-              Tokat web sitesi hakkında sık sorulanlar
+              Web sitesi yaptırmadan önce sık sorulanlar
             </h2>
             <div className="mt-8">
               <FaqAccordion items={homeFaq} />

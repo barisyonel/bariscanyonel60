@@ -16,19 +16,20 @@ export function Hero() {
     <section id="anasayfa" aria-labelledby="home-h1" className="pb-16 pt-14 md:pb-24 md:pt-24">
       <div className="container-x">
         <p className="text-sm text-muted">
-          {site.name} · {site.regions.join(", ")}
+          Tokat web tasarım stüdyosu · {site.regions.join(", ")}
         </p>
 
         <h1
           id="home-h1"
-          className="mt-5 max-w-[18ch] text-[clamp(2.4rem,6vw,4.25rem)] font-semibold leading-[1.05] text-ink"
+          className="mt-5 max-w-[20ch] text-[clamp(2.4rem,6vw,4.25rem)] font-semibold leading-[1.05] text-ink"
         >
-          <span className="mark-underline">Tokat web tasarım</span> ile daha fazla müşteri kazanın
+          İşletmenizi doğru anlatan <span className="mark-underline">web siteleri</span> yapıyoruz
         </h1>
 
         <p className="mt-7 max-w-[38rem] text-lg leading-relaxed text-muted">
-          Kurumsal web sitesi, SEO ve Meta reklamla işletmenizi Google’da bulunur ve güvenilir hale
-          getiriyoruz. Kapsamı baştan yazıyoruz, teslim tarihini net veriyoruz.
+          Tokat’ta kurumsal web sitesi, e-ticaret ve yerel SEO hizmeti veriyoruz. Müşterileriniz sizi
+          Google’da bulsun, güvensin ve tek tıkla ulaşsın. Kapsamı yazılı veriyor, teslim tarihini
+          baştan söylüyoruz.
         </p>
 
         <div className="mt-9 flex flex-wrap gap-3">
