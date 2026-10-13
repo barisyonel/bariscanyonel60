@@ -1,4 +1,4 @@
-export const COOKIE_CONSENT_KEY = "cookie-consent-v1";
+const COOKIE_CONSENT_KEY = "cookie-consent-v1";
 
 export function readCookieConsent(): boolean {
   if (typeof window === "undefined") return false;

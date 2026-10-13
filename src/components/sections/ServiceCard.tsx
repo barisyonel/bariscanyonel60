@@ -3,7 +3,7 @@ import type { ServiceIconId } from "@/lib/serviceIcons";
 
 const BENEFIT_LIMIT = 3;
 
-export type ServiceCardProps = {
+type ServiceCardProps = {
   href: string;
   title: string;
   short: string;

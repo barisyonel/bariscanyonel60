@@ -13,7 +13,7 @@ function siteMailHost() {
  * From adresi doğrulanmış domain'de değilse info@…'ya düşer.
  * (me projesindeki Resend korumasıyla aynı mantık)
  */
-export function resolveContactFrom(raw?: string | null): string {
+function resolveContactFrom(raw?: string | null): string {
   const fallback = `BCY Dijital <${site.email}>`;
   const value = raw?.trim();
   if (!value) return fallback;

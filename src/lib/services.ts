@@ -1,4 +1,4 @@
-export type Service = {
+type Service = {
   slug: string;
   title: string;
   short: string;

@@ -3,7 +3,7 @@ export const googleAdsId =
   process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? "AW-18245342278";
 
 /** Google Ads dönüşüm etiketi (send_to: AW-…/LABEL) */
-export const googleAdsConversionLabel =
+const googleAdsConversionLabel =
   process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL ??
   "8TAYCP-ewMccEFadh_xB";
 

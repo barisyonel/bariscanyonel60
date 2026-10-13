@@ -2,15 +2,15 @@ import { Resend } from "resend";
 import { getContactEnv } from "@/lib/env";
 import { site } from "@/lib/site";
 
-export type ContactPayload = {
+type ContactPayload = {
   name: string;
   phone: string;
   business: string;
   message: string;
   /** İstemci IP (rate limit / log) */
   ip?: string;
-  /** Kaynak: form | api */
-  source?: "form" | "api";
+  /** Kaynak */
+  source?: "form";
 };
 
 export type ContactResult =
@@ -28,7 +28,7 @@ function escapeHtml(s: string) {
 }
 
 /** TR telefonlarını kabaca normalize eder */
-export function normalizePhone(raw: string) {
+function normalizePhone(raw: string) {
   const digits = raw.replace(/\D/g, "");
   if (digits.length === 10 && digits.startsWith("5")) return `90${digits}`;
   if (digits.length === 11 && digits.startsWith("0")) return `9${digits.slice(1)}`;
@@ -53,6 +53,9 @@ export function validateContact(input: {
   }
   if (phone.length < 10 || phone.length > 15) {
     return { ok: false, message: "Lütfen geçerli bir telefon numarası girin." };
+  }
+  if (name.length > 100 || business.length > 150 || phoneRaw.length > 30) {
+    return { ok: false, message: "Girilen bilgiler çok uzun; lütfen kısaltın." };
   }
   if (message.length > 4000) {
     return { ok: false, message: "Mesaj çok uzun; lütfen kısaltın." };
