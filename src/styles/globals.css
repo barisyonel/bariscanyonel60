@@ -37,8 +37,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, .display { font-family: var(--font-display); letter-spacing: -0.02em; }
+h1, h2, h3, .display { font-family: var(--font-display); letter-spacing: -0.02em; text-wrap: balance; }
 h1, h2 { line-height: 1.12; }
+p { text-wrap: pretty; }
 
 ::selection { background: var(--color-accent); color: #fff; }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 4px; }
@@ -97,4 +98,66 @@ h1, h2 { line-height: 1.12; }
   background-repeat: no-repeat;
   background-size: 100% 0.09em;
   padding-bottom: 0.04em;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry var(--reveal-delay, 0%) entry calc(55% + var(--reveal-delay, 0%));
+    }
+  }
+}
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+.photo {
+  overflow: hidden;
+  border-radius: calc(var(--radius-card) + 4px);
+  background: var(--color-elevated);
+  box-shadow: 0 1px 0 rgba(15, 20, 25, 0.03), 0 30px 60px -32px rgba(15, 20, 25, 0.35);
+}
+
+.marquee {
+  display: flex;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  gap: 3rem;
+  padding-right: 3rem;
+  animation: marquee 48s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { flex-wrap: wrap; mask-image: none; }
+  .marquee-track { animation: none; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
+  .marquee-track[aria-hidden] { display: none; }
+}
+
+.surface-ink {
+  background: var(--color-ink);
+  color: #fff;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
+  font-size: clamp(4.5rem, 17vw, 15rem);
+  color: transparent;
+  -webkit-text-stroke: 1px #c9d0d8;
+  user-select: none;
 }

@@ -38,27 +38,27 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line bg-elevated">
-      <div className="border-b border-line">
-        <div className="container-x flex flex-col gap-6 py-12 md:flex-row md:items-center md:justify-between md:py-14">
-          <div className="max-w-xl">
-            <p className="text-2xl font-semibold leading-snug text-ink md:text-3xl">
+    <footer className="overflow-hidden border-t border-line bg-elevated">
+      <div className="container-x pt-12 md:pt-16">
+        <div className="surface-ink flex flex-col gap-10 rounded-[1.5rem] px-7 py-12 md:flex-row md:items-end md:justify-between md:px-14 md:py-16">
+          <div className="max-w-2xl">
+            <p className="text-3xl font-semibold leading-tight text-white md:text-5xl">
               Projenizi birlikte netleştirelim
             </p>
-            <p className="mt-3 text-[0.95rem] text-muted">
-              Ücretsiz keşif görüşmesi, yazılı teklif, sürpriz maliyet yok.
+            <p className="mt-5 text-white/65 md:text-lg">
+              15 dakikalık ücretsiz keşif görüşmesi, yazılı teklif, sürpriz maliyet yok.
             </p>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href="/iletisim"
-              className="inline-flex min-h-11 items-center justify-center rounded-btn bg-ink px-6 py-2.5 text-[0.95rem] font-medium text-white transition-colors hover:bg-accent"
+              className="inline-flex min-h-11 items-center justify-center rounded-btn bg-white px-6 py-2.5 text-[0.95rem] font-medium text-ink transition-colors hover:bg-accent hover:text-white"
             >
               Ücretsiz Keşif Görüşmesi
             </Link>
             <WhatsAppLink
               href={defaultWa}
-              className="inline-flex min-h-11 items-center justify-center rounded-btn border border-line bg-base px-6 py-2.5 text-[0.95rem] font-medium text-ink transition-colors hover:border-ink"
+              className="inline-flex min-h-11 items-center justify-center rounded-btn border border-white/25 px-6 py-2.5 text-[0.95rem] font-medium text-white transition-colors hover:border-white"
             >
               WhatsApp
             </WhatsAppLink>
@@ -207,6 +207,10 @@ export function Footer() {
             </Link>
           </div>
         </div>
+      </div>
+
+      <div className="container-x" aria-hidden>
+        <p className="wordmark -mb-[0.12em] whitespace-nowrap">BCY Dijital</p>
       </div>
     </footer>
   );

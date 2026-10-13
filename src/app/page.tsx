@@ -6,7 +6,6 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ServiceCard } from "@/components/sections/ServiceCard";
 import { serviceIconId } from "@/lib/serviceIcons";
-import { SectionCTA } from "@/components/sections/SectionCTA";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { TechStackSection } from "@/components/sections/TechStackSection";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
@@ -157,39 +156,48 @@ export default function Home() {
             Her hizmeti ölçülebilir bir hedefe bağlıyoruz: daha çok arama, daha çok teklif talebi.
             Detaylar ilgili sayfada.
           </p>
-          <div className="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-            {homeServices.map((s) => (
-              <ServiceCard
-                key={s.slug}
-                href={s.href}
-                title={s.title}
-                short={s.short}
-                benefits={s.benefits}
-                iconId={serviceIconId(s.slug)}
-              />
+          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {homeServices.map((s, i) => (
+              <Reveal key={s.slug} delay={(i % 3) * 0.06} className={i === 0 ? "md:col-span-2" : undefined}>
+                <ServiceCard
+                  href={s.href}
+                  title={s.title}
+                  short={s.short}
+                  benefits={s.benefits}
+                  iconId={serviceIconId(s.slug)}
+                  featured={i === 0}
+                />
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="surec" className="hairline section-pad" aria-labelledby="surec-heading">
+      <section id="surec" className="surface-ink section-pad" aria-labelledby="surec-heading">
         <div className="container-x">
-          <h2 id="surec-heading" className="text-3xl font-semibold md:text-4xl">
-            Üç adımda yayına
-          </h2>
-          <p className="mt-4 max-w-2xl text-muted">
-            {site.name}, {site.person} tarafından yönetilen butik bir stüdyodur. Yazılı kapsam ve
-            yayın sonrası destek standarttır.{" "}
-            <Link href="/hakkimda" className="link-underline text-accent">
-              Hakkımızda
-            </Link>
-          </p>
-          <ol className="mt-12 grid gap-10 md:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end">
+            <h2 id="surec-heading" className="text-3xl font-semibold text-white md:text-5xl">
+              Üç adımda yayına
+            </h2>
+            <p className="max-w-xl text-white/65 lg:justify-self-end">
+              {site.name}, {site.person} tarafından yönetilen butik bir stüdyodur. Yazılı kapsam ve
+              yayın sonrası destek standarttır.{" "}
+              <Link href="/hakkimda" className="text-white underline underline-offset-4 hover:text-white/80">
+                Hakkımızda
+              </Link>
+            </p>
+          </div>
+          <ol className="mt-14 grid gap-4 md:grid-cols-3">
             {steps.map((s, i) => (
-              <li key={s.t} className="border-t border-line pt-6">
-                <span className="text-sm font-medium text-muted">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-2 text-xl font-semibold">{s.t}</h3>
-                <p className="mt-2.5 text-[0.97rem] text-muted">{s.p}</p>
+              <li
+                key={s.t}
+                className="reveal flex h-full flex-col rounded-card border border-white/10 bg-white/[0.03] p-7"
+              >
+                <span className="text-5xl font-semibold tracking-tight text-white/15">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-8 text-xl font-semibold text-white">{s.t}</h3>
+                <p className="mt-2.5 text-[0.97rem] text-white/65">{s.p}</p>
               </li>
             ))}
           </ol>
@@ -301,11 +309,6 @@ export default function Home() {
         </div>
       </section>
 
-      <SectionCTA
-        id="cta-son"
-        title="Sizin projeniz bir sonraki referans olsun"
-        description="Ücretsiz keşif görüşmesiyle kapsamı netleştirelim; 5 iş günü hedefiyle yol haritası çıkaralım."
-      />
     </>
   );
 }

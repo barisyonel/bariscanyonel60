@@ -12,8 +12,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
   experimental: {
-    optimizePackageImports: ["framer-motion", "cobe"],
-  },
+    optimizePackageImports: ["framer-motion"],  },
   poweredByHeader: false,
 };
 export default nextConfig;

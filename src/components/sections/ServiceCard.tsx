@@ -88,26 +88,37 @@ export function ServiceCard({
   short,
   benefits = [],
   iconId = "default",
-}: ServiceCardProps) {
+  featured = false,
+}: ServiceCardProps & { featured?: boolean }) {
   const visibleBenefits = benefits.slice(0, BENEFIT_LIMIT);
 
   return (
-    <article className="flex h-full flex-col border-t border-line pt-6">
-      <div className="flex items-center gap-3">
-        <span className="text-accent" aria-hidden>
-          <ServiceIcon id={iconId} />
-        </span>
-        <h3 className="text-xl font-semibold leading-snug text-ink">
-          <Link href={href} className="hover:text-accent">
-            {title}
-          </Link>
-        </h3>
-      </div>
+    <article
+      className={`motion-card group relative flex h-full flex-col rounded-card border border-line p-7 hover:border-ink/20 ${
+        featured ? "bg-elevated md:p-9" : "bg-base"
+      }`}
+    >
+      <span
+        className="flex size-11 items-center justify-center rounded-xl border border-line bg-base text-accent transition-colors group-hover:border-accent/40"
+        aria-hidden
+      >
+        <ServiceIcon id={iconId} />
+      </span>
+      <h3 className={`mt-6 font-semibold leading-snug text-ink ${featured ? "text-2xl md:text-3xl" : "text-xl"}`}>
+        <Link href={href} className="after:absolute after:inset-0 after:content-['']">
+          {title}
+        </Link>
+      </h3>
 
-      <p className="mt-3 text-[0.97rem] leading-relaxed text-muted">{short}</p>
+      <p className={`mt-3 leading-relaxed text-muted ${featured ? "max-w-xl text-[1.02rem]" : "text-[0.97rem]"}`}>
+        {short}
+      </p>
 
       {visibleBenefits.length > 0 ? (
-        <ul className="mt-4 space-y-2" aria-label={`${title} avantajları`}>
+        <ul
+          className={`mt-5 space-y-2 ${featured ? "md:grid md:grid-cols-3 md:gap-4 md:space-y-0" : ""}`}
+          aria-label={`${title} avantajları`}
+        >
           {visibleBenefits.map((item) => (
             <li key={item} className="flex items-start gap-2.5 text-[0.93rem] leading-snug text-ink/80">
               <span className="mt-[0.1rem] text-accent" aria-hidden>
@@ -119,12 +130,13 @@ export function ServiceCard({
         </ul>
       ) : null}
 
-      <Link
-        href={href}
-        className="link-underline mt-auto inline-block pt-5 text-sm font-medium text-ink"
+      <span
+        className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-ink"
+        aria-hidden
       >
-        Hizmeti incele →
-      </Link>
+        Hizmeti incele
+        <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+      </span>
     </article>
   );
 }
