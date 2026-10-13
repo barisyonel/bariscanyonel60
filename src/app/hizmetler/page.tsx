@@ -1,7 +1,6 @@
-import { JsonLd } from "@/components/JsonLd";
 import { ServiceCard } from "@/components/sections/ServiceCard";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Reveal } from "@/components/ui/Reveal";
-import { breadcrumb } from "@/lib/schema";
 import { meta } from "@/lib/seo";
 import { serviceIconId } from "@/lib/serviceIcons";
 import { services } from "@/lib/services";
@@ -9,18 +8,19 @@ import { services } from "@/lib/services";
 export const metadata = meta({
   title: "Hizmetler: Web Tasarım, SEO, GEO ve Meta Reklam",
   description:
-    "BCY Dijital'in Tokat, Çanakkale, İzmir ve İstanbul'da sunduğu hizmetler: kurumsal web tasarım, e-ticaret, SEO, GEO ve Meta (Facebook & Instagram) reklam yönetimi.",
+    "Kurumsal web tasarım, e-ticaret, SEO, GEO ve Meta reklam yönetimi. BCY Dijital’in Tokat, Çanakkale, İzmir ve İstanbul’daki işletmelere sunduğu hizmetler.",
   path: "/hizmetler",
 });
 
 export default function HizmetlerPage() {
   return (
     <div className="container-x section-pad">
-      <JsonLd
-        data={breadcrumb([
+      <Breadcrumbs
+        className="mb-8"
+        items={[
           { name: "Ana Sayfa", path: "/" },
           { name: "Hizmetler", path: "/hizmetler" },
-        ])}
+        ]}
       />
       <Reveal>
         <p className="eyebrow">Hizmetler</p>

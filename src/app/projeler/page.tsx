@@ -1,7 +1,8 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumb, projectsItemListSchema } from "@/lib/schema";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { projectsItemListSchema } from "@/lib/schema";
 import { meta } from "@/lib/seo";
 import { projects } from "@/lib/projects";
 
@@ -15,13 +16,12 @@ export const metadata = meta({
 export default function ProjelerPage() {
   return (
     <div className="container-x section-pad">
-      <JsonLd
-        data={[
-          breadcrumb([
-            { name: "Ana Sayfa", path: "/" },
-            { name: "Projeler", path: "/projeler" },
-          ]),
-          projectsItemListSchema(projects),
+      <JsonLd data={projectsItemListSchema(projects)} />
+      <Breadcrumbs
+        className="mb-8"
+        items={[
+          { name: "Ana Sayfa", path: "/" },
+          { name: "Projeler", path: "/projeler" },
         ]}
       />
       <Reveal>

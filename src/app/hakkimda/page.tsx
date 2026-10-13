@@ -2,7 +2,8 @@ import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumb, person, aboutPageSchema } from "@/lib/schema";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { person, aboutPageSchema } from "@/lib/schema";
 import { meta } from "@/lib/seo";
 import { site, defaultWa } from "@/lib/site";
 import { projects } from "@/lib/projects";
@@ -10,7 +11,7 @@ import { projects } from "@/lib/projects";
 export const metadata = meta({
   title: "Hakkımızda — Tokat Web Tasarım Stüdyosu",
   description:
-    "BCY Dijital, Tokat merkezli web tasarım stüdyosudur. Barış Can Yönel ile kurumsal web sitesi, e-ticaret, SEO ve GEO. 5 iş günü teslim, şeffaf teklif, yerel referanslar.",
+    "BCY Dijital, Barış Can Yönel’in yönettiği Tokat merkezli web tasarım stüdyosu: kurumsal site, e-ticaret, SEO ve GEO. 5 iş günü teslim, şeffaf teklif.",
   path: "/hakkimda",
 });
 
@@ -65,14 +66,17 @@ export default function HakkimdaPage() {
         data={[
           person(),
           aboutPageSchema(),
-          breadcrumb([
-            { name: "Ana Sayfa", path: "/" },
-            { name: "Hakkımızda", path: "/hakkimda" },
-          ]),
         ]}
       />
 
       <section className="container-x section-pad">
+        <Breadcrumbs
+          className="mb-8"
+          items={[
+            { name: "Ana Sayfa", path: "/" },
+            { name: "Hakkımızda", path: "/hakkimda" },
+          ]}
+        />
         <Reveal>
           <p className="eyebrow">Hakkımızda · Tokat</p>
           <h1 className="mt-3 max-w-3xl text-4xl font-semibold md:text-5xl">

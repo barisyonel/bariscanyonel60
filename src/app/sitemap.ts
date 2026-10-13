@@ -46,6 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/izmir-web-tasarim", { priority: 0.8, changeFrequency: "monthly", lastModified: now }),
     entry("/istanbul-web-tasarim", { priority: 0.8, changeFrequency: "monthly", lastModified: now }),
     entry("/kvkk", { priority: 0.3, changeFrequency: "yearly", lastModified: now }),
+    entry("/gizlilik-politikasi", { priority: 0.3, changeFrequency: "yearly", lastModified: now }),
   ];
 
   const servicePages: MetadataRoute.Sitemap = services.map((s) =>

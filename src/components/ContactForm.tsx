@@ -1,5 +1,7 @@
 "use client";
 import { useActionState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { sendContact, type FormState } from "@/lib/actions";
 import { trackGoogleAdsConversion, trackMetaLead } from "@/lib/gtag";
 
@@ -9,13 +11,15 @@ const inputCls =
 export function ContactForm() {
   const [state, action, pending] = useActionState<FormState, FormData>(sendContact, null);
   const trackedConversion = useRef(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (!state?.ok || trackedConversion.current) return;
     trackedConversion.current = true;
     trackGoogleAdsConversion();
     trackMetaLead();
-  }, [state?.ok]);
+    router.push("/tesekkurler");
+  }, [state?.ok, router]);
 
   return (
     <form action={action} className="space-y-4" aria-describedby={state ? "form-status" : undefined}>
@@ -52,6 +56,13 @@ export function ContactForm() {
       >
         {pending ? "Gönderiliyor…" : "Gönder"}
       </button>
+      <p className="text-xs text-muted">
+        Formu göndererek bilgilerinizin{" "}
+        <Link href="/gizlilik-politikasi" className="underline underline-offset-2 hover:text-ink">
+          Gizlilik Politikası
+        </Link>{" "}
+        kapsamında işlenmesini kabul etmiş olursunuz.
+      </p>
       {state && (
         <p id="form-status" role="status" className={state.ok ? "text-accent" : "text-[#b42318]"}>
           {state.message}

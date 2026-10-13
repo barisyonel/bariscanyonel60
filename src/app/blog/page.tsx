@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
-import { JsonLd } from "@/components/JsonLd";
-import { breadcrumb } from "@/lib/schema";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { meta } from "@/lib/seo";
 import { getPostsSorted } from "@/lib/posts";
 import { BlogCard } from "@/components/blog/BlogCard";
@@ -9,7 +8,7 @@ import { BlogCard } from "@/components/blog/BlogCard";
 export const metadata = meta({
   title: "Blog: Web Tasarım, SEO ve GEO Rehberleri",
   description:
-    "Tokat, Çanakkale, İzmir ve İstanbul’da web tasarım / web sitesi yaptırmak isteyenler için fiyat, süre, ajans seçimi, SEO ve GEO rehberleri (2026). BCY Dijital blog.",
+    "Web sitesi yaptırmak isteyenler için fiyat, süre, ajans seçimi, SEO ve GEO rehberleri. Tokat, Çanakkale, İzmir ve İstanbul odaklı BCY Dijital blogu.",
   path: "/blog",
   image: "/logo-og.jpg",
   keywords: [
@@ -28,11 +27,12 @@ export default function BlogPage() {
   const posts = getPostsSorted();
   return (
     <div className="container-x section-pad">
-      <JsonLd
-        data={breadcrumb([
+      <Breadcrumbs
+        className="mb-8"
+        items={[
           { name: "Ana Sayfa", path: "/" },
           { name: "Blog", path: "/blog" },
-        ])}
+        ]}
       />
       <Reveal>
         <p className="eyebrow">Blog · Tokat · Çanakkale · İzmir · İstanbul</p>

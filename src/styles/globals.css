@@ -7,9 +7,9 @@
   --color-ink: #0f1419;
   --color-muted: #5a6472;
   --color-line: #e3e7ec;
-  --color-accent: #1a7fae;
-  --color-accent-soft: #1a7fae12;
-  --color-accent-deep: #13658c;
+  --color-accent: #156f99;
+  --color-accent-soft: #156f9912;
+  --color-accent-deep: #105a7d;
 
   --font-display: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-sans), ui-sans-serif, system-ui, sans-serif;

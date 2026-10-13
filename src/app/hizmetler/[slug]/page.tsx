@@ -3,7 +3,8 @@ import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumb, faqSchema, serviceSchema } from "@/lib/schema";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { faqSchema, serviceSchema } from "@/lib/schema";
 import { meta } from "@/lib/seo";
 import { services, getService } from "@/lib/services";
 import { projects } from "@/lib/projects";
@@ -45,11 +46,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         data={[
           serviceSchema(s.title, s.answer, s.slug),
           faqSchema(s.faq),
-          breadcrumb([
-            { name: "Ana Sayfa", path: "/" },
-            { name: "Hizmetler", path: "/hizmetler" },
-            { name: s.title, path: `/hizmetler/${s.slug}` },
-          ]),
+        ]}
+      />
+      <Breadcrumbs
+        className="mb-8"
+        items={[
+          { name: "Ana Sayfa", path: "/" },
+          { name: "Hizmetler", path: "/hizmetler" },
+          { name: s.title, path: `/hizmetler/${s.slug}` },
         ]}
       />
       <Reveal>

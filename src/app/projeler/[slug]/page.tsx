@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { JsonLd } from "@/components/JsonLd";
-import { breadcrumb } from "@/lib/schema";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { meta } from "@/lib/seo";
 import { projects, getProject } from "@/lib/projects";
 import { getTestimonialByProject } from "@/lib/testimonials";
@@ -22,6 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${p.name} — ${p.sector} Vaka Çalışması`,
     description: p.summary,
     path: `/projeler/${p.slug}`,
+    image: p.image,
   });
 }
 
@@ -49,12 +49,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="container-x section-pad">
-      <JsonLd
-        data={breadcrumb([
+      <Breadcrumbs
+        className="mb-8"
+        items={[
           { name: "Ana Sayfa", path: "/" },
           { name: "Projeler", path: "/projeler" },
           { name: p.name, path: `/projeler/${p.slug}` },
-        ])}
+        ]}
       />
       <Reveal>
         <p className="eyebrow">{p.sector} · {p.city}</p>

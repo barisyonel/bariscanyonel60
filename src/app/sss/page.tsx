@@ -2,7 +2,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumb, faqSchema } from "@/lib/schema";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { faqSchema } from "@/lib/schema";
 import { meta } from "@/lib/seo";
 import { faq } from "@/lib/faq";
 import { defaultWa } from "@/lib/site";
@@ -17,13 +18,12 @@ export const metadata = meta({
 export default function SSSPage() {
   return (
     <div className="container-x section-pad">
-      <JsonLd
-        data={[
-          faqSchema(faq),
-          breadcrumb([
-            { name: "Ana Sayfa", path: "/" },
-            { name: "SSS", path: "/sss" },
-          ]),
+      <JsonLd data={faqSchema(faq)} />
+      <Breadcrumbs
+        className="mb-8"
+        items={[
+          { name: "Ana Sayfa", path: "/" },
+          { name: "SSS", path: "/sss" },
         ]}
       />
       <Reveal>

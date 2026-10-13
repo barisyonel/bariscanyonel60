@@ -85,7 +85,7 @@ export function Hero() {
             </Link>
           ) : null}
           {featured ? (
-            <div className="absolute right-3 top-3 rounded-xl bg-base/95 px-3.5 py-2.5 shadow-md backdrop-blur">
+            <div className="absolute right-3 top-3 rounded-xl bg-base px-3.5 py-2.5 shadow-md">
               <p className="flex items-center gap-1.5 text-[0.7rem] font-medium text-muted">
                 <span className="size-1.5 rounded-full bg-[#1f9d55]" aria-hidden />
                 Yayında
@@ -98,7 +98,7 @@ export function Hero() {
 
       <div className="container-x mt-20">
         <p className="text-sm text-muted">Yayındaki sitelerimizden bazıları</p>
-        <div className="mt-5 text-[1.05rem] font-medium text-ink/55">
+        <div className="mt-5 text-[1.05rem] font-medium text-muted">
           <Marquee
             label="Referans siteler"
             items={projects.map((p) => (

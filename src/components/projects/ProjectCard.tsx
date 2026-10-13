@@ -20,7 +20,7 @@ export function ProjectCard({ p }: { p: Project }) {
         {p.image ? (
           <Image
             src={p.image}
-            alt=""
+            alt={`${p.name} web sitesi tasarımı`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="motion-media object-cover object-top"

@@ -168,7 +168,7 @@ export function Footer() {
               </li>
               <li className="text-muted">
                 {site.city}, Türkiye
-                <span className="mt-1 block text-sm text-muted/80">
+                <span className="mt-1 block text-sm text-muted">
                   Pzt–Cmt · 09:00–19:00
                 </span>
               </li>
@@ -202,6 +202,9 @@ export function Footer() {
             <p className="text-[0.8rem]">
               {site.regions.join(" · ")} · Web tasarım, SEO, GEO
             </p>
+            <Link href="/gizlilik-politikasi" className="hover:text-ink">
+              Gizlilik Politikası
+            </Link>
             <Link href="/kvkk" className="hover:text-ink">
               KVKK
             </Link>

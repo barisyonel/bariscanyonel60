@@ -2,7 +2,8 @@ import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumb, faqSchema } from "@/lib/schema";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { faqSchema } from "@/lib/schema";
 import { services } from "@/lib/services";
 import { waLink } from "@/lib/site";
 import type { cities } from "@/lib/cities";
@@ -26,10 +27,12 @@ export function CityLanding({ city }: { city: City }) {
   ];
   return (
     <div className="container-x section-pad">
-      <JsonLd
-        data={[
-          breadcrumb([{ name: "Ana Sayfa", path: "/" }, { name: city.title, path: city.path }]),
-          faqSchema(cityFaq),
+      <JsonLd data={faqSchema(cityFaq)} />
+      <Breadcrumbs
+        className="mb-8"
+        items={[
+          { name: "Ana Sayfa", path: "/" },
+          { name: city.title, path: city.path },
         ]}
       />
       <Reveal>

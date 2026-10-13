@@ -39,13 +39,13 @@ export function CookieBanner() {
       initial={reduce ? false : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.8, duration: 0.4, ease: easeOut }}
-      className="fixed bottom-4 left-4 right-4 z-[60] mx-auto max-w-lg rounded-card border border-line bg-base p-5 shadow-(--shadow-lg) md:right-auto md:left-6"
+      className="fixed bottom-[calc(4.25rem+env(safe-area-inset-bottom))] left-4 right-4 z-[60] md:bottom-4 mx-auto max-w-lg rounded-card border border-line bg-base p-5 shadow-(--shadow-lg) md:right-auto md:left-6"
     >
       <p className="text-sm leading-relaxed text-muted">
         Deneyiminizi iyileştirmek için zorunlu çerezler kullanıyoruz. Analitik
         çerezler yalnızca onayınızla etkinleşir. Detaylar için{" "}
-        <Link href="/kvkk" className="font-medium text-accent hover:underline">
-          KVKK metnini
+        <Link href="/gizlilik-politikasi" className="font-medium text-accent hover:underline">
+          gizlilik politikamızı
         </Link>{" "}
         inceleyebilirsiniz.
       </p>
@@ -58,7 +58,7 @@ export function CookieBanner() {
           Kabul Et
         </button>
         <Link
-          href="/kvkk"
+          href="/gizlilik-politikasi"
           className="rounded-btn border border-line px-4 py-2 text-sm font-medium text-muted transition-colors hover:text-ink"
         >
           Daha Fazla Bilgi

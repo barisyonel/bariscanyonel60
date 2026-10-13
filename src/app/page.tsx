@@ -28,7 +28,7 @@ import { defaultWa, site } from "@/lib/site";
 
 const homeTitle = "Tokat Web Tasarım ve Kurumsal Web Sitesi | BCY Dijital";
 const homeDescription =
-  "Tokat’ta kurumsal web sitesi, e-ticaret ve yerel SEO. Yazılı teklif, 5 iş günü teslim; alan adı ve kod size ait. Çanakkale, İzmir ve İstanbul’a da hizmet veriyoruz.";
+  "Tokat’ta kurumsal web sitesi, e-ticaret ve yerel SEO. Yazılı teklif, 5 iş günü teslim; alan adı ve kod size ait. Çanakkale, İzmir ve İstanbul’a da hizmet.";
 
 export const metadata = meta({
   title: homeTitle,

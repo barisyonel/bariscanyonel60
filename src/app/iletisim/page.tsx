@@ -1,22 +1,27 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { ContactForm } from "@/components/ContactForm";
-import { JsonLd } from "@/components/JsonLd";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
-import { breadcrumb } from "@/lib/schema";
 import { meta } from "@/lib/seo";
 import { site, defaultWa } from "@/lib/site";
 
 export const metadata = meta({
   title: "İletişim ve Ücretsiz Keşif Görüşmesi",
   description:
-    "BCY Dijital ile iletişime geçin: 15 dakikalık ücretsiz keşif görüşmesi, WhatsApp hattı ve iletişim formu. Tokat, Çanakkale, İzmir ve İstanbul'da yüz yüze veya çevrim içi görüşme.",
+    "BCY Dijital ile 15 dakikalık ücretsiz keşif görüşmesi planlayın: WhatsApp, telefon veya form. Tokat, Çanakkale, İzmir ve İstanbul’da yüz yüze ya da online.",
   path: "/iletisim",
 });
 
 export default function IletisimPage() {
   return (
     <div className="container-x section-pad">
-      <JsonLd data={breadcrumb([{ name: "Ana Sayfa", path: "/" }, { name: "İletişim", path: "/iletisim" }])} />
+      <Breadcrumbs
+        className="mb-8"
+        items={[
+          { name: "Ana Sayfa", path: "/" },
+          { name: "İletişim", path: "/iletisim" },
+        ]}
+      />
       <Reveal>
         <p className="eyebrow">İletişim</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-semibold md:text-5xl">

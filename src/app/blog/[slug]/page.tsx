@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/JsonLd";
-import { articleSchema, breadcrumb, faqSchema, imageObjectSchema } from "@/lib/schema";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { articleSchema, faqSchema, imageObjectSchema } from "@/lib/schema";
 import { meta } from "@/lib/seo";
 import { posts, getPost, getPostsSorted } from "@/lib/posts";
 import { ButtonLink } from "@/components/ui/ButtonLink";
@@ -92,15 +93,18 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         data={[
           articleSchema(p),
           faqSchema(p.faq.length > 0 ? p.faq : [{ q: p.title, a: p.directAnswer }]),
-          breadcrumb([
-            { name: "Ana Sayfa", path: "/" },
-            { name: "Blog", path: "/blog" },
-            { name: p.title, path: `/blog/${p.slug}` },
-          ]),
           imageObjectSchema({
             url: coverUrl,
             caption: p.coverAlt,
           }),
+        ]}
+      />
+      <Breadcrumbs
+        className="mx-auto mb-8 max-w-5xl"
+        items={[
+          { name: "Ana Sayfa", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: p.title, path: `/blog/${p.slug}` },
         ]}
       />
 

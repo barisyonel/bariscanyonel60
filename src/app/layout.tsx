@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { DeferredChrome } from "@/components/layout/DeferredChrome";
+import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { localBusiness, person } from "@/lib/schema";
 import { site } from "@/lib/site";
 import { Analytics } from "@/components/layout/Analytics";
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr" className={sans.variable}>
-      <body>
+      <body className="pb-[calc(3.6rem+env(safe-area-inset-bottom))] md:pb-0">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-btn focus:bg-accent focus:px-4 focus:py-2 focus:text-base"
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
+        <MobileActionBar />
         <DeferredChrome />
         <Analytics />
       </body>
