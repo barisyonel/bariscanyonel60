@@ -7,8 +7,6 @@ export type PostSection = {
   /** Bölüm sonrası görsel (opsiyonel) */
   image?: string;
   imageAlt?: string;
-  /** Bölüm sonunda dış kaynak linki (opsiyonel) */
-  link?: { label: string; href: string; note?: string };
 };
 
 export type Post = {
@@ -549,11 +547,6 @@ export const posts: Post[] = [
           "Türkiye'de bu alana yatırım yapan yerel işletme henüz çok az. Sektöründe ilk davranan, asistanların 'varsayılan cevabı' olur; sonradan gelenin işi çok daha zordur.",
           "Kendi işletmeniz için basit bir test: ChatGPT'ye şehrinizi ve sektörünüzü sorun. Çıkan cevapta yoksanız, kaybettiğiniz müşteriyi hiç görmüyorsunuz demektir.",
         ],
-        link: {
-          label: "Kurumsal web sitesi için yapay zekâ yeterli mi?",
-          href: "https://kocyigityazilim.com/blog/kurumsal-web-sitesi-yapay-zeka-yeterli-mi",
-          note: "AI ile site üretmek ile Google'ın AI yanıtlarında kaynak olarak görünmek arasındaki farkı ele alan kapsamlı bir rehber.",
-        },
         image: IMG.dalyan,
         imageAlt: "Dijital görünürlük — çok kanallı web ve SEO/GEO örneği",
       },
