@@ -39,9 +39,140 @@ const IMG = {
   dalyan: "/projects/dalyan-palmiye-resort.jpg",
   balsan: "/projects/balsan-papel.jpg",
   mygolden: "/projects/mygoldenfood.jpg",
+  prime: "/projects/prime-dizayn.jpg",
 } as const;
 
 export const posts: Post[] = [
+  {
+    slug: "istanbulda-kurumsal-web-sitesi-yaptirmak",
+    title: "İstanbul'da kurumsal web sitesi yaptırmak: Neye dikkat etmeli?",
+    description:
+      "İstanbul'da web sitesi yaptırmadan önce: kurumsal sitenin işletmeye katkısı, iyi web tasarımın ölçütleri, süre ve maliyet. Prime Dizayn referansıyla.",
+    date: "2026-10-14",
+    updated: "2026-10-14",
+    tags: ["İstanbul", "Kurumsal Web Sitesi", "Web Tasarım"],
+    region: "İstanbul",
+    coverImage: IMG.prime,
+    coverAlt: "İstanbul kurumsal web sitesi örneği — Prime Dizayn mimari ve fit-out firması",
+    directAnswer:
+      "İstanbul'da kurumsal web sitesi yaptırırken bakılması gereken üç şey vardır: sitenin işletmeyi doğru anlatması, Google'da \"İstanbul + hizmetiniz\" aramalarında bulunması ve ziyaretçiyi tek adımda teklif ya da aramaya taşıması. BCY Dijital, İstanbul'daki işletmelere bu üçünü yazılı kapsam, 5 iş günü teslim hedefi ve size ait alan adı ve kodla sunar.",
+    highlights: [
+      "Rakip yoğunluğu yüksek İstanbul'da güven, ilk 5 saniyede kazanılır",
+      "Kurumsal site; teklif, ihale ve iş ortaklığında resmi referans noktasıdır",
+      "İyi web tasarım = hızlı, mobil uyumlu, net mesajlı ve ölçülebilir site",
+      "Referans: Prime Dizayn (Sancaktepe) — primedizayn.com.tr",
+    ],
+    sections: [
+      {
+        h: "İstanbul'da bir işletmenin web sitesine neden ihtiyacı var?",
+        paragraphs: [
+          "İstanbul'da hemen her sektörde aynı ilçede bile onlarca rakip vardır. Müşteri bir firmayı tavsiyeyle, Instagram'da ya da haritada bulsa bile karar vermeden önce web sitesine bakar. Site yoksa ya da eski görünüyorsa, aradaki fark fiyatla değil güvenle kaybedilir.",
+          "Kurumsal web sitesi bu yüzden bir kartvizit değil, satış ekibinin 7/24 çalışan kısmıdır: hizmetlerinizi anlatır, referanslarınızı gösterir, sık sorulan soruları cevaplar ve ziyaretçiyi teklif formuna ya da WhatsApp'a yönlendirir.",
+          "B2B tarafında durum daha nettir. İhale, tedarikçi kaydı veya kurumsal teklif süreçlerinde alıcı firma, resmi bir web sitesi ve kurumsal e-posta adresi bekler. Sosyal medya hesabı bu beklentiyi karşılamaz.",
+        ],
+        bullets: [
+          "Tavsiyeyle gelen müşteriyi ikna eden doğrulama noktası",
+          "\"İstanbul + hizmetiniz\" aramalarından gelen yeni müşteri",
+          "Teklif ve ihale süreçlerinde kurumsal güven sinyali",
+          "Mesai dışında da çalışan iletişim kanalı",
+        ],
+      },
+      {
+        h: "Web tasarımın önemi: Güzel görünmek yetmez",
+        paragraphs: [
+          "Web tasarım çoğu zaman renk ve görsel seçimi sanılır. Oysa iyi tasarımın asıl işi, ziyaretçinin aradığını hızlı bulmasını ve bir sonraki adımı kolayca atmasını sağlamaktır. Güzel ama yavaş açılan, mobilde dağılan ya da ne iş yaptığını ilk ekranda söylemeyen bir site, ziyaretçiyi rakibe gönderir.",
+          "İstanbul'da trafiğin büyük kısmı telefondan gelir; insanlar yolda, toplu taşımada ya da iş arasında arama yapar. Bu yüzden tasarım masaüstünden değil mobilden başlamalı, telefon ve WhatsApp butonları her an elinin altında olmalıdır.",
+        ],
+        bullets: [
+          "İlk ekranda net mesaj: ne yapıyorsunuz, kime, nerede?",
+          "Mobil öncelikli düzen ve büyük, kolay dokunulan butonlar",
+          "Hızlı açılış: yavaş site hem ziyaretçiyi hem Google sıralamasını kaybettirir",
+          "Gerçek proje ve ekip fotoğrafları; hazır stok görseller güven vermez",
+          "Her sayfada tek ve belirgin bir eylem çağrısı",
+        ],
+      },
+      {
+        h: "İyi bir kurumsal web sitesinde hangi sayfalar olmalı?",
+        paragraphs: [
+          "Sayfa sayısından çok, her sayfanın bir arama niyetine cevap vermesi önemlidir. Hizmetlerinizi tek sayfada sıralamak yerine her hizmete ayrı sayfa açmak, hem müşteriye daha net bilgi verir hem de Google'da daha fazla aramada görünmenizi sağlar.",
+        ],
+        bullets: [
+          "Ana sayfa: kısa tanıtım, öne çıkan hizmetler, referanslar, iletişim",
+          "Her hizmet için ayrı sayfa (ör. \"İstanbul asma tavan uygulaması\")",
+          "Projeler / referanslar: önce-sonra, sektör, lokasyon",
+          "Hakkımızda: ekip, deneyim, çalışma şekli",
+          "Sık sorulan sorular: fiyat, süre, süreç",
+          "İletişim: form, telefon, WhatsApp, harita, çalışma saatleri",
+        ],
+      },
+      {
+        h: "İstanbul'da SEO: Rekabet büyük, fırsat ilçelerde",
+        paragraphs: [
+          "\"İstanbul web tasarım\" ya da \"İstanbul tadilat\" gibi geniş aramalarda ilk sayfaya çıkmak uzun soluklu bir iştir. Asıl fırsat, ilçe ve hizmet bazlı aramalardadır: \"Kadıköy diş kliniği\", \"Ümraniye muhasebe bürosu\", \"Sancaktepe asma tavan\" gibi. Bu aramaları yapan kişi genellikle hizmeti hemen almaya hazırdır.",
+          "Bunun için sitenin teknik altyapısı (hız, mobil uyum, doğru başlık yapısı, yapısal veri) baştan doğru kurulmalı, Google İşletme Profili siteyle tutarlı olmalı ve hizmet verilen ilçeler içerikte açıkça geçmelidir.",
+          "Son olarak, ChatGPT ve Google'ın yapay zekâ yanıtları gibi yeni arama kanallarında görünmek de önem kazanıyor. Soruları net cevaplayan, yapısal verisi tam bir site bu kanallarda da kaynak gösterilme şansı yakalar.",
+        ],
+        image: IMG.prime,
+        imageAlt: "İstanbul'da ilçe odaklı SEO ile kurulan kurumsal web sitesi örneği",
+      },
+      {
+        h: "Referansımız: Prime Dizayn, Sancaktepe",
+        paragraphs: [
+          "Sancaktepe merkezli Prime Dizayn; anahtar teslim mimari, asma tavan ve fit-out işleri yapan bir firma. Sahada güçlüydü, ancak İstanbul'da asma tavan ve fit-out arayan müşterilere kendini anlatacak premium bir vitrini yoktu; hizmetler ve referanslar dağınıktı.",
+          "Hizmetleri, seçilmiş projeleri, referansları ve net bir teklif çağrısını tek bir akışta birleştiren, mobil öncelikli ve SEO odaklı bir kurumsal site kurduk. Bugün keşif ve teklif talepleri form ve WhatsApp üzerinden doğrudan firmaya ulaşıyor. Siteyi primedizayn.com.tr adresinde, proje detayını portföyümüzde inceleyebilirsiniz.",
+        ],
+      },
+      {
+        h: "İstanbul'da web sitesi yaptırmak ne kadar sürer, ne kadar tutar?",
+        paragraphs: [
+          "Süre ve maliyet; sayfa sayısına, içeriğin hazır olup olmamasına ve e-ticaret ya da özel panel gibi ek ihtiyaçlara göre değişir. 5–7 sayfalık bir kurumsal site için hedefimiz, içerik ve görseller hazır olduğunda 5 iş günüdür.",
+          "Fiyatı keşif görüşmesinden sonra yazılı olarak veriyoruz. Teklifte sayfa listesi, revizyon sayısı, teslim tarihi ve yayın sonrası destek açıkça yazar; sonradan çıkan sürpriz kalem olmaz.",
+        ],
+        bullets: [
+          "Başlangıç: küçük işletme için 5–7 sayfalık net vitrin",
+          "Kurumsal: 10+ sayfa, teknik ve yerel SEO, hız optimizasyonu",
+          "Premium: e-ticaret veya panel, yapay zekâ görünürlüğü, reklam kurulumu",
+        ],
+      },
+      {
+        h: "Neden web sitenizi BCY Dijital'e yaptırmalısınız?",
+        paragraphs: [
+          "BCY Dijital, Tokat merkezli bir web tasarım stüdyosudur ve İstanbul'daki işletmelerle görüntülü görüşme ya da planlanmış yüz yüze toplantılarla çalışır. Büyük ajans maliyeti olmadan, projeyle doğrudan ilgilenen tek bir muhatapla ilerlersiniz.",
+          "Önceliğimiz \"güzel bir site\" değil, iş getiren bir sitedir: hızlı, mobil uyumlu, Google'da bulunabilir ve ziyaretçiyi tek adımda size ulaştıran.",
+        ],
+        bullets: [
+          "Yazılı kapsam ve teklif: ne alacağınız baştan belli",
+          "5 iş günü teslim hedefi, tarih baştan söylenir",
+          "Alan adı ve kod size ait; bize bağımlı kalmazsınız",
+          "Hazır tema değil, işletmenize özel tasarım",
+          "Teknik SEO, yapısal veri ve hız optimizasyonu standart",
+          "Yayın sonrası destek ve ölçüm (form, arama, WhatsApp dönüşümleri)",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "İstanbul dışındaki bir firmaya web sitesi yaptırmak sorun olur mu?",
+        a: "Hayır. Keşif, tasarım onayı ve eğitim görüntülü görüşmeyle yürür; gerektiğinde yüz yüze toplantı planlanır. Önemli olan sürecin yazılı ve şeffaf olmasıdır.",
+      },
+      {
+        q: "Kurumsal web sitesi kaç günde hazır olur?",
+        a: "5–7 sayfalık bir kurumsal site için hedefimiz, içerik ve görseller hazır olduğunda 5 iş günüdür. Kapsam büyüdükçe süre teklifte ayrıca yazılır.",
+      },
+      {
+        q: "Web sitesi fiyatı neye göre belirlenir?",
+        a: "Sayfa sayısı, özel tasarım ihtiyacı, e-ticaret veya panel gibi ek özellikler ve SEO kapsamına göre. Ücretsiz keşif görüşmesinden sonra yazılı teklif veriyoruz.",
+      },
+      {
+        q: "Site yayına girince Google'da hemen çıkar mı?",
+        a: "Firma adınızla yapılan aramalarda genellikle kısa sürede görünür. \"İstanbul + hizmetiniz\" gibi rekabetçi aramalarda sıralama; içerik, teknik SEO ve Google İşletme Profili çalışmasıyla haftalar içinde oluşur.",
+      },
+      {
+        q: "Alan adı ve site kimin üzerine olur?",
+        a: "Alan adı ve kod tamamen size aittir. İstediğiniz zaman başka bir ekiple çalışmaya devam edebilirsiniz.",
+      },
+    ],
+  },
   {
     slug: "canakkalede-web-tasarim",
     title: "Çanakkale'de web tasarım: Yerel işletmeler ne aramalı?",

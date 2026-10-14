@@ -3,6 +3,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { getPostsSorted } from "@/lib/posts";
 import { faqSchema } from "@/lib/schema";
 import { services } from "@/lib/services";
 import { waLink } from "@/lib/site";
@@ -11,6 +12,7 @@ import type { cities } from "@/lib/cities";
 type City = (typeof cities)[keyof typeof cities];
 
 export function CityLanding({ city }: { city: City }) {
+  const cityPost = getPostsSorted().find((p) => p.region === city.name);
   const cityFaq = [
     {
       q: `${city.name}'de web sitesi yaptırmak ne kadar sürer?`,
@@ -63,6 +65,14 @@ export function CityLanding({ city }: { city: City }) {
         <p className="mt-6 max-w-2xl text-muted">
           Bugüne kadar {city.sectors} sektörlerinde işletmelerle çalıştık.{" "}
           <Link href="/projeler" className="text-accent underline underline-offset-4">Projelerimize göz atın</Link>
+          {cityPost && (
+            <>
+              {" · "}
+              <Link href={`/blog/${cityPost.slug}`} className="text-accent underline underline-offset-4">
+                {cityPost.title}
+              </Link>
+            </>
+          )}
           {city.name === "Tokat" && (
             <>
               {" · "}
