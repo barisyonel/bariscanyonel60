@@ -19,7 +19,7 @@ export function BrandLogo({ href = "/", size = "nav", className = "", onClick }:
     <>
       <Image
         src="/logo-mark-light-bg.png"
-        alt=""
+        alt="BCY Dijital logosu"
         width={515}
         height={239}
         className={`${s.mark} object-contain`}

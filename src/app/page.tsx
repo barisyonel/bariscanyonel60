@@ -196,7 +196,7 @@ export default function Home() {
                 <span className="text-5xl font-semibold tracking-tight text-white/15">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-8 text-xl font-semibold text-white">{s.t}</h3>
+                <p className="mt-8 text-xl font-semibold text-white">{s.t}</p>
                 <p className="mt-2.5 text-[0.97rem] text-white/65">{s.p}</p>
               </li>
             ))}
@@ -226,7 +226,7 @@ export default function Home() {
                 href={city.path}
                 className="group flex h-full flex-col bg-base p-6 transition-colors hover:bg-elevated"
               >
-                <h3 className="text-lg font-semibold">{city.name} Web Tasarım</h3>
+                <p className="text-lg font-semibold">{city.name} Web Tasarım</p>
                 <p className="mt-2 flex-1 text-[0.95rem] text-muted">{city.intro}</p>
                 <span className="mt-4 text-sm font-medium text-ink group-hover:text-accent">
                   Şehir sayfası →

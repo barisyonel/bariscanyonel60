@@ -31,13 +31,13 @@ export function Hero() {
             id="home-h1"
             className="mt-6 max-w-[16ch] text-[clamp(2.5rem,5.4vw,4.4rem)] font-semibold leading-[1.03] text-ink"
           >
-            İşletmenizi doğru anlatan <span className="mark-underline">web siteleri</span> yapıyoruz
+            Tokat’ta işletmenizi doğru anlatan <span className="mark-underline">web siteleri</span> yapıyoruz
           </h1>
 
           <p className="mt-7 max-w-[36rem] text-lg leading-relaxed text-muted">
-            Tokat’ta kurumsal web sitesi, e-ticaret ve yerel SEO hizmeti veriyoruz. Müşterileriniz sizi
-            Google’da bulsun, güvensin ve tek tıkla ulaşsın. Kapsamı yazılı veriyor, teslim tarihini
-            baştan söylüyoruz.
+            Tokat web tasarım stüdyosu olarak işletmenizi doğru anlatan kurumsal web siteleri, e-ticaret
+            ve yerel SEO yapıyoruz. Müşterileriniz sizi Google’da bulsun, güvensin ve tek tıkla ulaşsın.
+            Kapsamı yazılı veriyor, teslim tarihini baştan söylüyoruz.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">

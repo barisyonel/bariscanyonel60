@@ -16,7 +16,7 @@ function PackageCard({ pkg }: { pkg: PricingPackage }) {
           <span className="rounded-btn bg-elevated px-2.5 py-1 text-xs text-muted">Önerilen</span>
         ) : null}
       </div>
-      <h3 className="mt-3 text-xl font-semibold text-ink">{pkg.tagline}</h3>
+      <p className="mt-3 text-xl font-semibold text-ink">{pkg.tagline}</p>
 
       <div className="mt-6 border-b border-line pb-6">
         <p className="text-2xl font-semibold tracking-tight text-ink">{pkg.priceLabel}</p>

@@ -24,6 +24,16 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["framer-motion"],
   },
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.bariscanyonel.com" }],
+        destination: "https://bariscanyonel.com/:path*",
+        statusCode: 301,
+      },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
