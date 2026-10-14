@@ -7,6 +7,8 @@ export type PostSection = {
   /** Bölüm sonrası görsel (opsiyonel) */
   image?: string;
   imageAlt?: string;
+  /** 16:9 banner görseli; kırpılmadan gösterilir */
+  imageWide?: boolean;
 };
 
 export type Post = {
@@ -41,6 +43,7 @@ const IMG = {
   mygolden: "/projects/mygoldenfood.jpg",
   prime: "/projects/prime-dizayn.jpg",
   istanbul: "/blog/istanbul-kurumsal-web-sitesi.jpg",
+  ozelTasarim: "/blog/her-markaya-ozel-web-tasarim.jpg",
 } as const;
 
 export const posts: Post[] = [
@@ -149,6 +152,9 @@ export const posts: Post[] = [
           "Teknik SEO, yapısal veri ve hız optimizasyonu standart",
           "Yayın sonrası destek ve ölçüm (form, arama, WhatsApp dönüşümleri)",
         ],
+        image: IMG.ozelTasarim,
+        imageWide: true,
+        imageAlt: "Her markaya özel web tasarım — restoran, inşaat, spor salonu ve mimarlık firmaları için BCY Dijital'in hazırladığı farklı kurumsal site tasarımları",
       },
     ],
     faq: [

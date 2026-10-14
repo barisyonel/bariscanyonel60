@@ -196,7 +196,11 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                       </ul>
                     )}
                     {s.image && (
-                      <div className="relative mt-6 aspect-16/10 overflow-hidden rounded-card border border-line bg-elevated">
+                      <div
+                        className={`relative mt-6 overflow-hidden rounded-card border border-line bg-elevated ${
+                          s.imageWide ? "aspect-video" : "aspect-16/10"
+                        }`}
+                      >
                         <Image
                           src={s.image}
                           alt={s.imageAlt || s.h}
