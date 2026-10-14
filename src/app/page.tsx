@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { getImageProps } from "next/image";
 import Link from "next/link";
 import { Hero } from "@/components/hero/Hero";
 import { Reveal } from "@/components/ui/Reveal";
@@ -63,6 +63,29 @@ const steps = [
   },
 ];
 
+const bannerAlt =
+  "BCY Dijital tüm dijital hizmetlerimiz: web tasarım, SEO, e-ticaret, dijital pazarlama ve teknik destek — markanızı dijitalde büyüten, sonuç odaklı çözümler";
+const bannerSizes = "(max-width: 1100px) 100vw, 1024px";
+const {
+  props: { srcSet: bannerDesktopSrcSet },
+} = getImageProps({
+  src: "/dijital-hizmetler-banner.jpg",
+  alt: bannerAlt,
+  width: 1024,
+  height: 409,
+  quality: 90,
+  sizes: bannerSizes,
+});
+const { props: bannerMobileProps } = getImageProps({
+  src: "/dijital-hizmetler-banner-mobil.jpg",
+  alt: bannerAlt,
+  width: 1016,
+  height: 818,
+  quality: 90,
+  sizes: "100vw",
+  priority: true,
+});
+
 const regionList = [cities.tokat, cities.canakkale, cities.izmir, cities.istanbul];
 const homeFaq = faq.slice(0, 6);
 
@@ -110,17 +133,12 @@ export default function Home() {
         <Link
           href="/hizmetler"
           aria-label="Tüm dijital hizmetlerimiz"
-          className="relative mx-auto block aspect-4/3 max-w-[1024px] overflow-hidden rounded-card border border-line bg-ink sm:aspect-video lg:aspect-[1024/409]"
+          className="mx-auto block max-w-[1024px] overflow-hidden rounded-card border border-line bg-ink"
         >
-          <Image
-            src="/dijital-hizmetler-banner.jpg"
-            alt="BCY Dijital tüm dijital hizmetlerimiz: web tasarım, SEO, e-ticaret, dijital pazarlama ve teknik destek — markanızı dijitalde büyüten, sonuç odaklı çözümler"
-            fill
-            priority
-            quality={90}
-            sizes="(max-width: 1100px) 100vw, 1024px"
-            className="object-cover object-left"
-          />
+          <picture>
+            <source media="(min-width: 640px)" srcSet={bannerDesktopSrcSet} sizes={bannerSizes} />
+            <img {...bannerMobileProps} className="aspect-[508/409] h-auto w-full object-cover sm:aspect-[1024/409]" />
+          </picture>
         </Link>
       </div>
 
