@@ -40,6 +40,7 @@ const IMG = {
   balsan: "/projects/balsan-papel.jpg",
   mygolden: "/projects/mygoldenfood.jpg",
   prime: "/projects/prime-dizayn.jpg",
+  istanbul: "/blog/istanbul-kurumsal-web-sitesi.jpg",
 } as const;
 
 export const posts: Post[] = [
@@ -52,8 +53,8 @@ export const posts: Post[] = [
     updated: "2026-10-14",
     tags: ["İstanbul", "Kurumsal Web Sitesi", "Web Tasarım"],
     region: "İstanbul",
-    coverImage: IMG.prime,
-    coverAlt: "İstanbul kurumsal web sitesi örneği — Prime Dizayn mimari ve fit-out firması",
+    coverImage: IMG.istanbul,
+    coverAlt: "İstanbul manzaralı ofiste laptop ve telefonda açık kurumsal web sitesi tasarımı",
     directAnswer:
       "İstanbul'da kurumsal web sitesi yaptırırken bakılması gereken üç şey vardır: sitenin işletmeyi doğru anlatması, Google'da \"İstanbul + hizmetiniz\" aramalarında bulunması ve ziyaretçiyi tek adımda teklif ya da aramaya taşıması. BCY Dijital, İstanbul'daki işletmelere bu üçünü yazılı kapsam, 5 iş günü teslim hedefi ve size ait alan adı ve kodla sunar.",
     highlights: [
@@ -112,8 +113,6 @@ export const posts: Post[] = [
           "Bunun için sitenin teknik altyapısı (hız, mobil uyum, doğru başlık yapısı, yapısal veri) baştan doğru kurulmalı, Google İşletme Profili siteyle tutarlı olmalı ve hizmet verilen ilçeler içerikte açıkça geçmelidir.",
           "Son olarak, ChatGPT ve Google'ın yapay zekâ yanıtları gibi yeni arama kanallarında görünmek de önem kazanıyor. Soruları net cevaplayan, yapısal verisi tam bir site bu kanallarda da kaynak gösterilme şansı yakalar.",
         ],
-        image: IMG.prime,
-        imageAlt: "İstanbul'da ilçe odaklı SEO ile kurulan kurumsal web sitesi örneği",
       },
       {
         h: "Referansımız: Prime Dizayn, Sancaktepe",
@@ -121,6 +120,8 @@ export const posts: Post[] = [
           "Sancaktepe merkezli Prime Dizayn; anahtar teslim mimari, asma tavan ve fit-out işleri yapan bir firma. Sahada güçlüydü, ancak İstanbul'da asma tavan ve fit-out arayan müşterilere kendini anlatacak premium bir vitrini yoktu; hizmetler ve referanslar dağınıktı.",
           "Hizmetleri, seçilmiş projeleri, referansları ve net bir teklif çağrısını tek bir akışta birleştiren, mobil öncelikli ve SEO odaklı bir kurumsal site kurduk. Bugün keşif ve teklif talepleri form ve WhatsApp üzerinden doğrudan firmaya ulaşıyor. Siteyi primedizayn.com.tr adresinde, proje detayını portföyümüzde inceleyebilirsiniz.",
         ],
+        image: IMG.prime,
+        imageAlt: "Prime Dizayn kurumsal web sitesi — İstanbul Sancaktepe mimari ve asma tavan firması",
       },
       {
         h: "İstanbul'da web sitesi yaptırmak ne kadar sürer, ne kadar tutar?",
