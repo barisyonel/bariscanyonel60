@@ -106,17 +106,23 @@ export default function Home() {
         ]}
       />
 
-      <Link href="/hizmetler" className="block w-full" aria-label="Tüm dijital hizmetlerimiz">
-        <Image
-          src="/dijital-hizmetler-banner.jpg"
-          alt="BCY Dijital tüm dijital hizmetlerimiz: web tasarım, SEO, e-ticaret, dijital pazarlama ve teknik destek — markanızı dijitalde büyüten, sonuç odaklı çözümler"
-          width={1024}
-          height={409}
-          priority
-          sizes="100vw"
-          className="h-auto w-full"
-        />
-      </Link>
+      <div className="container-x pt-6 md:pt-10">
+        <Link
+          href="/hizmetler"
+          aria-label="Tüm dijital hizmetlerimiz"
+          className="relative mx-auto block aspect-4/3 max-w-[1024px] overflow-hidden rounded-card border border-line bg-ink sm:aspect-video lg:aspect-[1024/409]"
+        >
+          <Image
+            src="/dijital-hizmetler-banner.jpg"
+            alt="BCY Dijital tüm dijital hizmetlerimiz: web tasarım, SEO, e-ticaret, dijital pazarlama ve teknik destek — markanızı dijitalde büyüten, sonuç odaklı çözümler"
+            fill
+            priority
+            quality={90}
+            sizes="(max-width: 1100px) 100vw, 1024px"
+            className="object-cover object-left"
+          />
+        </Link>
+      </div>
 
       <Hero />
 

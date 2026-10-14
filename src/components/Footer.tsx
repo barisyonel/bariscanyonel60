@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
@@ -40,8 +41,20 @@ export function Footer() {
   return (
     <footer className="overflow-hidden border-t border-line bg-elevated">
       <div className="container-x pt-12 md:pt-16">
-        <div className="surface-ink flex flex-col gap-10 rounded-[1.5rem] px-7 py-12 md:flex-row md:items-end md:justify-between md:px-14 md:py-16">
-          <div className="max-w-2xl">
+        <div className="surface-ink relative isolate flex flex-col gap-8 overflow-hidden rounded-[1.5rem] px-7 py-12 md:min-h-[22rem] md:justify-center md:px-14 md:py-16">
+          <Image
+            src="/footer-bg.jpg"
+            alt=""
+            fill
+            quality={90}
+            sizes="(max-width: 1280px) 100vw, 1200px"
+            className="-z-10 object-cover object-right"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10 bg-[#0b0f16]/80 md:bg-transparent md:bg-linear-to-r md:from-[#0b0f16] md:from-30% md:via-[#0b0f16]/60 md:via-50% md:to-transparent md:to-75%"
+          />
+          <div className="max-w-xl">
             <p className="text-3xl font-semibold leading-tight text-white md:text-5xl">
               Projenizi birlikte netleştirelim
             </p>
@@ -49,7 +62,7 @@ export function Footer() {
               15 dakikalık ücretsiz keşif görüşmesi, yazılı teklif, sürpriz maliyet yok.
             </p>
           </div>
-          <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href="/iletisim"
               className="inline-flex min-h-11 items-center justify-center rounded-btn bg-white px-6 py-2.5 text-[0.95rem] font-medium text-ink transition-colors hover:bg-accent hover:text-white"
