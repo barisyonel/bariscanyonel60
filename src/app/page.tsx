@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Hero } from "@/components/hero/Hero";
 import { Reveal } from "@/components/ui/Reveal";
@@ -104,6 +105,18 @@ export default function Home() {
           }),
         ]}
       />
+
+      <Link href="/hizmetler" className="block w-full" aria-label="Tüm dijital hizmetlerimiz">
+        <Image
+          src="/dijital-hizmetler-banner.jpg"
+          alt="BCY Dijital tüm dijital hizmetlerimiz: web tasarım, SEO, e-ticaret, dijital pazarlama ve teknik destek — markanızı dijitalde büyüten, sonuç odaklı çözümler"
+          width={1024}
+          height={409}
+          priority
+          sizes="100vw"
+          className="h-auto w-full"
+        />
+      </Link>
 
       <Hero />
 
