@@ -1,18 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { trackMetaContact } from "@/lib/gtag";
+import { usePathname } from "next/navigation";
+import { trackAnalyticsEvent, trackMetaContact } from "@/lib/gtag";
 import { defaultWa, site } from "@/lib/site";
 
 const item = "flex flex-1 flex-col items-center justify-center gap-0.5 py-2 text-[0.72rem] font-medium";
 
 export function MobileActionBar() {
+  const pathname = usePathname();
+  const quoteHref = pathname === "/" ? "/#teklif" : "/iletisim";
+
   return (
     <nav
       aria-label="Hızlı iletişim"
       className="fixed inset-x-0 bottom-0 z-50 flex border-t border-line bg-base pb-[env(safe-area-inset-bottom)] md:hidden"
     >
-      <a href={`tel:+${site.phoneRaw}`} onClick={trackMetaContact} className={`${item} text-ink`}>
+      <a
+        href={`tel:+${site.phoneRaw}`}
+        onClick={() => {
+          trackMetaContact();
+          trackAnalyticsEvent("phone_click");
+        }}
+        className={`${item} text-ink`}
+      >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z" />
         </svg>
@@ -22,7 +33,10 @@ export function MobileActionBar() {
         href={defaultWa}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={trackMetaContact}
+        onClick={() => {
+          trackMetaContact();
+          trackAnalyticsEvent("whatsapp_click");
+        }}
         className={`${item} border-x border-line text-[#0f7a40]`}
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
@@ -30,7 +44,7 @@ export function MobileActionBar() {
         </svg>
         WhatsApp
       </a>
-      <Link href="/iletisim" className={`${item} bg-ink text-white`}>
+      <Link href={quoteHref} className={`${item} bg-ink text-white`}>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M4 4h16v12H5.2L4 17.2V4Z" />
           <path d="M8 9h8M8 12h5" />

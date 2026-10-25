@@ -1,65 +1,49 @@
-import { site } from "@/lib/site";
-
-type ComparisonRow = {
-  feature: string;
-  others: string;
-  ours: string;
-};
-
-const ROWS: readonly ComparisonRow[] = [
-  { feature: "Tasarım", others: "Hazır tema / şablon", ours: "İşletmeye özel tasarım" },
-  { feature: "Altyapı", others: "Ağır WordPress / eski altyapı", ours: "Next.js, hızlı ve modern" },
-  { feature: "SEO", others: "Temel ayarlar", ours: "Teknik ve yerel SEO iskeleti" },
-  { feature: "Yapay zekâ aramaları", others: "Genelde düşünülmez", ours: "GEO uyumlu içerik yapısı" },
-  { feature: "Performans", others: "Yavaş açılış", ours: "Core Web Vitals hedefiyle teslim" },
-  { feature: "Mobil", others: "Sonradan uyarlanır", ours: "Önce mobil tasarlanır" },
-  { feature: "Destek", others: "Teslimden sonra ulaşılamaz", ours: "Yayın sonrası bakım ve iletişim" },
-  { feature: "Teklif", others: "Belirsiz paket, sürpriz maliyet", ours: "Kalem kalem yazılı teklif" },
+const benefits = [
+  {
+    title: "Alan Adı Sizin Adınıza",
+    text: "Alan adı müşterinin adına kayıtlıdır.",
+  },
+  {
+    title: "Site ve Kodlar Size Ait",
+    text: "Proje teslim edildiğinde dijital varlığınız üzerinde kontrol sizdedir.",
+  },
+  {
+    title: "Ajansa Bağımlılık Yok",
+    text: "Müşteriyi gereksiz teknik bağımlılığa sokmayan yapı.",
+  },
+  {
+    title: "Mobil Uyumlu",
+    text: "Telefon, tablet ve masaüstünde profesyonel görünüm.",
+  },
+  {
+    title: "Hızlı Altyapı",
+    text: "Performans odaklı modern web teknolojileri.",
+  },
+  {
+    title: "SEO + GEO",
+    text: "Google ve yapay zekâ tabanlı arama sistemleri için güçlü teknik altyapı.",
+  },
 ] as const;
 
 export function WhyUsSection() {
   return (
     <section id="neden-biz" className="hairline section-pad" aria-labelledby="neden-biz-heading">
       <div className="container-x">
-        <h2
-          id="neden-biz-heading"
-          className="max-w-2xl text-3xl font-semibold text-ink md:text-4xl"
-        >
-          Neden {site.name}?
+        <h2 id="neden-biz-heading" className="max-w-2xl text-3xl font-semibold text-ink md:text-4xl">
+          Web Siteniz Gerçekten Sizin Olsun
         </h2>
-        <p className="mt-4 max-w-xl text-muted">
-          Hazır tema ve belirsiz teslim yerine özel tasarım, ölçülebilir performans ve net süreç.
+        <p className="mt-4 max-w-2xl text-muted">
+          Teslimden sonra siteniz, alan adınız ve kodlarınız size kalır. Hız, mobil uyum ve arama
+          görünürlüğü bu sahipliğin üstüne kurulur.
         </p>
-
-        <div className="mt-10 overflow-x-auto">
-          <table className="w-full min-w-xl border-collapse text-left">
-            <caption className="sr-only">Diğer ajanslar ile {site.name} karşılaştırması</caption>
-            <thead>
-              <tr className="border-b border-ink/80 text-sm">
-                <th scope="col" className="py-3 pr-4 font-medium text-muted">
-                  Konu
-                </th>
-                <th scope="col" className="px-4 py-3 font-medium text-muted">
-                  Sık görülen
-                </th>
-                <th scope="col" className="py-3 pl-4 font-semibold text-ink">
-                  {site.name}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {ROWS.map((row) => (
-                <tr key={row.feature} className="border-b border-line">
-                  <th scope="row" className="py-4 pr-4 text-[0.95rem] font-medium text-ink">
-                    {row.feature}
-                  </th>
-                  <td className="px-4 py-4 text-[0.95rem] text-muted">{row.others}</td>
-                  <td className="py-4 pl-4 text-[0.95rem] text-ink">{row.ours}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {benefits.map((item) => (
+            <li key={item.title} className="rounded-card border border-line bg-base p-6">
+              <h3 className="text-lg font-semibold text-ink">{item.title}</h3>
+              <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{item.text}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

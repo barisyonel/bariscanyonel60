@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { isWhatsAppHref, trackMetaContact } from "@/lib/gtag";
+import { isWhatsAppHref, trackAnalyticsEvent, trackMetaContact } from "@/lib/gtag";
 
 const base =
   "inline-flex min-h-11 items-center justify-center gap-2 rounded-btn px-6 py-2.5 text-[0.95rem] font-medium transition-colors duration-200";
@@ -17,13 +17,15 @@ export function ButtonLink({
   children,
   variant = "primary",
   external = false,
+  className,
 }: {
   href: string;
   children: ReactNode;
   variant?: keyof typeof variants;
   external?: boolean;
+  className?: string;
 }) {
-  const cls = `${base} ${variants[variant]}`;
+  const cls = `${base} ${variants[variant]}${className ? ` ${className}` : ""}`;
 
   if (external)
     return (
@@ -32,7 +34,14 @@ export function ButtonLink({
         target="_blank"
         rel="noopener noreferrer"
         className={cls}
-        onClick={isWhatsAppHref(href) ? trackMetaContact : undefined}
+        onClick={
+          isWhatsAppHref(href)
+            ? () => {
+                trackMetaContact();
+                trackAnalyticsEvent("whatsapp_click");
+              }
+            : undefined
+        }
       >
         {children}
       </a>

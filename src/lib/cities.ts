@@ -56,3 +56,13 @@ export const cities = {
     sectors: "kurumsal, e-ticaret, hizmet, B2B, finans ve perakende",
   },
 } as const;
+
+/**
+ * Henüz sayfası olmayan hedefler. Sitemap'e ve menüye eklenmez.
+ * Özgün içerik yazılınca cities kaydı ve app/<path>/page.tsx ile yayına alınır.
+ */
+export const upcomingCities = [
+  { name: "Erbaa", path: "/erbaa-web-tasarim" },
+  { name: "Amasya", path: "/amasya-web-tasarim" },
+  { name: "Sivas", path: "/sivas-web-tasarim" },
+] as const;

@@ -115,7 +115,7 @@ export function Header() {
           <div className="container-x flex h-[4.25rem] items-center justify-between gap-6">
             <BrandLogo onClick={() => setOpen(false)} />
 
-            <nav className="hidden items-center gap-1 md:flex" aria-label="Ana menü">
+            <nav className="hidden items-center gap-1 lg:flex" aria-label="Ana menü">
               {nav.map((n) => {
                 const active = isActive(path, n.href);
                 return (
@@ -133,10 +133,10 @@ export function Header() {
               })}
             </nav>
 
-            <div className="hidden items-center gap-3 md:flex lg:gap-4">
+            <div className="hidden items-center gap-3 lg:flex lg:gap-4">
               <SocialLinks />
               <a
-                href="tel:+905301129440"
+                href={`tel:+${site.phoneRaw}`}
                 className="hidden text-[0.9rem] text-muted transition-colors hover:text-ink xl:inline"
               >
                 0530 112 94 40
@@ -151,7 +151,7 @@ export function Header() {
 
             <button
               type="button"
-              className="relative z-[60] flex h-11 w-11 items-center justify-center md:hidden"
+              className="relative z-[60] flex h-11 w-11 items-center justify-center lg:hidden"
               aria-label={open ? "Menüyü kapat" : "Menüyü aç"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
@@ -182,7 +182,7 @@ export function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[55] md:hidden"
+            className="fixed inset-0 z-[55] lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -237,7 +237,7 @@ export function Header() {
                   Ücretsiz Keşif Görüşmesi
                 </Link>
                 <a
-                  href="tel:+905301129440"
+                  href={`tel:+${site.phoneRaw}`}
                   className="flex w-full items-center justify-center rounded-btn border border-line px-6 py-3.5 text-ink transition-colors hover:border-ink"
                 >
                   0530 112 94 40

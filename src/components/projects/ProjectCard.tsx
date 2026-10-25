@@ -7,7 +7,6 @@ const TECH_LIMIT = 4;
 export function ProjectCard({ p }: { p: Project }) {
   const tech = (p.tech ?? p.tags).slice(0, TECH_LIMIT);
   const caseHref = `/projeler/${p.slug}`;
-  const host = new URL(p.url).hostname.replace(/^www\./, "");
 
   return (
     <article className="group flex h-full flex-col">
@@ -55,7 +54,7 @@ export function ProjectCard({ p }: { p: Project }) {
 
         <div className="mt-auto flex items-center gap-5 pt-5 text-sm font-medium">
           <Link href={caseHref} className="link-underline text-ink">
-            Vaka çalışması →
+            Projeyi incele →
           </Link>
           <a
             href={p.url}
@@ -63,7 +62,7 @@ export function ProjectCard({ p }: { p: Project }) {
             rel="noopener noreferrer"
             className="link-underline text-muted hover:text-ink"
           >
-            {host} ↗
+            Canlı site ↗
           </a>
         </div>
       </div>

@@ -38,6 +38,28 @@ export function trackMetaLead(): void {
   window.fbq("track", "Lead");
 }
 
+export type AnalyticsEventName =
+  | "generate_lead"
+  | "phone_click"
+  | "whatsapp_click"
+  | "quote_form_start"
+  | "quote_form_submit";
+
+/**
+ * GA4 / dataLayer olayı. Çerez onayı ve gtag yoksa sessizce çıkar.
+ * Dönüşüm kimliği burada üretilmez; mevcut gtag yapılandırması kullanılır.
+ */
+export function trackAnalyticsEvent(
+  name: AnalyticsEventName,
+  params?: Record<string, string>
+): void {
+  if (typeof window === "undefined" || !readCookieConsent()) return;
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: name, ...params });
+  window.gtag?.("event", name, params);
+}
+
 export function trackMetaContact(): void {
   if (!readCookieConsent() || typeof window === "undefined" || !window.fbq) {
     return;

@@ -50,12 +50,18 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   );
 }
 
-export function TestimonialsSection({ items }: { items: readonly Testimonial[] }) {
+export function TestimonialsSection({
+  items,
+  title = "Birlikte çalıştığımız işletmeler ne diyor?",
+}: {
+  items: readonly Testimonial[];
+  title?: string;
+}) {
   return (
     <section id="yorumlar" className="hairline section-pad" aria-labelledby="yorumlar-heading">
       <div className="container-x">
         <h2 id="yorumlar-heading" className="max-w-2xl text-3xl font-semibold text-ink md:text-4xl">
-          Birlikte çalıştığımız işletmeler ne diyor?
+          {title}
         </h2>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-5">
           {items.map((t) => (

@@ -1,7 +1,7 @@
 "use client";
 
 import type { AnchorHTMLAttributes, MouseEvent, ReactNode } from "react";
-import { trackMetaContact } from "@/lib/gtag";
+import { trackAnalyticsEvent, trackMetaContact } from "@/lib/gtag";
 
 type WhatsAppLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
@@ -11,6 +11,7 @@ type WhatsAppLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 export function WhatsAppLink({ children, onClick, ...props }: WhatsAppLinkProps) {
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
     trackMetaContact();
+    trackAnalyticsEvent("whatsapp_click");
     onClick?.(event);
   }
 
