@@ -31,10 +31,16 @@ export async function sendContact(_prev: FormState, formData: FormData): Promise
     return { ok: false, message: "Lütfen geçerli bir e-posta adresi girin." };
   }
 
+  const budget = String(formData.get("budget") || "").trim();
+  if (budget.length > 80) {
+    return { ok: false, message: "Bütçe alanı çok uzun; lütfen kısaltın." };
+  }
+
   const message = [
     email ? `E-posta: ${email}` : "",
     service ? `İstenen hizmet: ${service}` : "",
     websiteStatus ? `Mevcut web sitesi: ${websiteStatus}` : "",
+    budget ? `Bütçe aralığı: ${budget}` : "",
     String(formData.get("message") || "").trim(),
   ]
     .filter(Boolean)

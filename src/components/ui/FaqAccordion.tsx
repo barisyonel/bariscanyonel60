@@ -22,7 +22,7 @@ export function FaqAccordion({
   className = "",
 }: FaqAccordionProps) {
   return (
-    <div className={`space-y-3 ${className}`}>
+    <div className={`space-y-4 ${className}`}>
       {items.map((f, i) => (
         <details
           key={f.q}

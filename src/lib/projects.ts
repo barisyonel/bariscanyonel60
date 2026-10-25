@@ -1,3 +1,5 @@
+import { enrichProject } from "./project-seo";
+
 export type Project = {
   slug: string;
   name: string;
@@ -19,9 +21,20 @@ export type Project = {
   performance?: number;
   /** Kartta gösterilecek teknolojiler */
   tech?: string[];
+  /** Görseli açıklayan alt metin */
+  imageAlt?: string;
+  /** İçerik güncelleme tarihi (sitemap) */
+  updated?: string;
+  caseStudy?: {
+    need: string;
+    design: string;
+    technical: string;
+    seo: string;
+    mobile: string;
+  };
 };
 
-export const projects: Project[] = [
+const projectRecords: Project[] = [
   {
     slug: "prime-dizayn",
     name: "Prime Dizayn",
@@ -292,6 +305,8 @@ export const projects: Project[] = [
     url: "https://izmirmakinakalip.com/",
   },
 ];
+
+export const projects: Project[] = projectRecords.map(enrichProject);
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);

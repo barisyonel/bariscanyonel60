@@ -1,3 +1,7 @@
+import { guidePosts } from "./posts-guides";
+import { withPostLinks } from "./post-links";
+import { tokatClusterPosts } from "./tokat-cluster-posts";
+
 export type PostFaq = { q: string; a: string };
 
 export type PostSection = {
@@ -27,6 +31,7 @@ export type Post = {
   highlights: string[];
   sections: PostSection[];
   faq: PostFaq[];
+  links?: { href: string; label: string }[];
 };
 
 const IMG = {
@@ -46,7 +51,7 @@ const IMG = {
   ozelTasarim: "/blog/her-markaya-ozel-web-tasarim.jpg",
 } as const;
 
-export const posts: Post[] = [
+const basePosts: Post[] = [
   {
     slug: "istanbulda-kurumsal-web-sitesi-yaptirmak",
     title: "İstanbul'da kurumsal web sitesi yaptırmak: Neye dikkat etmeli?",
@@ -777,6 +782,14 @@ export const posts: Post[] = [
     ],
   },
 ];
+
+export const posts: Post[] = [...basePosts, ...tokatClusterPosts, ...guidePosts].map((post) =>
+  withPostLinks({
+    ...post,
+    coverImage: `/blog/${post.slug}.jpg`,
+    coverAlt: `${post.title} — BCY Dijital blog kapağı`,
+  })
+);
 
 export function getPost(slug: string) {
   return posts.find((p) => p.slug === slug);

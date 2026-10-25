@@ -4,15 +4,15 @@ import type { Project } from "@/lib/projects";
 
 const TECH_LIMIT = 4;
 
-export function ProjectCard({ p }: { p: Project }) {
+export function ProjectCard({ p, featured = false }: { p: Project; featured?: boolean }) {
   const tech = (p.tech ?? p.tags).slice(0, TECH_LIMIT);
   const caseHref = `/projeler/${p.slug}`;
 
   return (
-    <article className="group flex h-full flex-col">
+    <article className="group flex h-full flex-col rounded-[18px] border border-line bg-base p-3 transition duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-(--shadow-lg)">
       <Link
         href={caseHref}
-        className="relative block aspect-[16/10] overflow-hidden rounded-card border border-line bg-elevated"
+        className={`relative block overflow-hidden rounded-[14px] bg-elevated ${featured ? "aspect-[16/9]" : "aspect-[16/10]"}`}
         tabIndex={-1}
         aria-hidden
       >
@@ -22,7 +22,7 @@ export function ProjectCard({ p }: { p: Project }) {
             alt={`${p.name} web sitesi tasarımı`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="motion-media object-cover object-top"
+            className="object-cover object-top transition duration-500 group-hover:scale-[1.02]"
           />
         ) : (
           <div className="absolute inset-0 flex flex-col justify-end p-6">
@@ -34,7 +34,7 @@ export function ProjectCard({ p }: { p: Project }) {
       </Link>
 
       <div className="flex flex-1 flex-col pt-5">
-        <p className="text-sm text-muted">
+        <p className="text-sm font-medium text-accent">
           {p.sector} · {p.city}
         </p>
         <h3 className="mt-1.5 text-xl font-semibold leading-snug text-ink">
@@ -42,7 +42,8 @@ export function ProjectCard({ p }: { p: Project }) {
             {p.name}
           </Link>
         </h3>
-        <p className="mt-2 line-clamp-2 text-[0.95rem] leading-relaxed text-muted">{p.summary}</p>
+        <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{p.summary}</p>
+        <p className="mt-3 text-sm font-medium leading-relaxed text-ink">{p.result}</p>
 
         <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`${p.name} teknolojileri`}>
           {tech.map((t) => (

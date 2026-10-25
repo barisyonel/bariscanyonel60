@@ -12,6 +12,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  trailingSlash: false,
   // Home'daki /Users/mac/package-lock.json yüzünden yanlış root seçilmesin
   outputFileTracingRoot: path.join(__dirname),
   images: {

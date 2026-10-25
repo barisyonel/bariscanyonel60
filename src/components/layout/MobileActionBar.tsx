@@ -44,7 +44,7 @@ export function MobileActionBar() {
         </svg>
         WhatsApp
       </a>
-      <Link href={quoteHref} className={`${item} bg-ink text-white`}>
+      <Link href={quoteHref} className={`${item} bg-accent text-white`}>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M4 4h16v12H5.2L4 17.2V4Z" />
           <path d="M8 9h8M8 12h5" />

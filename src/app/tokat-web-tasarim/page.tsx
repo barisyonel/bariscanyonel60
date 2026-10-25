@@ -1,14 +1,14 @@
-import { CityLanding } from "@/components/CityLanding";
-import { cities } from "@/lib/cities";
+import { TokatLanding } from "@/components/tokat/TokatLanding";
 import { meta } from "@/lib/seo";
+import { tokatMeta } from "@/lib/tokat-landing";
 
 export const metadata = meta({
-  title: "Tokat Web Tasarım — Kurumsal Site, SEO ve GEO",
-  description:
-    "Tokat web tasarım ve web sitesi yaptırmak isteyen işletmeler için: kurumsal tasarım, e-ticaret, yerel SEO. Yüz yüze görüşme, 5 iş günü teslim, yazılı teklif.",
+  title: tokatMeta.title,
+  description: tokatMeta.description,
   path: "/tokat-web-tasarim",
+  absoluteTitle: true,
 });
 
 export default function Page() {
-  return <CityLanding city={cities.tokat} />;
+  return <TokatLanding />;
 }

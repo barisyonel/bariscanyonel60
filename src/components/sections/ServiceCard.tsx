@@ -94,12 +94,12 @@ export function ServiceCard({
 
   return (
     <article
-      className={`motion-card group relative flex h-full flex-col rounded-card border border-line p-7 hover:border-ink/20 ${
-        featured ? "bg-elevated md:p-9" : "bg-base"
+      className={`motion-card group relative flex h-full flex-col rounded-card border p-7 transition-colors hover:border-accent/40 ${
+        featured ? "border-accent/25 bg-accent-mist md:p-9" : "border-line bg-base"
       }`}
     >
       <span
-        className="flex size-11 items-center justify-center rounded-xl border border-line bg-base text-accent transition-colors group-hover:border-accent/40"
+        className="flex size-11 items-center justify-center rounded-xl bg-accent text-white shadow-sm"
         aria-hidden
       >
         <ServiceIcon id={iconId} />
@@ -131,7 +131,7 @@ export function ServiceCard({
       ) : null}
 
       <span
-        className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-ink"
+        className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-accent"
         aria-hidden
       >
         Hizmeti incele

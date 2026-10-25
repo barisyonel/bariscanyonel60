@@ -2,19 +2,22 @@
 
 @theme {
   --color-base: #ffffff;
-  --color-elevated: #f6f7f9;
-  --color-subtle: #eceff3;
-  --color-ink: #0f1419;
-  --color-muted: #5a6472;
-  --color-line: #e3e7ec;
-  --color-accent: #156f99;
-  --color-accent-soft: #156f9912;
-  --color-accent-deep: #105a7d;
+  --color-elevated: #f8fafc;
+  --color-subtle: #eaf7fb;
+  --color-ink: #0f172a;
+  --color-muted: #64748b;
+  --color-line: #e2e8f0;
+  --color-accent: #087ea4;
+  --color-accent-soft: #087ea41a;
+  --color-accent-mist: #eaf7fb;
+  --color-accent-deep: #06607d;
+  --color-cyan: #14b8d4;
+  --color-navy: #071a26;
 
   --font-display: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 
-  --radius-card: 14px;
+  --radius-card: 18px;
   --radius-btn: 999px;
 
   --shadow-sm: 0 1px 2px rgba(15, 20, 25, 0.06);
@@ -29,7 +32,10 @@ html { scroll-behavior: smooth; }
 }
 
 body {
-  background: var(--color-base);
+  background:
+    radial-gradient(900px 420px at 100% -8%, #156f9918, transparent 60%),
+    radial-gradient(700px 360px at -8% 12%, #156f990e, transparent 55%),
+    var(--color-base);
   color: var(--color-ink);
   font-family: var(--font-body);
   font-size: 17px;
@@ -50,10 +56,10 @@ p { text-wrap: pretty; }
   color: var(--color-accent);
 }
 
-.container-x { width: 100%; max-width: 72rem; margin-inline: auto; padding-inline: 1.25rem; }
+.container-x { width: 100%; max-width: 76rem; margin-inline: auto; padding-inline: 1.25rem; }
 @media (min-width: 768px) { .container-x { padding-inline: 2.5rem; } }
 
-.section-pad { padding-block: clamp(4rem, 10vh, 7rem); }
+.section-pad { padding-block: clamp(4rem, 8vw, 7.5rem); }
 .hairline { border-top: 1px solid var(--color-line); }
 
 .prose-bcy p { margin-bottom: 1.1em; color: #3a434f; }
@@ -153,13 +159,32 @@ p { text-wrap: pretty; }
   background-position: center top;
 }
 
+.wordmark-slot {
+  container-type: inline-size;
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  padding-bottom: 0.35rem;
+}
+@media (min-width: 768px) {
+  .wordmark-slot { padding-inline: 2.5rem; }
+}
+
 .wordmark {
   font-family: var(--font-display);
   font-weight: 600;
-  letter-spacing: -0.05em;
-  line-height: 0.8;
-  font-size: clamp(4.5rem, 17vw, 15rem);
+  letter-spacing: -0.045em;
+  line-height: 1.28;
+  font-size: clamp(3.25rem, 12vw, 13.5rem);
   color: transparent;
   -webkit-text-stroke: 1px #c9d0d8;
   user-select: none;
 }
+@supports (font-size: 1cqi) {
+  .wordmark { font-size: 20cqi; }
+}
+.wordmark-on-dark {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.22);
+}
+

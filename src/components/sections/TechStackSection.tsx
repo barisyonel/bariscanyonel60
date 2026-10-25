@@ -20,12 +20,17 @@ export function TechStackSection() {
             Kullandığımız teknolojiler
           </h2>
           <p className="mt-3 text-muted">Hızlı açılan, bakımı kolay ve uzun ömürlü bir altyapı.</p>
+          <p className="mt-3 text-muted">
+            Müşteri teknoloji adı satın almaz; hızlı açılan ve sonra güncellenebilen bir site satın alır.
+            Aşağıdaki araçlar bu sonucu üretmek için kullandığımız yığındır. Sürüm ve kurulum detayı
+            teklif metninde, işinize göre yazılır.
+          </p>
         </div>
         <ul className="flex flex-wrap content-start gap-2">
           {tech.map((t) => (
             <li
               key={t}
-              className="rounded-btn border border-line px-4 py-2 text-sm text-ink"
+              className="rounded-btn border border-accent/20 bg-accent-mist px-4 py-2 text-sm font-medium text-ink"
             >
               {t}
             </li>

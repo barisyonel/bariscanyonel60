@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Schibsted_Grotesk } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "@/styles/globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -10,7 +10,7 @@ import { localBusiness, person } from "@/lib/schema";
 import { site } from "@/lib/site";
 import { Analytics } from "@/components/layout/Analytics";
 
-const sans = Schibsted_Grotesk({
+const sans = Manrope({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
   display: "swap",
@@ -21,11 +21,11 @@ const sans = Schibsted_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
   title: {
-    default: "Tokat Web Tasarım ve Kurumsal Web Sitesi | BCY Dijital",
+    default: "BCY Dijital | Kurumsal Web Sitesi ve Dijital Hizmetler",
     template: "%s | BCY Dijital",
   },
   description:
-    "Tokat web tasarım ve kurumsal web sitesi stüdyosu. BCY Dijital: 5 iş günü teslim, SEO, e-ticaret, GEO ve Meta reklam. Tokat, Çanakkale, İzmir ve İstanbul.",
+    "Kurumsal web sitesi, e-ticaret, SEO ve reklam. BCY Dijital, Barış Can Yönel’in Tokat merkezli stüdyosudur.",
   icons: {
     icon: "/favicon.png",
     apple: "/apple-touch-icon.png",

@@ -1,3 +1,4 @@
+import { tokatDistricts } from "./cities";
 import { site } from "./site";
 
 export function localBusiness() {
@@ -6,7 +7,6 @@ export function localBusiness() {
     "@type": ["LocalBusiness", "ProfessionalService"],
     "@id": `${site.domain}/#business`,
     name: site.name,
-    alternateName: "BCY Dijital Tokat Web Tasarım",
     description: site.description,
     url: site.domain,
     telephone: site.phone,
@@ -20,27 +20,20 @@ export function localBusiness() {
       addressRegion: "Tokat",
       addressCountry: "TR",
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 40.3235,
-      longitude: 36.5522,
-    },
     areaServed: [
       { "@type": "City", name: "Tokat" },
+      ...tokatDistricts.map((name) => ({ "@type": "City" as const, name })),
       { "@type": "City", name: "Çanakkale" },
       { "@type": "City", name: "İzmir" },
       { "@type": "City", name: "İstanbul" },
       { "@type": "Country", name: "Türkiye" },
     ],
     knowsAbout: [
-      "Tokat web tasarım",
       "Kurumsal web sitesi",
       "E-ticaret",
       "Yerel SEO",
-      "GEO",
-      "Meta Ads",
-      "Facebook reklam",
-      "Instagram reklam",
+      "Teknik SEO",
+      "Next.js",
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -87,7 +80,7 @@ export function aboutPageSchema() {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "@id": `${site.domain}/hakkimda#about`,
-    name: "Hakkımızda — BCY Dijital Tokat Web Tasarım",
+    name: "Hakkımızda — BCY Dijital",
     description:
       "BCY Dijital, Tokat merkezli web tasarım stüdyosudur. Kurumsal site, e-ticaret, SEO, GEO ve Meta reklam hizmeti sunar.",
     url: `${site.domain}/hakkimda`,
@@ -121,54 +114,52 @@ export function faqSchema(items: { q: string; a: string }[]) {
   };
 }
 
-export function webPageSchema(opts?: { title?: string; description?: string }) {
+export function webPageSchema(opts?: { title?: string; description?: string; path?: string }) {
+  const path = opts?.path ?? "/";
+  const url = path === "/" ? site.domain : `${site.domain}${path}`;
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": `${site.domain}/#webpage`,
-    name: opts?.title || "Tokat Web Tasarım | BCY Dijital",
+    "@id": path === "/" ? `${site.domain}/#webpage` : `${url}#webpage`,
+    name: opts?.title || `${site.name} | Kurumsal Web Sitesi`,
     description: opts?.description || site.description,
-    url: site.domain,
+    url,
     inLanguage: "tr-TR",
-    isPartOf: { "@type": "WebSite", "@id": `${site.domain}/#website`, name: site.name, url: site.domain },
+    isPartOf: { "@id": `${site.domain}/#website` },
     about: { "@id": `${site.domain}/#business` },
-    primaryImageOfPage: { "@type": "ImageObject", url: `${site.domain}/logo.png` },
+    primaryImageOfPage: { "@type": "ImageObject", url: `${site.domain}/logo-og.jpg` },
   };
 }
 
-export function reviewsSchema(
-  items: { quote: string; company: string; name: string; projectSlug: string }[]
-) {
+export function websiteSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": `${site.domain}/#business`,
+    "@type": "WebSite",
+    "@id": `${site.domain}/#website`,
     name: site.name,
-    review: items.map((t) => ({
-      "@type": "Review",
-      reviewBody: t.quote,
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: "5",
-        bestRating: "5",
-      },
-      author: {
-        "@type": "Organization",
-        name: t.company,
-      },
-      itemReviewed: {
-        "@type": "Service",
-        name: "Web tasarım",
-        url: `${site.domain}/projeler/${t.projectSlug}`,
-      },
-    })),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: String(items.length),
-      bestRating: "5",
-    },
+    url: site.domain,
+    inLanguage: "tr-TR",
+    publisher: { "@id": `${site.domain}/#business` },
+    description: site.description,
   };
+}
+
+export function tokatPageSchema(opts: { title: string; description: string }) {
+  const url = `${site.domain}/tokat-web-tasarim`;
+  return [
+    webPageSchema({ title: opts.title, description: opts.description, path: "/tokat-web-tasarim" }),
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": `${url}#service`,
+      name: "Tokat web tasarım",
+      serviceType: "Web tasarım",
+      description: opts.description,
+      url,
+      provider: { "@id": `${site.domain}/#business` },
+      areaServed: { "@type": "City", name: "Tokat" },
+    },
+  ];
 }
 
 export function breadcrumb(items: { name: string; path: string }[]) {
@@ -217,8 +208,8 @@ export function articleSchema(p: {
     },
     mainEntityOfPage: `${site.domain}/blog/${p.slug}`,
     about: [
-      { "@type": "Thing", name: "Tokat web tasarım" },
-      ...(p.region ? [{ "@type": "Place", name: p.region }] : []),
+      { "@type": "Thing", name: "Web tasarım" },
+      ...(p.region && p.region !== "Genel" ? [{ "@type": "Place", name: p.region }] : []),
     ],
     speakable: {
       "@type": "SpeakableSpecification",
@@ -238,6 +229,7 @@ export function organizationSchema() {
     logo: `${site.domain}/logo.png`,
     email: site.email,
     telephone: site.phone,
+    founder: { "@id": `${site.domain}/#person` },
     foundingLocation: {
       "@type": "Place",
       address: {
@@ -247,7 +239,6 @@ export function organizationSchema() {
       },
     },
     sameAs: site.sameAs,
-    parentOrganization: { "@id": `${site.domain}/#business` },
   };
 }
 

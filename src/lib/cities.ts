@@ -5,7 +5,7 @@ export const cities = {
     title: "Tokat Web Tasarım — Yerel İşletmeler İçin",
     heroTitle: "Tokat Web Tasarım: yerel, hızlı ve ölçülebilir kurumsal siteler",
     intro:
-      "BCY Dijital, Tokat merkezli bir web tasarım stüdyosudur. Tokat'taki işletmeler için kurumsal web sitesi, e-ticaret ve SEO hizmeti sunar; görüşmeler yüz yüze ya da çevrim içi yapılabilir.",
+      "Stüdyo Tokat merkezli. Kurumsal site, e-ticaret ve yerel arama için yüz yüze veya çevrim içi keşif yapılır.",
     why: [
       "Tokat pazarını biliyoruz: asansörden emlağa, sigortadan otomotive bu şehirde iş yaptık.",
       "Yüz yüze görüşme imkânı — projenizi masada, çay eşliğinde konuşuruz.",
@@ -56,6 +56,25 @@ export const cities = {
     sectors: "kurumsal, e-ticaret, hizmet, B2B, finans ve perakende",
   },
 } as const;
+
+/**
+ * Tokat ilçeleri. Ayrı landing page yok.
+ * Bir ilçe sayfası ancak o ilçeye özgü referans ve metin varsa açılır;
+ * aynı metnin ilçe adıyla kopyalanması doorway sayfadır.
+ */
+export const tokatDistricts = [
+  "Erbaa",
+  "Turhal",
+  "Niksar",
+  "Zile",
+  "Reşadiye",
+  "Almus",
+  "Pazar",
+  "Artova",
+  "Sulusaray",
+  "Yeşilyurt",
+  "Başçiftlik",
+] as const;
 
 /**
  * Henüz sayfası olmayan hedefler. Sitemap'e ve menüye eklenmez.

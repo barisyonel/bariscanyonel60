@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { PhoneLink } from "@/components/ui/PhoneLink";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
 import { defaultWa } from "@/lib/site";
@@ -10,17 +10,26 @@ export function ClosingCta() {
   return (
     <section className="hairline section-pad" aria-labelledby="kapanis-heading">
       <div className="container-x">
-        <div className="rounded-card bg-ink px-6 py-10 text-white md:px-12 md:py-14">
-          <h2 id="kapanis-heading" className="max-w-2xl text-3xl font-semibold md:text-4xl">
+        <div className="relative overflow-hidden rounded-[18px] bg-navy px-6 py-12 text-white shadow-(--shadow-lg) md:px-12 md:py-16">
+          <div className="pointer-events-none absolute -right-16 -top-20 size-64 rounded-full bg-accent/30 blur-3xl" aria-hidden />
+          <h2 id="kapanis-heading" className="relative max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">
             İşletmenizin Profesyonel Bir Web Sitesine İhtiyacı mı Var?
           </h2>
-          <p className="mt-4 max-w-xl text-white/75">
-            Projenizi anlatın, ihtiyaçlarınıza uygun web sitesi çözümünü birlikte belirleyelim.
+          <p className="relative mt-4 max-w-xl text-white/75">
+            Projenizi anlatın, işletmenize özel nasıl bir web deneyimi oluşturabileceğimizi birlikte planlayalım.
+            Kısa bir keşif yeter: ne sattığınızı, müşterinizin sizi nerede aradığını ve sitenin hangi
+            işi üstlenmesi gerektiğini konuşuruz. Ardından kapsam yazılı gelir.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Link href="/#teklif" className={`${btn} bg-white text-ink hover:bg-accent hover:text-white`}>
+            <ButtonLink
+              href="/#teklif"
+              variant="light"
+              className="w-full sm:w-auto"
+              analyticsEvent="proposal_cta"
+              analyticsParams={{ cta_location: "home_closing" }}
+            >
               Ücretsiz Teklif Al
-            </Link>
+            </ButtonLink>
             <WhatsAppLink
               href={defaultWa}
               className={`${btn} border border-white/30 text-white hover:border-white`}

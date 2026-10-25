@@ -34,7 +34,7 @@ function StarRating({ value }: { value: number }) {
 
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
-    <figure className="flex h-full flex-col rounded-card bg-elevated p-6 md:p-7">
+    <figure className="flex h-full flex-col rounded-[18px] border border-line bg-base p-6 shadow-sm md:p-7">
       <StarRating value={t.rating ?? DEFAULT_RATING} />
       <blockquote className="mt-4 flex-1 text-[1rem] leading-relaxed text-ink/85">{t.quote}</blockquote>
       <figcaption className="mt-6 text-sm">
@@ -63,6 +63,10 @@ export function TestimonialsSection({
         <h2 id="yorumlar-heading" className="max-w-2xl text-3xl font-semibold text-ink md:text-4xl">
           {title}
         </h2>
+        <p className="mt-4 max-w-2xl text-muted">
+          Yorumlar, birlikte site çıkardığımız işletmelerden. Her kartta işin sahibi ve bağlı olduğu
+          proje durur; yıldız puanı yorumun yanında görünür. Projeyi açıp ekranın kendisine de bakabilirsiniz.
+        </p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-5">
           {items.map((t) => (
             <TestimonialCard key={t.projectSlug} t={t} />

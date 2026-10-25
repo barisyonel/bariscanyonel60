@@ -9,7 +9,7 @@ type BrandLogoProps = {
 };
 
 const sizes = {
-  nav: { mark: "h-7 w-auto", text: "text-[1.05rem]" },
+  nav: { mark: "h-8 w-auto", text: "text-[1.15rem]" },
   footer: { mark: "h-9 w-auto", text: "text-xl" },
 } as const;
 
@@ -25,7 +25,7 @@ export function BrandLogo({ href = "/", size = "nav", className = "", onClick }:
         className={`${s.mark} object-contain`}
         priority={size === "nav"}
       />
-      <span className={`${s.text} font-semibold tracking-tight text-ink`}>BCY Dijital</span>
+      <span className={`${s.text} font-bold tracking-tight text-ink`}>Dijital</span>
     </>
   );
 

@@ -31,7 +31,7 @@ function socialLabel(url: string): string {
 
 function FooterHeading({ children }: { children: ReactNode }) {
   return (
-    <p className="text-sm font-semibold text-ink">{children}</p>
+    <p className="text-sm font-semibold text-white">{children}</p>
   );
 }
 
@@ -39,7 +39,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="overflow-hidden border-t border-line bg-elevated">
+    <footer className="overflow-hidden border-t border-white/10 bg-navy text-white">
       <div className="container-x pt-12 md:pt-16">
         <div className="surface-ink relative isolate flex flex-col gap-8 overflow-hidden rounded-[1.5rem] px-7 py-12 md:min-h-[22rem] md:justify-center md:px-14 md:py-16">
           <Image
@@ -81,8 +81,10 @@ export function Footer() {
 
       <div className="container-x grid gap-12 py-14 md:py-16 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-4">
-          <BrandLogo size="footer" />
-          <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-muted">
+          <div className="inline-flex rounded-xl bg-white px-3 py-2">
+            <BrandLogo size="footer" />
+          </div>
+          <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-white/70">
             {site.city} merkezli {site.name}: kurumsal web sitesi, SEO, GEO ve Meta reklam.
           </p>
 
@@ -95,7 +97,7 @@ export function Footer() {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-10 items-center rounded-btn border border-line bg-base px-3.5 py-2 text-sm text-ink transition-colors hover:border-ink"
+                    className="inline-flex min-h-10 items-center rounded-btn border border-white/15 px-3.5 py-2 text-sm text-white transition-colors hover:border-white"
                   >
                     {socialLabel(url)}
                   </a>
@@ -115,7 +117,7 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-[0.95rem] text-muted transition-colors duration-300 hover:text-ink"
+                    className="text-[0.95rem] text-white/70 transition-colors duration-300 hover:text-white"
                   >
                     {l.label}
                   </Link>
@@ -133,7 +135,7 @@ export function Footer() {
                 <li key={s.slug}>
                   <Link
                     href={`/hizmetler/${s.slug}`}
-                    className="text-[0.95rem] text-muted transition-colors duration-300 hover:text-ink"
+                    className="text-[0.95rem] text-white/70 transition-colors duration-300 hover:text-white"
                   >
                     {s.title}
                   </Link>
@@ -142,7 +144,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/hizmetler"
-                  className="text-[0.95rem] font-medium text-accent transition-colors duration-300 hover:text-ink"
+                  className="text-[0.95rem] font-medium text-accent transition-colors duration-300 hover:text-white"
                 >
                   Tüm hizmetler →
                 </Link>
@@ -158,7 +160,7 @@ export function Footer() {
               <li>
                 <a
                   href={`tel:+${site.phoneRaw}`}
-                  className="font-medium text-ink transition-colors hover:text-ink"
+                  className="font-medium text-white transition-colors hover:text-cyan"
                 >
                   {site.phone}
                 </a>
@@ -166,7 +168,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="text-muted transition-colors hover:text-ink"
+                  className="text-white/70 transition-colors hover:text-white"
                 >
                   {site.email}
                 </a>
@@ -174,14 +176,14 @@ export function Footer() {
               <li>
                 <WhatsAppLink
                   href={defaultWa}
-                  className="text-muted transition-colors hover:text-ink"
+                  className="text-white/70 transition-colors hover:text-white"
                 >
                   WhatsApp&apos;tan yazın
                 </WhatsAppLink>
               </li>
-              <li className="text-muted">
+              <li className="text-white/70">
                 {site.city}, Türkiye
-                <span className="mt-1 block text-sm text-muted">
+                <span className="mt-1 block text-sm text-white/70">
                   Pzt–Cmt · 09:00–19:00
                 </span>
               </li>
@@ -195,7 +197,7 @@ export function Footer() {
                 <li key={r.href}>
                   <Link
                     href={r.href}
-                    className="text-[0.9rem] text-muted transition-colors hover:text-ink"
+                    className="text-[0.9rem] text-white/70 transition-colors hover:text-white"
                   >
                     {r.label}
                   </Link>
@@ -206,27 +208,28 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-line">
-        <div className="container-x flex flex-col gap-3 py-5 text-[0.85rem] text-muted md:flex-row md:items-center md:justify-between">
+      <div className="border-t border-white/10">
+        <div className="container-x flex flex-col gap-3 py-5 text-[0.85rem] text-white/70 md:flex-row md:items-center md:justify-between">
           <p>
-            © {year} {site.name} · {site.person}
+            © {year} {site.person}
+            <span className="mt-1 block text-white/55">Web Tasarım ve Dijital Çözümler</span>
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <p className="text-[0.8rem]">
               {site.regions.join(" · ")} · Web tasarım, SEO, GEO
             </p>
-            <Link href="/gizlilik-politikasi" className="hover:text-ink">
+            <Link href="/gizlilik-politikasi" className="hover:text-white">
               Gizlilik Politikası
             </Link>
-            <Link href="/kvkk" className="hover:text-ink">
+            <Link href="/kvkk" className="hover:text-white">
               KVKK
             </Link>
           </div>
         </div>
       </div>
 
-      <div className="container-x" aria-hidden>
-        <p className="wordmark -mb-[0.12em] whitespace-nowrap">BCY Dijital</p>
+      <div className="wordmark-slot" aria-hidden>
+        <p className="wordmark wordmark-on-dark whitespace-nowrap">BCY Dijital</p>
       </div>
     </footer>
   );

@@ -127,7 +127,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             </div>
             <h1 className="mt-3 text-3xl font-semibold md:text-4xl">{p.title}</h1>
             <p className="mt-3 text-sm text-muted">
-              Yazar: <span className="text-ink">{site.person}</span>
+              Yazar:{" "}
+              <Link href="/hakkimda" className="text-ink underline underline-offset-4">
+                {site.person}
+              </Link>
               {" · "}
               Yayın: <time dateTime={p.date}>{fmt.format(new Date(p.date))}</time>
             </p>
@@ -215,6 +218,24 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 );
               })}
             </div>
+
+            {p.links && p.links.length > 0 && (
+              <nav className="mt-12" aria-label="İlgili sayfalar">
+                <h2 className="text-xl font-semibold">İlgili sayfalar</h2>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {p.links.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="inline-flex min-h-10 items-center rounded-btn border border-line px-3 text-sm text-ink hover:border-accent hover:text-accent"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
 
             {p.faq.length > 0 && (
               <div className="mt-12">

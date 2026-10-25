@@ -25,7 +25,7 @@ export const pricingPackages: readonly PricingPackage[] = [
       "WhatsApp / iletişim CTA",
       "5 iş günü teslim hedefi",
     ],
-    ctaLabel: "Fiyat Teklifi Al",
+    ctaLabel: "Bu Paket İçin Teklif Al",
     href: "/#teklif",
   },
   {
@@ -42,7 +42,7 @@ export const pricingPackages: readonly PricingPackage[] = [
       "Revizyon turları tanımlı",
       "Yayın sonrası destek",
     ],
-    ctaLabel: "Ücretsiz Teklif Al",
+    ctaLabel: "Bu Paket İçin Teklif Al",
     href: "/#teklif",
     popular: true,
   },
@@ -60,7 +60,7 @@ export const pricingPackages: readonly PricingPackage[] = [
       "Performans & raporlama",
       "Öncelikli destek",
     ],
-    ctaLabel: "Projemi Fiyatlandır",
+    ctaLabel: "Bu Paket İçin Teklif Al",
     href: "/#teklif",
   },
 ] as const;

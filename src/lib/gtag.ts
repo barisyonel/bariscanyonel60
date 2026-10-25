@@ -43,7 +43,10 @@ export type AnalyticsEventName =
   | "phone_click"
   | "whatsapp_click"
   | "quote_form_start"
-  | "quote_form_submit";
+  | "quote_form_submit"
+  | "contact_form_submit"
+  | "proposal_cta"
+  | "project_cta";
 
 /**
  * GA4 / dataLayer olayı. Çerez onayı ve gtag yoksa sessizce çıkar.

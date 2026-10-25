@@ -6,7 +6,7 @@ import { sendContact, type FormState } from "@/lib/actions";
 import { trackAnalyticsEvent, trackGoogleAdsConversion, trackMetaLead } from "@/lib/gtag";
 
 const field =
-  "w-full rounded-btn border border-line px-4 py-3 text-base text-ink placeholder:text-muted/70 focus:border-accent focus:outline-none";
+  "w-full rounded-xl border border-line px-4 py-3 text-base text-ink placeholder:text-muted/70 transition focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/15";
 
 const services = [
   "Kurumsal Web Sitesi",
@@ -46,7 +46,10 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "qu
       className="space-y-4"
       aria-describedby={state ? "form-status" : undefined}
       onFocus={onFocus}
-      onSubmit={() => trackAnalyticsEvent("quote_form_submit", { form_id: formId })}
+      onSubmit={() => {
+        trackAnalyticsEvent("quote_form_submit", { form_id: formId });
+        trackAnalyticsEvent("contact_form_submit", { form_id: formId });
+      }}
     >
       <input type="text" name="web_url" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
       {variant === "quote" ? <input type="hidden" name="form_variant" value="quote" /> : null}
@@ -55,13 +58,13 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "qu
         <>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="quote-name" className="mb-1.5 block text-sm text-muted">
+              <label htmlFor="quote-name" className="mb-1.5 block text-sm font-medium text-ink">
                 Ad Soyad
               </label>
               <input id="quote-name" name="name" required minLength={2} autoComplete="name" className={inputCls} />
             </div>
             <div>
-              <label htmlFor="quote-business" className="mb-1.5 block text-sm text-muted">
+              <label htmlFor="quote-business" className="mb-1.5 block text-sm font-medium text-ink">
                 Firma Adı
               </label>
               <input
@@ -76,7 +79,7 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "qu
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="quote-phone" className="mb-1.5 block text-sm text-muted">
+              <label htmlFor="quote-phone" className="mb-1.5 block text-sm font-medium text-ink">
                 Telefon
               </label>
               <input
@@ -92,7 +95,7 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "qu
               />
             </div>
             <div>
-              <label htmlFor="quote-email" className="mb-1.5 block text-sm text-muted">
+              <label htmlFor="quote-email" className="mb-1.5 block text-sm font-medium text-ink">
                 E-posta
               </label>
               <input id="quote-email" name="email" type="email" required autoComplete="email" className={inputCls} />
@@ -100,7 +103,7 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "qu
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="quote-website" className="mb-1.5 block text-sm text-muted">
+              <label htmlFor="quote-website" className="mb-1.5 block text-sm font-medium text-ink">
                 Mevcut web siteniz var mı?
               </label>
               <select id="quote-website" name="website_status" required className={inputCls} defaultValue="">
@@ -112,7 +115,7 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "qu
               </select>
             </div>
             <div>
-              <label htmlFor="quote-service" className="mb-1.5 block text-sm text-muted">
+              <label htmlFor="quote-service" className="mb-1.5 block text-sm font-medium text-ink">
                 İstenen hizmet
               </label>
               <select id="quote-service" name="service" required className={inputCls} defaultValue="">
@@ -126,8 +129,19 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "qu
             </div>
           </div>
           <div>
-            <label htmlFor="quote-message" className="mb-1.5 block text-sm text-muted">
-              Kısa proje açıklaması
+            <label htmlFor="quote-budget" className="mb-1.5 block text-sm font-medium text-ink">
+              Bütçe aralığı
+            </label>
+            <select id="quote-budget" name="budget" className={inputCls} defaultValue="Henüz belirlemedim">
+              <option>Henüz belirlemedim</option>
+              <option>Başlangıç paketi</option>
+              <option>Kurumsal paket</option>
+              <option>Premium paket</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="quote-message" className="mb-1.5 block text-sm font-medium text-ink">
+              Proje açıklaması
             </label>
             <textarea id="quote-message" name="message" rows={4} className={inputCls} />
           </div>
@@ -136,13 +150,13 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "qu
         <>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="name" className="mb-1.5 block text-sm text-muted">
+              <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink">
                 Adınız
               </label>
               <input id="name" name="name" required minLength={2} className={inputCls} placeholder="Ad Soyad" />
             </div>
             <div>
-              <label htmlFor="phone" className="mb-1.5 block text-sm text-muted">
+              <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-ink">
                 Telefon
               </label>
               <input
@@ -157,7 +171,7 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "qu
             </div>
           </div>
           <div>
-            <label htmlFor="business" className="mb-1.5 block text-sm text-muted">
+            <label htmlFor="business" className="mb-1.5 block text-sm font-medium text-ink">
               İşletme türü
             </label>
             <select id="business" name="business" className={inputCls} defaultValue="Hizmet işletmesi">
@@ -169,7 +183,7 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "qu
             </select>
           </div>
           <div>
-            <label htmlFor="message" className="mb-1.5 block text-sm text-muted">
+            <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink">
               Mesajınız
             </label>
             <textarea id="message" name="message" rows={4} className={inputCls} placeholder="Kısaca ihtiyacınızı anlatın" />
@@ -180,9 +194,9 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "qu
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex min-h-12 w-full items-center justify-center rounded-btn bg-ink px-6 py-3 font-medium text-white transition-colors hover:bg-accent disabled:opacity-60 sm:w-auto"
+        className="inline-flex min-h-12 w-full items-center justify-center rounded-btn bg-accent px-6 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-accent-deep disabled:opacity-60 sm:w-auto"
       >
-        {pending ? "Gönderiliyor…" : variant === "quote" ? "Ücretsiz Teklif İste" : "Gönder"}
+        {pending ? "Gönderiliyor…" : variant === "quote" ? "Ücretsiz Teklif Al →" : "Gönder"}
       </button>
       <p className="text-xs text-muted">
         Formu göndererek bilgilerinizin{" "}

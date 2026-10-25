@@ -7,6 +7,7 @@ import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ServiceCard } from "@/components/sections/ServiceCard";
 import { serviceIconId } from "@/lib/serviceIcons";
 import { CampaignBand } from "@/components/sections/CampaignBand";
+import { ClientLogoStrip } from "@/components/sections/ClientLogoStrip";
 import { DesktopEntrance } from "@/components/sections/DesktopEntrance";
 import { ClosingCta } from "@/components/sections/ClosingCta";
 import { QuoteSection } from "@/components/sections/QuoteSection";
@@ -19,7 +20,6 @@ import { JsonLd } from "@/components/JsonLd";
 import {
   faqSchema,
   webPageSchema,
-  reviewsSchema,
   organizationSchema,
   imageObjectSchema,
 } from "@/lib/schema";
@@ -31,47 +31,42 @@ import { cities, upcomingCities } from "@/lib/cities";
 import { testimonials } from "@/lib/testimonials";
 import { site } from "@/lib/site";
 
-const homeTitle = "Tokat Web Tasarım ve Kurumsal Web Sitesi | BCY Dijital";
+const homeTitle = "BCY Dijital | Kurumsal Web Sitesi, SEO ve E-Ticaret";
 const homeDescription =
-  "Tokat’ta kurumsal web sitesi, e-ticaret ve yerel SEO. Yazılı teklif, 5 iş günü teslim; alan adı ve kod size ait. Çanakkale, İzmir ve İstanbul’a da hizmet.";
+  "Barış Can Yönel’in Tokat merkezli stüdyosu. Kurumsal web sitesi, e-ticaret, SEO ve reklam. Yazılı teklif; alan adı ve kod size ait.";
 
 export const metadata = meta({
   title: homeTitle,
   description: homeDescription,
   path: "/",
   absoluteTitle: true,
-  keywords: [
-    "Tokat web tasarım",
-    "Tokat web tasarım firması",
-    "Tokat web sitesi yaptırma",
-    "Tokat kurumsal web sitesi",
-    "Tokat e-ticaret sitesi",
-    "Tokat SEO",
-    "web tasarım fiyatları",
-    "BCY Dijital",
-  ],
 });
 
 const steps = [
   {
-    t: "İhtiyacınızı dinliyoruz",
-    p: "Ücretsiz görüşmede işinizi, müşterinizi ve hedefinizi öğreniyoruz. Ardından kalem kalem yazılı teklif alıyorsunuz.",
+    id: "surec-tanisma",
+    t: "Tanışma",
+    p: "Ücretsiz görüşmede ne sattığınızı, müşterinizin sizi nerede aradığını ve sitenin hangi işi üstleneceğini konuşuruz. Bu turda kapsam vaadi vermeyiz; ihtiyacı yerinde anlarız.",
   },
   {
-    t: "Tasarım ve geliştirme",
-    p: "Markanıza özel web sitesini hazırlıyoruz. Önce tasarım yönünü onaylıyorsunuz, sonra sayfa sayfa ilerliyoruz.",
+    id: "surec-strateji",
+    t: "Strateji",
+    p: "Sayfa listesi, teslim süresi ve ücret kalem kalem yazılı teklife döner. Onaylamadığınız bir iş başlamaz. Fiyat, keşiften sonra netleşir.",
   },
   {
-    t: "Kontrol ve revizyon",
-    p: "Siteyi birlikte kontrol ediyoruz. Tasarım onayına kadar makul revizyon turları süreçte tanımlıdır.",
+    id: "surec-tasarim",
+    t: "Tasarım",
+    p: "Ana sayfa yönünü birlikte seçeriz. Onaydan sonra iç sayfalar aynı dilde ilerler. Hazır tema üzerine logo konmaz.",
   },
   {
-    t: "Yayına alma",
-    p: "Onaylanan site; SEO altyapısı ve schema işaretlemesiyle yayına alınır. Alan adı ve site sizin üzerinizedir.",
+    id: "surec-gelistirme",
+    t: "Geliştirme",
+    p: "Sayfalar yayına yakın bir adreste açılır. Metin, form ve mobil düzeni birlikte kontrol ederiz. Revizyon turu teklifte yazılıdır.",
   },
   {
-    t: "Destek",
-    p: "Küçük düzeltmeler ve sorularınız için teslim sonrası destek her projeye dahildir.",
+    id: "surec-yayin",
+    t: "Yayın",
+    p: "Başlık, açıklama ve schema işaretlemesiyle site yayına alınır. Alan adı ve kod sizin üzerinize geçer. Küçük düzeltmeler teslim sonrası desteğin içindedir.",
   },
 ];
 
@@ -139,36 +134,49 @@ export default function Home() {
           webPageSchema({ title: homeTitle, description: homeDescription }),
           organizationSchema(),
           faqSchema(homeFaq),
-          reviewsSchema(testimonials),
           imageObjectSchema({
             url: `${site.domain}/logo-og.jpg`,
-            caption: "BCY Dijital — Tokat web tasarım stüdyosu",
+            caption: "BCY Dijital kurumsal web tasarım stüdyosu",
           }),
         ]}
       />
 
       <CampaignBand />
       <DesktopEntrance />
-      <Hero />
+      <ClientLogoStrip />
       <TrustBar />
+      <Hero />
 
       <section id="referanslar" className="section-pad scroll-mt-24" aria-labelledby="referanslar-heading">
         <div className="container-x">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <h2 id="referanslar-heading" className="text-3xl font-semibold md:text-4xl">
+              <p className="text-xs font-semibold tracking-[0.16em] text-accent">PORTFÖY</p>
+              <h2 id="referanslar-heading" className="mt-3 max-w-xl text-3xl font-semibold tracking-tight md:text-5xl">
                 Gerçek İşletmeler İçin Gerçek Projeler
               </h2>
+              <p className="mt-4 max-w-xl text-muted">
+                Farklı sektörlerde işletmeler için tasarladığımız modern ve performans odaklı web projelerini keşfedin.
+              </p>
               <p className="mt-3 max-w-xl text-muted">
-                Farklı sektörlerde işletmeler için geliştirdiğimiz web sitelerinden bazılarını inceleyin.
+                Kartlarda canlı sitenin ekranı, sektör ve teslimden sonra neyin değiştiği durur. Amaç galeri
+                göstermek değil; teklif, randevu veya arama akışının o işletmede nasıl kurulduğunu
+                göstermektir. Her proje kendi alanında anlatılır, hazır tema üzerine logo konmaz.
               </p>
             </div>
-            <Link href="/projeler" className="link-underline text-sm font-medium text-ink">
+            <Link href="/projeler" className="link-underline text-sm font-semibold text-accent">
               Tüm projeler →
             </Link>
           </div>
-          <div className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.map((p, i) => (
+          <div className="mt-12 grid gap-5 lg:grid-cols-2">
+            {featuredProjects.slice(0, 2).map((p) => (
+              <Reveal key={p.slug}>
+                <ProjectCard p={p} featured />
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.slice(2).map((p, i) => (
               <Reveal key={p.slug} delay={i * 0.06}>
                 <ProjectCard p={p} />
               </Reveal>
@@ -182,10 +190,11 @@ export default function Home() {
       <QuoteSection />
       <TestimonialsSection items={testimonials} title="İşletmeler Neden Bizi Tercih Ediyor?" />
 
-      <section id="geo" className="hairline section-pad" aria-labelledby="geo-heading">
+      <section id="geo" className="section-pad" aria-labelledby="geo-heading">
         <div className="container-x grid items-start gap-12 lg:grid-cols-2">
           <div>
-            <h2 id="geo-heading" className="text-3xl font-semibold md:text-4xl">
+            <p className="text-xs font-semibold tracking-[0.16em] text-accent">SEO VE GEO</p>
+            <h2 id="geo-heading" className="mt-3 text-3xl font-semibold md:text-4xl">
               Sadece Güzel Değil, Bulunabilir Bir Web Sitesi
             </h2>
             <p className="mt-5 text-muted">
@@ -195,21 +204,27 @@ export default function Home() {
               eden içerik ve işaretleme düzenidir. Sıra garantisi vermiyoruz. Rekabetçi kelimelerde üst
               sıralar, ayrıca sürdürülen bir SEO çalışması ister.
             </p>
+            <p className="mt-4 text-muted">
+              İskelet; başlık düzeni, sayfa açıklaması, işletme bilgisi ve schema işaretlemesinden oluşur.
+              Ziyaretçi sayfayı açtığında ne iş yaptığınız, hangi şehirde olduğunuz ve nasıl ulaşacağı
+              tek bakışta anlaşılır. Bu düzen yayın gününde kurulur, sonradan eklenen bir eklenti olarak
+              bırakılmaz.
+            </p>
             <div className="mt-7">
               <ButtonLink href="/hizmetler/geo" variant="ghost">
                 SEO + GEO Hakkında Bilgi Al
               </ButtonLink>
             </div>
           </div>
-          <ul className="divide-y divide-line border-y border-line">
+          <ul className="grid gap-3">
             {[
               "Google'ın sayfayı doğru anlaması için teknik SEO iskeleti",
               "Schema.org işaretleme ve tutarlı işletme bilgisi",
               "Soru-cevap formatında, doğrulanabilir içerik",
               "Yapay zekâ asistanlarının alıntılayabileceği net tanımlar",
             ].map((t) => (
-              <li key={t} className="flex items-start gap-3 py-4 text-[0.97rem]">
-                <span className="text-accent" aria-hidden>
+              <li key={t} className="flex items-start gap-3 rounded-card border border-accent/15 bg-accent-mist px-4 py-4 text-[0.97rem]">
+                <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-bold text-white" aria-hidden>
                   ✓
                 </span>
                 {t}
@@ -219,11 +234,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="surec" className="surface-ink section-pad" aria-labelledby="surec-heading">
+      <section id="surec" className="section-pad bg-navy" aria-labelledby="surec-heading">
         <div className="container-x">
           <div className="max-w-2xl">
-            <h2 id="surec-heading" className="text-3xl font-semibold text-white md:text-5xl">
-              Beş adımda yayına
+            <p className="text-xs font-semibold tracking-[0.16em] text-cyan">SÜREÇ</p>
+            <h2 id="surec-heading" className="mt-3 text-3xl font-semibold text-white md:text-5xl">
+              Nasıl çalışıyoruz
             </h2>
             <p className="mt-4 text-white/65">
               {site.name}, {site.person} tarafından yönetilen butik bir stüdyodur. Yazılı kapsam ve yayın
@@ -232,18 +248,21 @@ export default function Home() {
                 Hakkımızda
               </Link>
             </p>
+            <p className="mt-3 text-white/65">
+              Önce işi ve müşteriyi dinleriz, sonra kapsamı yazılı teklife dökeriz. Tasarım onayından
+              sonra sayfalar gelişir; kontrol ve revizyon turu tanımlıdır. Yayın gününde alan adı ve site
+              sizin üzerinize alınır, küçük düzeltmeler teslim sonrası desteğin içindedir.
+            </p>
           </div>
-          <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <ol className="relative mt-14 grid gap-8 lg:grid-cols-5 lg:gap-5">
+            <span className="absolute left-[1.15rem] top-3 hidden h-[calc(100%-1.5rem)] w-px bg-white/15 lg:left-0 lg:top-5 lg:block lg:h-px lg:w-full" aria-hidden />
             {steps.map((s, i) => (
-              <li
-                key={s.t}
-                className="flex h-full flex-col rounded-card border border-white/10 bg-white/[0.03] p-5"
-              >
-                <span className="text-3xl font-semibold tracking-tight text-white/20">
+              <li id={s.id} key={s.id} className="relative scroll-mt-28 pl-12 lg:pl-0">
+                <span className="absolute left-0 top-0 flex size-9 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white shadow-[0_0_0_6px_rgba(8,126,164,0.25)] lg:relative">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-6 text-lg font-semibold text-white">{s.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/65">{s.p}</p>
+                <h3 className="mt-0 text-lg font-semibold text-white lg:mt-5">{s.t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">{s.p}</p>
               </li>
             ))}
           </ol>
@@ -252,12 +271,18 @@ export default function Home() {
 
       <section id="hizmetler" className="hairline section-pad" aria-labelledby="hizmetler-heading">
         <div className="container-x">
-          <h2 id="hizmetler-heading" className="max-w-2xl text-3xl font-semibold md:text-4xl">
+          <p className="text-xs font-semibold tracking-[0.16em] text-accent">HİZMETLER</p>
+          <h2 id="hizmetler-heading" className="mt-3 max-w-2xl text-3xl font-semibold md:text-4xl">
             Web tasarım, SEO ve reklam hizmetleri
           </h2>
           <p className="mt-4 max-w-2xl text-muted">
             Her hizmeti ölçülebilir bir hedefe bağlıyoruz: daha çok arama, daha çok teklif talebi.
             Detaylar ilgili sayfada.
+          </p>
+          <p className="mt-3 max-w-2xl text-muted">
+            Kurumsal site, arama görünürlüğü, e-ticaret ve reklam aynı stüdyoda yürür. Böylece tasarım
+            ile teknik iskelet birbirinden kopmaz. Hangi hizmetin size uyduğunu keşif görüşmesinde
+            netleştiririz; burada yalnızca kapsamın yönünü görürsünüz.
           </p>
           <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {homeServices.map((s, i) => (
@@ -280,23 +305,28 @@ export default function Home() {
 
       <section id="bolgeler" className="hairline section-pad" aria-labelledby="bolgeler-heading">
         <div className="container-x">
-          <h2 id="bolgeler-heading" className="max-w-2xl text-3xl font-semibold md:text-4xl">
-            Tokat merkezli; Çanakkale, İzmir ve İstanbul’da aktif
+          <h2 id="bolgeler-heading" className="max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
+            Tokat’tan Türkiye’nin her yerine profesyonel web tasarım
           </h2>
           <p className="mt-4 max-w-2xl text-muted">
             Her şehir için ayrı yerel sayfamız var. {upcomingCities.map((city) => city.name).join(", ")}{" "}
             tarafında da uzaktan çalışıyoruz. Yüz yüze veya görüntülü keşif; Türkiye geneline hizmet.
           </p>
-          <div className="mt-10 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <p className="mt-3 max-w-2xl text-muted">
+            Şehir sayfaları ince kapı sayfası değildir. O bölgedeki işletmenin sitesinde hangi ihtiyacın
+            öne çıktığını, nasıl görüşüleceğini ve ilgili projeleri anlatır. Keşif Tokat’ta yüz yüze,
+            diğer şehirlerde yerinde ya da görüntülü planlanır.
+          </p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {regionList.map((city) => (
               <Link
                 key={city.path}
                 href={city.path}
-                className="group flex h-full flex-col bg-base p-6 transition-colors hover:bg-elevated"
+                className="group flex h-full flex-col rounded-card border border-accent/15 bg-accent-mist p-6 transition-colors hover:border-accent hover:bg-white"
               >
-                <h3 className="text-lg font-semibold">{city.name} Web Tasarım</h3>
+                <h3 className="text-lg font-semibold text-accent">{city.name} Web Tasarım</h3>
                 <p className="mt-2 flex-1 text-[0.95rem] text-muted">{city.intro}</p>
-                <span className="mt-4 text-sm font-medium text-ink group-hover:text-accent">
+                <span className="mt-4 text-sm font-semibold text-ink group-hover:text-accent">
                   Şehir sayfası →
                 </span>
               </Link>
@@ -311,6 +341,11 @@ export default function Home() {
           <h2 id="sss-heading" className="text-3xl font-semibold md:text-4xl">
             Web sitesi yaptırmadan önce sık sorulanlar
           </h2>
+          <p className="mt-4 text-muted">
+            Süre, fiyatın neye göre yazıldığı, alan adının kime ait olduğu ve yayından sonraki destek
+            en çok sorulan konulardır. Kısa yanıtlar aşağıda. Aklınıza takılan başka bir şey varsa
+            teklif formundan veya telefondan doğrudan sorun; kapsam yazılı teklifte ayrıca açılır.
+          </p>
           <div className="mt-8">
             <FaqAccordion items={homeFaq} />
           </div>

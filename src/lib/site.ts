@@ -11,7 +11,7 @@ export const site = {
   quaternaryCity: "İstanbul",
   regions: ["Tokat", "Çanakkale", "İzmir", "İstanbul"] as const,
   description:
-    "Tokat web tasarım stüdyosu BCY Dijital: kurumsal web sitesi, e-ticaret, yerel SEO, GEO ve Meta reklam. 5 iş günü teslim, şeffaf teklif — Tokat, Çanakkale, İzmir ve İstanbul.",
+    "BCY Dijital, Barış Can Yönel tarafından Tokat merkezli yönetilen bir web tasarım stüdyosudur. Kurumsal web sitesi, e-ticaret, yerel SEO ve reklam hizmeti sunar.",
   sameAs: [
     "https://www.linkedin.com/in/bariscanyonel",
     "https://www.instagram.com/webtasarimbaris",
