@@ -72,7 +72,7 @@ export function HeroShowcase() {
             <Image
               key={item.slug}
               src={item.src}
-              alt={active ? item.alt : ""}
+              alt={item.alt}
               fill
               priority={itemIndex === 0}
               sizes="(max-width: 1024px) 90vw, 520px"

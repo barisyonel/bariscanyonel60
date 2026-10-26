@@ -44,7 +44,7 @@ export function Footer() {
         <div className="surface-ink relative isolate flex flex-col gap-8 overflow-hidden rounded-[1.5rem] px-7 py-12 md:min-h-[22rem] md:justify-center md:px-14 md:py-16">
           <Image
             src="/footer-bg.jpg"
-            alt=""
+            alt="Gece ofisinde laptop ve monitörde açık bir web sitesi tasarımı, eskiz defteri ve renk paleti"
             fill
             quality={90}
             sizes="(max-width: 1280px) 100vw, 1200px"
