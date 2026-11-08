@@ -25,7 +25,7 @@ export default function NotFound() {
       <div className="mt-8 flex justify-center gap-3">
         <Link
           href="/"
-          className="inline-flex min-h-11 items-center rounded-btn bg-ink px-6 py-2.5 font-medium text-white transition-colors hover:bg-accent"
+          className="inline-flex min-h-11 items-center rounded-btn bg-accent px-6 py-2.5 font-medium text-[#090b12] transition-colors hover:bg-accent-deep"
         >
           Ana sayfa
         </Link>

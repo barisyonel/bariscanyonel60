@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Manrope, Syne } from "next/font/google";
 import "@/styles/globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { DeferredChrome } from "@/components/layout/DeferredChrome";
 import { MobileActionBar } from "@/components/layout/MobileActionBar";
+import { WelcomePromo } from "@/components/layout/WelcomePromo";
 import { localBusiness, person } from "@/lib/schema";
 import { site } from "@/lib/site";
 import { Analytics } from "@/components/layout/Analytics";
@@ -16,6 +17,14 @@ const sans = Manrope({
   display: "swap",
   preload: true,
   adjustFontFallback: true,
+});
+
+const display = Syne({
+  variable: "--font-display-face",
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  weight: ["500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -48,11 +57,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr" className={sans.variable}>
+    <html lang="tr" className={`${sans.variable} ${display.variable}`}>
       <body className="pb-[calc(3.6rem+env(safe-area-inset-bottom))] md:pb-0">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-btn focus:bg-accent focus:px-4 focus:py-2 focus:text-base"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-btn focus:bg-accent focus:px-4 focus:py-2 focus:text-base focus:text-[#090b12]"
         >
           İçeriğe atla
         </a>
@@ -60,7 +69,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
-        <MobileActionBar />
+        <div data-site-chrome>
+          <MobileActionBar />
+        </div>
+        <WelcomePromo />
         <DeferredChrome />
         <Analytics />
       </body>

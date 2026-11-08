@@ -16,23 +16,23 @@ export const services: Service[] = [
     answer:
       "BCY Dijital, Tokat, Çanakkale, İzmir ve İstanbul'daki işletmeler için kurumsal web sitesi tasarlar. Siteler Next.js altyapısıyla geliştirilir, mobil öncelikli tasarlanır ve 5 iş günü içinde teslim edilir.",
     bullets: [
-      "Şablona değil, işletmenize özel tasarım",
-      "Mobil öncelikli, 390px'ten itibaren kusursuz",
-      "Lighthouse 95+ hedefi, 2 saniyenin altında açılış",
-      "WhatsApp entegrasyonu ve net iletişim akışı",
+      "Kurumsal kimlik ve logo ile uyumlu özel tasarım",
+      "İşletmeye özgü içerik ve mail entegrasyonu",
+      "Domain & hosting kurulumu; sahiplik sizde",
+      "WhatsApp, form ve net teklif akışı",
     ],
     body: [
       {
-        h: "Şablon değil, zanaat",
-        p: "Hazır tema alıp logo değiştirmiyoruz. Sektörünüzü, müşterinizi ve rakiplerinizi inceleyip tasarımı sıfırdan kuruyoruz. Asansör firmasıyla emlak ofisinin sitesi aynı görünmemeli; görünmüyor da.",
+        h: "Şablon değil, kurumsal kimlik",
+        p: "Hazır tema alıp logo yapıştırmıyoruz. Logo, renk dili ve sayfa düzeni işletmenize göre kurulur. Asansör firmasıyla emlak ofisinin sitesi aynı görünmemeli; görünmüyor da.",
       },
       {
-        h: "Hız bir özellik değil, zorunluluk",
-        p: "Yavaş açılan site müşteri kaçırır ve Google'da geriler. Her projede Core Web Vitals ölçülür: LCP 2 saniyenin altında, layout kayması sıfıra yakın tutulur.",
+        h: "İçerik, mail ve yayın",
+        p: "Sayfa metinleri sektöre özel yazılır. İletişim formu ve kurumsal mail akışı bağlanır; alan adı ile hosting sürecini birlikte netleştiririz. Kod ve domain teslimden sonra sizin üzerinize geçer.",
       },
       {
-        h: "Teslimden sonra yalnız değilsiniz",
-        p: "Site yayına alındıktan sonra içerik güncellemeleri, küçük düzeltmeler ve teknik bakım için yanınızdayız. Yönetim paneli isteyen müşterilere içerikleri kendilerinin güncelleyebileceği panel kuruyoruz.",
+        h: "Hız ve sahiplik",
+        p: "Yavaş açılan site müşteri kaçırır. İhtiyacı kadar kod kullanırız; site hızlı açılır, bakımı kolay olur. Teslimden sonra içerik güncellemesi ve teknik destek için yanınızdayız.",
       },
     ],
     faq: [
@@ -82,27 +82,27 @@ export const services: Service[] = [
   {
     slug: "seo",
     title: "SEO Optimizasyonu",
-    short: "Google'da 'Tokat + sektörünüz' arandığında sizin çıkmanız için.",
+    short: "Google'da işletme tanıtımı: yerel arama, teknik SEO ve görünürlük altyapısı.",
     answer:
-      "BCY Dijital, yerel işletmeler için teknik SEO, içerik SEO'su ve Google Business Profile optimizasyonu yapar. Hedef, işletmenin kendi şehrinde sektör aramalarında ilk sayfada görünmesidir.",
+      "BCY Dijital, yerel işletmeler için teknik SEO, içerik SEO'su ve Google'da işletme tanıtımı yapar. Hedef, işletmenin kendi şehrinde sektör aramalarında doğru görünmesidir.",
     bullets: [
+      "Google'da dijital işletme tanıtımı ve yerel SEO",
       "Teknik SEO: hız, indeksleme, schema, sitemap",
-      "Yerel SEO: Google Haritalar ve şehir aramaları",
-      "İçerik stratejisi: müşterinin gerçekten aradığı sorular",
+      "İşletmeye özgü içerik: müşterinin aradığı sorular",
       "Şeffaf raporlama: Search Console verisiyle",
     ],
     body: [
       {
-        h: "Yerel arama, yerel işletmenin ekmeği",
-        p: "\"Tokat asansör firması\" diye arayan kişi bugün müşteri olmaya hazırdır. Yerel SEO tam bu ana odaklanır: doğru sayfa, doğru başlık, doğru harita kaydı.",
+        h: "Google'da işletme tanıtımı",
+        p: "\"Tokat asansör firması\" diye arayan kişi bugün müşteri olmaya hazırdır. Doğru sayfa, doğru başlık ve Google işletme kaydıyla dijitalde görünürlüğünüzü büyütürüz.",
       },
       {
         h: "Teknik temel olmadan içerik boşa gider",
         p: "İndekslenmeyen sayfa, çift title etiketi, yavaş açılış — bunlar düzelmeden yazılan hiçbir içerik karşılık bulmaz. Önce teknik denetim yapar, sorunları kapatırız.",
       },
       {
-        h: "Söz değil, ölçüm",
-        p: "\"Sizi birinci yaparız\" diyen herkesten uzak durun; kimse bunu garanti edemez. Biz Search Console ve analitik verisiyle neyin arttığını ay ay gösteririz.",
+        h: "Marka değerini ölçülebilir büyütmek",
+        p: "\"Sizi birinci yaparız\" diyen herkesten uzak durun; kimse bunu garanti edemez. Search Console ve analitikle neyin arttığını ay ay gösteririz.",
       },
     ],
     faq: [

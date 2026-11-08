@@ -14,9 +14,11 @@ const base =
 
 const variants = {
   primary:
-    "bg-accent text-white shadow-sm hover:bg-accent-deep hover:shadow-[0_10px_28px_-12px_rgba(8,126,164,0.7)]",
-  ghost: "border border-line bg-base text-ink hover:border-accent hover:text-accent",
-  light: "bg-white text-ink hover:bg-accent hover:text-white",
+    "bg-accent text-[#090b12] shadow-[0_0_28px_-10px_rgba(184,255,53,0.55)] hover:bg-accent-deep",
+  ghost:
+    "border border-line bg-elevated/60 text-ink hover:border-accent/50 hover:text-accent",
+  light:
+    "bg-ink text-[#090b12] hover:bg-accent",
 } as const;
 
 export function ButtonLink({

@@ -22,7 +22,7 @@ export function PricingSection({
               }`}
             >
               {pack.popular ? (
-                <p className="text-xs font-semibold tracking-[0.14em] text-accent">EN ÇOK TERCİH EDİLEN</p>
+                <p className="text-xs font-semibold tracking-[0.14em] text-accent">En çok tercih edilen</p>
               ) : null}
               <h3 className={`text-2xl font-semibold text-ink ${pack.popular ? "mt-3" : ""}`}>{pack.name}</h3>
               <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{pack.tagline}</p>

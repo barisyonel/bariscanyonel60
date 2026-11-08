@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
@@ -30,62 +29,19 @@ function socialLabel(url: string): string {
 }
 
 function FooterHeading({ children }: { children: ReactNode }) {
-  return (
-    <p className="text-sm font-semibold text-white">{children}</p>
-  );
+  return <p className="text-sm font-semibold tracking-wide text-ink">{children}</p>;
 }
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="overflow-hidden border-t border-white/10 bg-navy text-white">
-      <div className="container-x pt-12 md:pt-16">
-        <div className="surface-ink relative isolate flex flex-col gap-8 overflow-hidden rounded-[1.5rem] px-7 py-12 md:min-h-[22rem] md:justify-center md:px-14 md:py-16">
-          <Image
-            src="/footer-bg.jpg"
-            alt="Gece ofisinde laptop ve monitörde açık bir web sitesi tasarımı, eskiz defteri ve renk paleti"
-            fill
-            quality={90}
-            sizes="(max-width: 1280px) 100vw, 1200px"
-            className="-z-10 object-cover object-right"
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0 -z-10 bg-[#0b0f16]/80 md:bg-transparent md:bg-linear-to-r md:from-[#0b0f16] md:from-30% md:via-[#0b0f16]/60 md:via-50% md:to-transparent md:to-75%"
-          />
-          <div className="max-w-xl">
-            <p className="text-3xl font-semibold leading-tight text-white md:text-5xl">
-              Projenizi birlikte netleştirelim
-            </p>
-            <p className="mt-5 text-white/65 md:text-lg">
-              15 dakikalık ücretsiz keşif görüşmesi, yazılı teklif, sürpriz maliyet yok.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Link
-              href="/iletisim"
-              className="inline-flex min-h-11 items-center justify-center rounded-btn bg-white px-6 py-2.5 text-[0.95rem] font-medium text-ink transition-colors hover:bg-accent hover:text-white"
-            >
-              Ücretsiz Keşif Görüşmesi
-            </Link>
-            <WhatsAppLink
-              href={defaultWa}
-              className="inline-flex min-h-11 items-center justify-center rounded-btn border border-white/25 px-6 py-2.5 text-[0.95rem] font-medium text-white transition-colors hover:border-white"
-            >
-              WhatsApp
-            </WhatsAppLink>
-          </div>
-        </div>
-      </div>
-
+    <footer className="overflow-hidden border-t border-line bg-elevated text-ink">
       <div className="container-x grid gap-12 py-14 md:py-16 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-4">
-          <div className="inline-flex rounded-xl bg-white px-3 py-2">
-            <BrandLogo size="footer" />
-          </div>
-          <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-white/70">
-            {site.city} merkezli {site.name}: kurumsal web sitesi, SEO, GEO ve Meta reklam.
+          <BrandLogo size="footer" variant="dark" />
+          <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-muted">
+            {site.city} merkezli {site.name}: kurumsal kimlik, web site, SEO ve marka büyümesi.
           </p>
 
           <div className="mt-8">
@@ -97,7 +53,7 @@ export function Footer() {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-10 items-center rounded-btn border border-white/15 px-3.5 py-2 text-sm text-white transition-colors hover:border-white"
+                    className="inline-flex min-h-10 items-center rounded-btn border border-line px-3.5 py-2 text-sm text-muted transition-colors hover:border-accent/40 hover:text-accent"
                   >
                     {socialLabel(url)}
                   </a>
@@ -117,7 +73,7 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-[0.95rem] text-white/70 transition-colors duration-300 hover:text-white"
+                    className="text-[0.95rem] text-muted transition-colors duration-300 hover:text-accent"
                   >
                     {l.label}
                   </Link>
@@ -135,7 +91,7 @@ export function Footer() {
                 <li key={s.slug}>
                   <Link
                     href={`/hizmetler/${s.slug}`}
-                    className="text-[0.95rem] text-white/70 transition-colors duration-300 hover:text-white"
+                    className="text-[0.95rem] text-muted transition-colors duration-300 hover:text-accent"
                   >
                     {s.title}
                   </Link>
@@ -144,7 +100,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/hizmetler"
-                  className="text-[0.95rem] font-medium text-accent transition-colors duration-300 hover:text-white"
+                  className="text-[0.95rem] font-medium text-accent transition-colors duration-300 hover:text-ink"
                 >
                   Tüm hizmetler →
                 </Link>
@@ -160,7 +116,7 @@ export function Footer() {
               <li>
                 <a
                   href={`tel:+${site.phoneRaw}`}
-                  className="font-medium text-white transition-colors hover:text-cyan"
+                  className="font-medium text-ink transition-colors hover:text-accent"
                 >
                   {site.phone}
                 </a>
@@ -168,7 +124,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="text-white/70 transition-colors hover:text-white"
+                  className="text-muted transition-colors hover:text-ink"
                 >
                   {site.email}
                 </a>
@@ -176,14 +132,14 @@ export function Footer() {
               <li>
                 <WhatsAppLink
                   href={defaultWa}
-                  className="text-white/70 transition-colors hover:text-white"
+                  className="text-muted transition-colors hover:text-ink"
                 >
                   WhatsApp&apos;tan yazın
                 </WhatsAppLink>
               </li>
-              <li className="text-white/70">
+              <li className="text-muted">
                 {site.city}, Türkiye
-                <span className="mt-1 block text-sm text-white/70">
+                <span className="mt-1 block text-sm text-muted">
                   Pzt–Cmt · 09:00–19:00
                 </span>
               </li>
@@ -197,7 +153,7 @@ export function Footer() {
                 <li key={r.href}>
                   <Link
                     href={r.href}
-                    className="text-[0.9rem] text-white/70 transition-colors hover:text-white"
+                    className="text-[0.9rem] text-muted transition-colors hover:text-accent"
                   >
                     {r.label}
                   </Link>
@@ -208,20 +164,20 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="container-x flex flex-col gap-3 py-5 text-[0.85rem] text-white/70 md:flex-row md:items-center md:justify-between">
+      <div className="border-t border-line">
+        <div className="container-x flex flex-col gap-3 py-5 text-[0.85rem] text-muted md:flex-row md:items-center md:justify-between">
           <p>
             © {year} {site.person}
-            <span className="mt-1 block text-white/55">Web Tasarım ve Dijital Çözümler</span>
+            <span className="mt-1 block text-muted/80">Web Tasarım ve Dijital Çözümler</span>
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <p className="text-[0.8rem]">
-              {site.regions.join(" · ")} · Web tasarım, SEO, GEO
+              {site.regions.join(" · ")} · Kimlik · Web Site · SEO · Hosting
             </p>
-            <Link href="/gizlilik-politikasi" className="hover:text-white">
+            <Link href="/gizlilik-politikasi" className="hover:text-ink">
               Gizlilik Politikası
             </Link>
-            <Link href="/kvkk" className="hover:text-white">
+            <Link href="/kvkk" className="hover:text-ink">
               KVKK
             </Link>
           </div>

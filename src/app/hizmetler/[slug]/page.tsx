@@ -27,11 +27,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 // Hizmet → ilgili vaka çalışmaları (iç bağlantı stratejisi)
 const related: Record<string, string[]> = {
-  "web-tasarim": ["prime-dizayn", "guzubey-asansor", "samlioglu-hukuk", "tokat-sanayi-sitesi", "aevum-troia"],
+  "web-tasarim": ["prime-dizayn", "turanlar-ticaret", "guzubey-asansor", "samlioglu-hukuk", "aevum-troia"],
   "e-ticaret": ["mygoldenfood", "yonel-oto-yedek-parca"],
-  seo: ["aevum-troia", "izmak-makina-kalip", "balsan-papel", "guzubey-asansor"],
-  geo: ["aevum-troia", "guzubey-asansor"],
-  "meta-reklam": ["guzubey-asansor", "tokat-sanayi-sitesi", "mygoldenfood", "yonel-oto-yedek-parca"],
+  seo: ["turanlar-ticaret", "aevum-troia", "izmak-makina-kalip", "guzubey-asansor"],
+  geo: ["aevum-troia", "guzubey-asansor", "turanlar-ticaret"],
+  "meta-reklam": ["guzubey-asansor", "turanlar-ticaret", "mygoldenfood", "yonel-oto-yedek-parca"],
 };
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {

@@ -194,7 +194,7 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "qu
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex min-h-12 w-full items-center justify-center rounded-btn bg-accent px-6 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-accent-deep disabled:opacity-60 sm:w-auto"
+        className="inline-flex min-h-12 w-full items-center justify-center rounded-btn bg-accent px-6 py-3 font-semibold text-[#090b12] shadow-[0_0_28px_-10px_rgba(184,255,53,0.45)] transition-colors hover:bg-accent-deep disabled:opacity-60 sm:w-auto"
       >
         {pending ? "Gönderiliyor…" : variant === "quote" ? "Ücretsiz Teklif Al →" : "Gönder"}
       </button>

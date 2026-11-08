@@ -99,7 +99,7 @@ export function ServiceCard({
       }`}
     >
       <span
-        className="flex size-11 items-center justify-center rounded-xl bg-accent text-white shadow-sm"
+        className="flex size-11 items-center justify-center rounded-xl bg-accent text-[#090b12] shadow-sm"
         aria-hidden
       >
         <ServiceIcon id={iconId} />

@@ -6,6 +6,7 @@ type BrandLogoProps = {
   size?: "nav" | "footer";
   className?: string;
   onClick?: () => void;
+  variant?: "dark" | "light";
 };
 
 const sizes = {
@@ -13,19 +14,30 @@ const sizes = {
   footer: { mark: "h-9 w-auto", text: "text-xl" },
 } as const;
 
-export function BrandLogo({ href = "/", size = "nav", className = "", onClick }: BrandLogoProps) {
+export function BrandLogo({
+  href = "/",
+  size = "nav",
+  className = "",
+  onClick,
+  variant = "dark",
+}: BrandLogoProps) {
   const s = sizes[size];
+  // logo-mark.png koyu zeminde; light-bg varyantı açık yüzeyler için
+  const markSrc = variant === "dark" ? "/logo-mark.png" : "/logo-mark-light-bg.png";
+  const textClass = variant === "dark" ? "text-ink" : "text-[#0f172a]";
+
+
   const content = (
     <>
       <Image
-        src="/logo-mark-light-bg.png"
+        src={markSrc}
         alt="BCY Dijital logosu"
         width={515}
         height={239}
         className={`${s.mark} object-contain`}
         priority={size === "nav"}
       />
-      <span className={`${s.text} font-bold tracking-tight text-ink`}>Dijital</span>
+      <span className={`${s.text} font-bold tracking-tight ${textClass}`}>Dijital</span>
     </>
   );
 

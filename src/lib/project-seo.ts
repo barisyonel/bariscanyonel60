@@ -1,11 +1,44 @@
 import type { Project } from "./projects";
 
 const UPDATED = "2026-10-25";
+const FRESH = "2026-11-09";
 
 const details: Record<
   string,
   Pick<Project, "imageAlt" | "updated" | "caseStudy">
 > = {
+  "prime-dizayn": {
+    updated: FRESH,
+    imageAlt: "Prime Dizayn İstanbul mimari ofis web sitesi",
+  },
+  "turanlar-ticaret": {
+    updated: FRESH,
+    imageAlt: "Turanlar Ticaret Tokat ürün vitrini ve WhatsApp sipariş sitesi",
+  },
+  "aevum-troia": {
+    updated: UPDATED,
+    imageAlt: "Aevum Troia Çanakkale konaklama web sitesi",
+  },
+  "dalyan-palmiye-resort": {
+    updated: UPDATED,
+    imageAlt: "Dalyan Palmiye Resort Muğla otel web sitesi",
+  },
+  "mygoldenfood": {
+    updated: UPDATED,
+    imageAlt: "MyGoldenFood gıda markası e-ticaret web sitesi",
+  },
+  "balsan-papel": {
+    updated: UPDATED,
+    imageAlt: "Balsan Papel ambalaj ve kağıt ürünleri web sitesi",
+  },
+  "imbat-osgb": {
+    updated: UPDATED,
+    imageAlt: "İmbat OSGB iş sağlığı ve güvenliği web sitesi",
+  },
+  "izmak-makina-kalip": {
+    updated: UPDATED,
+    imageAlt: "İzmak Makina Kalıp sanayi web sitesi",
+  },
   "guzubey-asansor": {
     updated: UPDATED,
     imageAlt: "Guzubey Asansör Tokat web sitesi tasarımı",
@@ -97,6 +130,7 @@ const tokatAnchors: Record<string, string> = {
   "yonel-oto-yedek-parca": "Tokat’taki katalog ve kurumsal işler",
   "metod-muhendislik": "Tokat merkezli web sitesi çalışmaları",
   "mufat-insaat": "Turhal ve Tokat için kurumsal site",
+  "turanlar-ticaret": "Tokat Merkez e-ticaret ve vitrin sitesi",
 };
 
 export function enrichProject(project: Project): Project {

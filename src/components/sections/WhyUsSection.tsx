@@ -1,65 +1,74 @@
 const benefits = [
   {
     n: "01",
-    title: "Size Özel Tasarım",
-    text: "Hazır tema üzerine logo konmaz. Sektörünüze ve müşterinize göre arayüz kurulur. Asansör firması ile konaklama işletmesi aynı kutulara sığmaz; sayfa sırası işin kendisinden çıkar.",
+    title: "Kurumsal Kimlik",
+    text: "Logo, renk ve sunum dili işletmenize göre kurulur. Hazır tema üzerine logo yapıştırılmaz.",
   },
   {
     n: "02",
-    title: "Mobil Öncelikli",
-    text: "Telefon, tablet ve masaüstünde aynı netlikte açılan bir düzen. Teklif butonu ve form, dar ekranda da başparmağın ulaşacağı yerde durur.",
+    title: "Özel İçerik",
+    text: "Sayfa metinleri sektöre ve müşteriye göre yazılır. Kopyala-yapıştır içerik kullanmayız.",
   },
   {
     n: "03",
-    title: "SEO Altyapısı",
-    text: "Sayfanın Google tarafından doğru okunması için teknik iskelet teslimata dahildir. Başlık, açıklama ve işletme bilgisi sayfayla birlikte yayınlanır.",
+    title: "Mail & Domain",
+    text: "Kurumsal mail, form entegrasyonu, alan adı ve hosting süreci teslimatın parçasıdır.",
   },
   {
     n: "04",
-    title: "Yüksek Performans",
-    text: "Hızlı açılan, bakımı sürdürülebilir modern web teknolojileri. Ağır hazır temalar yerine sayfanın ihtiyacı kadar kod gider.",
+    title: "Google Tanıtımı",
+    text: "Yerel arama, işletme kaydı ve SEO altyapısıyla Google’da doğru görünürlük hedeflenir.",
   },
   {
     n: "05",
-    title: "Kolay Sahiplik",
-    text: "Alan adı, site ve kodlar teslimden sonra size kalır. Ajansa bağımlılık yoktur. İsterseniz sonraki güncellemeyi başka bir ekip de devralabilir.",
+    title: "Tam Sahiplik",
+    text: "Alan adı, site ve kodlar teslimden sonra sizin üzerinize geçer. Ajansa bağlı kalmazsınız.",
   },
   {
     n: "06",
-    title: "Satış Odaklı UX",
-    text: "Ziyaretçi teklif, arama veya WhatsApp adımına takılmadan ulaşır. Her sayfanın sonunda ne yapılacağı bellidir; süs için duran buton konmaz.",
+    title: "Marka Büyümesi",
+    text: "Site, içerik ve reklam aynı hedefe bağlanır: daha çok teklif, daha güçlü marka değeri.",
   },
 ] as const;
 
 export function WhyUsSection() {
   return (
-    <section id="neden-biz" className="section-pad bg-elevated" aria-labelledby="neden-biz-heading">
+    <section id="neden-biz" className="section-pad" aria-labelledby="neden-biz-heading">
       <div className="container-x">
-        <p className="text-xs font-semibold tracking-[0.16em] text-accent">NEDEN BCY</p>
-        <h2 id="neden-biz-heading" className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-ink md:text-5xl">
-          Şablon Değil, İşletmenize Özel Bir Web Sitesi
-        </h2>
-        <p className="mt-4 max-w-2xl text-muted">
-          Teslimden sonra siteniz, alan adınız ve kodlarınız size kalır. Hız, mobil uyum ve arama
-          görünürlüğü bu sahipliğin üstüne kurulur.
-        </p>
-        <p className="mt-3 max-w-2xl text-muted">
-          Şablon, her işletmeye aynı kutuları verir. Burada sayfa düzeni işinize göre kurulur: teklif
-          isteyen firma ile randevu alan işletme aynı akışa zorlanmaz. Aşağıdaki altı madde, teslimde
-          neyi standart kabul ettiğimizi kısaca anlatır.
-        </p>
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {benefits.map((item) => (
-            <li
-              key={item.n}
-              className="rounded-[18px] border border-line bg-base p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-(--shadow-md)"
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <p className="eyebrow">Neden BCY</p>
+            <h2
+              id="neden-biz-heading"
+              className="mt-3 max-w-xl font-display text-3xl font-bold uppercase tracking-tight md:text-5xl"
             >
-              <p className="text-sm font-semibold tracking-wide text-accent">{item.n}</p>
-              <h3 className="mt-4 text-xl font-semibold text-ink">{item.title}</h3>
-              <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{item.text}</p>
-            </li>
-          ))}
-        </ul>
+              Şablon değil,
+              <span className="mt-1 block text-accent">marka yatırımı</span>
+            </h2>
+            <p className="mt-4 max-w-md text-muted">
+              Web site tek başına yetmez. Kimlik, içerik, mail, domain ve Google tanıtımını birlikte
+              kuruyoruz.
+            </p>
+            <p className="mt-3 max-w-md text-muted">
+              Teslimden sonra siteniz, alan adınız ve kodlarınız size kalır. Amaç marka değerini
+              büyütmek.
+            </p>
+          </div>
+
+          <ol className="divide-y divide-line border-y border-line">
+            {benefits.map((item) => (
+              <li key={item.n} className="grid gap-3 py-7 sm:grid-cols-[4.5rem_1fr] sm:gap-8">
+                <span className="font-display text-3xl font-bold text-accent/80">{item.n}</span>
+                <div>
+                  <h3 className="font-display text-xl font-bold uppercase tracking-tight text-ink md:text-2xl">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 max-w-xl text-[0.95rem] leading-relaxed text-muted">{item.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   );

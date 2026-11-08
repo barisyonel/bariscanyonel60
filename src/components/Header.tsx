@@ -113,6 +113,7 @@ const socials = site.sameAs.map(socialFromUrl);
 function isActive(path: string | null, href: string) {
   if (!path) return false;
   if (href === "/") return path === "/";
+  if (href.startsWith("/#")) return path === "/";
   return path === href || path.startsWith(`${href}/`);
 }
 
@@ -126,7 +127,7 @@ function SocialLinks({ className = "" }: { className?: string }) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={s.label}
-          className="inline-flex h-9 w-9 items-center justify-center text-ink transition-colors hover:text-accent"
+          className="inline-flex h-9 w-9 items-center justify-center text-muted transition-colors hover:text-accent"
         >
           {s.icon}
         </a>
@@ -136,8 +137,8 @@ function SocialLinks({ className = "" }: { className?: string }) {
 }
 
 function linkClass(active: boolean) {
-  return `rounded-full px-3.5 py-2 text-[0.95rem] font-semibold tracking-tight transition-colors ${
-    active ? "bg-accent-mist text-accent" : "text-ink hover:bg-accent-mist hover:text-accent"
+  return `group relative rounded-full px-3.5 py-2 text-[0.9rem] font-semibold tracking-tight transition-colors ${
+    active ? "text-accent" : "text-muted hover:text-ink"
   }`;
 }
 
@@ -194,12 +195,12 @@ export function Header() {
         <div
           className={`border-b transition duration-300 ${
             scrolled
-              ? "border-line bg-white/80 shadow-sm backdrop-blur-md"
-              : "border-transparent bg-white/70 backdrop-blur-sm"
+              ? "border-line/80 bg-base/85 shadow-[0_8px_32px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl"
+              : "border-transparent bg-base/40 backdrop-blur-md"
           }`}
         >
           <div className="container-x flex h-[4.75rem] items-center justify-between gap-6">
-            <BrandLogo onClick={() => setOpen(false)} />
+            <BrandLogo variant="dark" onClick={() => setOpen(false)} />
 
             <nav ref={navRef} className="hidden items-center gap-0.5 lg:flex" aria-label="Ana menü">
               {nav.map((item) => {
@@ -214,6 +215,12 @@ export function Header() {
                         className={linkClass(active)}
                       >
                         {item.label}
+                        <span
+                          aria-hidden
+                          className={`absolute inset-x-3 -bottom-0.5 h-px origin-left bg-accent transition-transform duration-300 ${
+                            active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                          }`}
+                        />
                       </Link>
                     );
                   }
@@ -253,14 +260,14 @@ export function Header() {
                           } ${expanded ? "visible" : "invisible pointer-events-none"}`}
                         >
                           <div
-                            className={`rounded-[18px] border border-line bg-white p-2 shadow-[0_22px_50px_-28px_rgba(7,26,38,0.55)] transition duration-200 ${
+                            className={`rounded-card border border-line bg-elevated/95 p-2 shadow-lg backdrop-blur-xl transition duration-200 ${
                               expanded ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
                             }`}
                           >
                             <Link
                               href={item.href}
                               onClick={() => setMenu(null)}
-                              className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-semibold text-accent hover:bg-accent-mist"
+                              className="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-accent hover:bg-accent-mist"
                             >
                               {item.summary}
                               <span aria-hidden>→</span>
@@ -271,7 +278,7 @@ export function Header() {
                                   <Link
                                     href={child.href}
                                     onClick={() => setMenu(null)}
-                                    className="block rounded-xl px-3 py-2.5 transition-colors hover:bg-accent-mist"
+                                    className="block rounded-lg px-3 py-2.5 transition-colors hover:bg-subtle"
                                   >
                                     <span className="block text-sm font-semibold text-ink">{child.label}</span>
                                     <span className="mt-0.5 block text-xs leading-snug text-muted">{child.note}</span>
@@ -295,9 +302,9 @@ export function Header() {
             <div className="hidden lg:flex">
               <Link
                 href={path === "/" ? "/#teklif" : "/iletisim"}
-                className="inline-flex items-center rounded-btn bg-accent px-5 py-2.5 text-[0.95rem] font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-accent-deep hover:shadow-[0_10px_28px_-12px_rgba(8,126,164,0.7)]"
+                className="inline-flex items-center rounded-btn bg-accent px-5 py-2.5 text-[0.95rem] font-semibold text-[#090b12] shadow-[0_0_28px_-10px_rgba(184,255,53,0.55)] transition duration-300 hover:-translate-y-0.5 hover:bg-accent-deep"
               >
-                Ücretsiz Teklif Al
+                Teklif Al
               </Link>
             </div>
 
@@ -334,27 +341,22 @@ export function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-x-0 bottom-0 top-[4.75rem] z-[55] lg:hidden"
+            className="fixed inset-0 z-[55] lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduce ? 0 : 0.25 }}
           >
-            <button
-              type="button"
-              className="absolute inset-0 bg-ink/20"
-              aria-label="Menüyü kapat"
-              onClick={() => setOpen(false)}
-            />
             <motion.nav
               aria-label="Mobil menü"
-              className="absolute inset-0 overflow-y-auto border-t border-accent/20 bg-base px-6 pb-10 pt-8"
-              initial={reduce ? false : { y: 16, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={reduce ? undefined : { y: 12, opacity: 0 }}
+              className="absolute inset-0 overflow-y-auto bg-base px-6 pb-10 pt-[5.5rem]"
+              initial={reduce ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={reduce ? undefined : { opacity: 0 }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             >
-              <ul className="space-y-0">
+              <div className="pointer-events-none absolute inset-0 grid-lines opacity-40" aria-hidden />
+              <ul className="relative space-y-0">
                 {nav.map((item, i) => {
                   switch (item.kind) {
                     case "link": {
@@ -371,7 +373,7 @@ export function Header() {
                             onClick={() => setOpen(false)}
                             className={`block border-b border-line py-4 ${active ? "text-accent" : "text-ink"}`}
                           >
-                            <span className="text-2xl font-semibold">{item.label}</span>
+                            <span className="font-display text-3xl font-bold tracking-tight">{item.label}</span>
                           </Link>
                         </motion.li>
                       );
@@ -391,7 +393,7 @@ export function Header() {
                             <Link
                               href={item.href}
                               onClick={() => setOpen(false)}
-                              className={`flex-1 py-4 text-2xl font-semibold ${active ? "text-accent" : "text-ink"}`}
+                              className={`flex-1 py-4 font-display text-3xl font-bold tracking-tight ${active ? "text-accent" : "text-ink"}`}
                             >
                               {item.label}
                             </Link>
@@ -407,12 +409,12 @@ export function Header() {
                             </button>
                           </div>
                           {expanded ? (
-                            <ul id={`mobile-${item.id}`} className="mb-4 space-y-1 rounded-[16px] bg-accent-mist p-2">
+                            <ul id={`mobile-${item.id}`} className="mb-4 space-y-1 rounded-card border border-line bg-elevated p-2">
                               <li>
                                 <Link
                                   href={item.href}
                                   onClick={() => setOpen(false)}
-                                  className="block rounded-xl px-3 py-2.5 text-sm font-semibold text-accent"
+                                  className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-accent"
                                 >
                                   {item.summary} →
                                 </Link>
@@ -422,7 +424,7 @@ export function Header() {
                                   <Link
                                     href={child.href}
                                     onClick={() => setOpen(false)}
-                                    className="block rounded-xl px-3 py-2.5"
+                                    className="block rounded-lg px-3 py-2.5"
                                   >
                                     <span className="block text-sm font-semibold text-ink">{child.label}</span>
                                     <span className="mt-0.5 block text-xs text-muted">{child.note}</span>
@@ -442,17 +444,17 @@ export function Header() {
                 })}
               </ul>
 
-              <div className="mt-10 space-y-3">
+              <div className="relative mt-10 space-y-3">
                 <Link
                   href="/iletisim"
                   onClick={() => setOpen(false)}
-                  className="flex w-full items-center justify-center rounded-btn bg-accent px-6 py-3.5 text-center font-semibold text-white"
+                  className="flex w-full items-center justify-center rounded-btn bg-accent px-6 py-3.5 text-center font-semibold text-[#090b12]"
                 >
-                  Ücretsiz Teklif Al
+                  Teklif Al
                 </Link>
                 <a
                   href={`tel:+${site.phoneRaw}`}
-                  className="flex w-full items-center justify-center rounded-btn border border-line px-6 py-3.5 text-ink transition-colors hover:border-ink"
+                  className="flex w-full items-center justify-center rounded-btn border border-line px-6 py-3.5 text-ink transition-colors hover:border-accent/40"
                 >
                   0530 112 94 40
                 </a>

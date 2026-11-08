@@ -4,6 +4,7 @@ import { Marquee } from "@/components/ui/Marquee";
 
 const clients = [
   { slug: "prime-dizayn", name: "Prime Dizayn", src: "/clients/prime-dizayn.jpg", width: 1024, height: 320 },
+  { slug: "turanlar-ticaret", name: "Turanlar Ticaret", src: "/clients/turanlar-ticaret.png", width: 989, height: 273 },
   { slug: "dalyan-palmiye-resort", name: "Dalyan Palmiye Resort", src: "/clients/dalyan-palmiye.jpg", width: 1120, height: 391 },
   { slug: "samlioglu-hukuk", name: "Şamlıoğlu Hukuk", src: "/clients/samlioglu-hukuk.png", width: 640, height: 495 },
   { slug: "aevum-troia", name: "Aevum Troia", src: "/clients/aevum-troia.png", width: 640, height: 240 },
@@ -15,10 +16,10 @@ const clients = [
 
 export function ClientLogoStrip() {
   return (
-    <section aria-labelledby="isletmeler-heading" className="border-y border-line bg-white py-8 md:py-10">
+    <section aria-labelledby="isletmeler-heading" className="border-y border-line bg-elevated py-8 md:py-10">
       <div className="container-x">
         <p id="isletmeler-heading" className="text-xs font-semibold tracking-[0.16em] text-muted">
-          BİRLİKTE ÇALIŞTIĞIMIZ İŞLETMELER
+          Birlikte çalıştığımız işletmeler
         </p>
       </div>
       <div className="mt-5">
@@ -28,7 +29,7 @@ export function ClientLogoStrip() {
             <Link
               key={client.slug}
               href={`/projeler/${client.slug}`}
-              className="flex h-[4.25rem] items-center rounded-xl bg-white px-4 ring-1 ring-line"
+              className="flex h-[4.25rem] items-center rounded-xl bg-[#f5f6fa] px-4 ring-1 ring-line"
             >
               <Image
                 src={client.src}

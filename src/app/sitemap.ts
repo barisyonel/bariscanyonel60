@@ -30,14 +30,14 @@ function entry(
  * Dinamik sitemap — tüm hizmet, proje ve blog URL’leri.
  * Yeni proje (ör. prime-dizayn) projects[]’e eklenince otomatik dahil olur.
  */
-const CONTENT_UPDATED = "2026-10-25";
+const CONTENT_UPDATED = "2026-11-09";
 const OLDER = "2026-07-15";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     entry("", { priority: 1, changeFrequency: "weekly", lastModified: CONTENT_UPDATED }),
     entry("/hizmetler", { priority: 0.9, changeFrequency: "monthly", lastModified: OLDER }),
-    entry("/projeler", { priority: 0.9, changeFrequency: "weekly", lastModified: OLDER }),
+    entry("/projeler", { priority: 0.9, changeFrequency: "weekly", lastModified: CONTENT_UPDATED }),
     entry("/blog", { priority: 0.8, changeFrequency: "weekly", lastModified: CONTENT_UPDATED }),
     entry("/sss", { priority: 0.7, changeFrequency: "monthly", lastModified: OLDER }),
     entry("/hakkimda", { priority: 0.7, changeFrequency: "monthly", lastModified: OLDER }),

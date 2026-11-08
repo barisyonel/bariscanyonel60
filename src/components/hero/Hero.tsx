@@ -1,64 +1,55 @@
-import { HeroShowcase } from "@/components/hero/HeroShowcase";
+import { HeroCollage } from "@/components/hero/HeroCollage";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { defaultWa } from "@/lib/site";
-
-const trust = ["Ücretsiz ön görüşme", "Size özel tasarım", "Mobil uyumlu"] as const;
 
 export function Hero() {
   return (
     <section
       id="anasayfa"
       aria-labelledby="home-h1"
-      className="relative overflow-hidden pb-10 pt-8 md:pb-14 md:pt-12"
+      className="relative overflow-x-clip pb-16 pt-10 md:pb-24 md:pt-16"
     >
+      <div className="pointer-events-none absolute inset-0 -z-10 grid-lines opacity-50" aria-hidden />
       <div
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_80%_20%,rgba(20,184,212,0.16),transparent_46%),radial-gradient(ellipse_at_10%_80%,rgba(8,126,164,0.1),transparent_42%)]"
+        className="pointer-events-none absolute left-0 top-10 -z-10 size-[18rem] rounded-full bg-electric/20 blur-[100px] md:size-[28rem]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.35] [background-image:linear-gradient(to_right,rgba(8,126,164,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(8,126,164,0.08)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
+        className="pointer-events-none absolute bottom-0 right-0 -z-10 size-[16rem] rounded-full bg-accent/15 blur-[90px] md:size-[22rem]"
         aria-hidden
       />
-      <div className="container-x grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+
+      <div className="container-x relative grid min-w-0 items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-10">
         <div className="min-w-0">
-          <p className="text-xs font-semibold tracking-[0.18em] text-accent">KURUMSAL WEB TASARIM</p>
+          <p className="eyebrow">BCY Dijital · Kimlik &amp; Web Site</p>
           <h1
             id="home-h1"
-            className="mt-4 max-w-3xl text-[clamp(2.15rem,4.6vw,3.75rem)] font-semibold leading-[1.08] tracking-tight text-ink"
+            className="mt-5 font-display text-[clamp(2rem,6.5vw,4.25rem)] font-bold uppercase leading-[1.05] tracking-[-0.035em] text-ink"
           >
-            İşletmenizi Dijitalde <span className="text-accent">Öne Çıkaran</span> Web Siteleri
+            <span className="block">Dijitalde</span>
+            <span className="block text-accent">Fark Yaratan</span>
+            <span className="block">Deneyimler.</span>
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted md:text-lg">
-            Markanıza özel, hızlı, modern ve satış odaklı web siteleri tasarlıyorum. Sadece güzel
-            görünen değil, işletmenize müşteri kazandıran dijital deneyimler oluşturuyorum. Tokat
-            merkezli stüdyoda keşif, yazılı kapsam ve yayın aynı kişi tarafından yürütülür; alan adı
-            ve site teslimden sonra size kalır.
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg">
+            Kurumsal kimlik, logo, özel içerik, web site, mail entegrasyonu ve Google’da işletme
+            tanıtımını aynı masada kuruyoruz. Amaç net: marka değerini büyütmek.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href="/projeler" className="w-full sm:w-auto">
+              Projeleri İncele
+            </ButtonLink>
             <ButtonLink
               href="/#teklif"
+              variant="ghost"
               className="w-full sm:w-auto"
               analyticsEvent="proposal_cta"
               analyticsParams={{ cta_location: "home_hero" }}
             >
-              Ücretsiz Teklif Al →
-            </ButtonLink>
-            <ButtonLink href="/projeler" variant="ghost" className="w-full sm:w-auto">
-              Projeleri İncele
+              Projenizi Konuşalım
             </ButtonLink>
           </div>
-          <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-sm font-medium text-ink">
-            {trust.map((item) => (
-              <li key={item} className="inline-flex items-center gap-1.5">
-                <span className="text-accent" aria-hidden>
-                  ✓
-                </span>
-                {item}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 text-sm text-muted">
-            WhatsApp ile yazmak isterseniz{" "}
+          <p className="mt-5 text-sm text-muted">
+            WhatsApp’tan yazmak isterseniz{" "}
             <a href={defaultWa} className="font-semibold text-accent underline-offset-4 hover:underline">
               buradan ulaşın
             </a>
@@ -66,7 +57,9 @@ export function Hero() {
           </p>
         </div>
 
-        <HeroShowcase />
+        <div className="min-w-0">
+          <HeroCollage />
+        </div>
       </div>
     </section>
   );

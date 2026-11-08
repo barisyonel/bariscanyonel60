@@ -53,7 +53,7 @@ export function CookieBanner() {
         <button
           type="button"
           onClick={accept}
-          className="rounded-btn bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-deep"
+          className="rounded-btn bg-accent px-4 py-2 text-sm font-medium text-[#090b12] transition-colors hover:bg-accent-deep"
         >
           Kabul Et
         </button>

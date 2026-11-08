@@ -57,6 +57,27 @@ const projectRecords: Project[] = [
     tech: ["Next.js", "SEO", "WhatsApp"],
   },
   {
+    slug: "turanlar-ticaret",
+    name: "Turanlar Ticaret",
+    sector: "Tüp · Hürgaz · Yerel Servis",
+    city: "Tokat",
+    summary:
+      "Tokat Merkez’de 1977’den beri Hürgaz tüp satan Turanlar Ticaret için ücretsiz servis ve WhatsApp sipariş odaklı kurumsal site.",
+    problem:
+      "Siparişler telefon ve ezbere dönüyordu; Tokat ücretsiz tüp servisi, ürün fiyatları ve çalışma saatleri dijitalde net bir vitrinde toplanmamıştı.",
+    solution:
+      "Ürün vitrini, WhatsApp sipariş akışı, yerel SEO ve Tokat Merkez servis vurgusuyla hızlı, mobil öncelikli bir satış sitesi kurduk — canlı: turanlarticaret.com.",
+    result:
+      "Müşteriler tüpü siteden seçip WhatsApp’tan yazıyor; Tokat ücretsiz tüp servisi talepleri merkeze düzenli ulaşıyor.",
+    tags: ["Kurumsal", "Yerel SEO", "WhatsApp"],
+    tone: "#1e4a8c",
+    url: "https://www.turanlarticaret.com/",
+    image: "/projects/turanlar-ticaret.jpg",
+    seoScore: 98,
+    performance: 97,
+    tech: ["Next.js", "SEO", "WhatsApp"],
+  },
+  {
     slug: "guzubey-asansor",
     name: "Guzubey Asansör",
     sector: "Asansör",

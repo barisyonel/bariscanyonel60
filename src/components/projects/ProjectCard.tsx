@@ -9,10 +9,10 @@ export function ProjectCard({ p, featured = false }: { p: Project; featured?: bo
   const caseHref = `/projeler/${p.slug}`;
 
   return (
-    <article className="group flex h-full flex-col rounded-[18px] border border-line bg-base p-3 transition duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-(--shadow-lg)">
+    <article className="group flex h-full flex-col rounded-card border border-line bg-elevated p-3 transition duration-300 hover:border-accent/35 hover:shadow-(--shadow-lg)">
       <Link
         href={caseHref}
-        className={`relative block overflow-hidden rounded-[14px] bg-elevated ${featured ? "aspect-[16/9]" : "aspect-[16/10]"}`}
+        className={`relative block overflow-hidden rounded-[10px] bg-subtle ${featured ? "aspect-[16/9]" : "aspect-[16/10]"}`}
         tabIndex={-1}
         aria-hidden
       >
